@@ -1,0 +1,78 @@
+#+title: Emacs+LaTeX: 如何优雅地预览公式?
+
+* 所见即所得的实现方式
+文本编辑中的两个要素
+- 文本本身
+- 文本的格式
+  
+** pdf 文件预览: 正向与逆向搜索
+[[https://www.bilibili.com/video/BV1pg4y1s7Z9/][【Emacs+LaTeX教程】Emacs最强内置pdf阅读功能pdf-tools简介]]
+缺点
+- 需要大屏幕
+- 如果编译错误就无法预览
+** 使用 =preview-latex=
+[[https://www.bilibili.com/video/BV1H4411a7fD/][【教程】LaTeX+Emacs从零开始2-6节：所见即所得之Preview-latex]]
+缺点
+- 需要手动执行编译: 常用键 ~C-c C-p C-p~
+- 代码的可读性不强
+** 使用 =prettify-symbols-mode=
+优点
+- 不需要手动触发
+- 没有编译过程, 不会报错
+- 提高了代码的可读性
+* 基本设置
+版本要求
+- Emacs >= 25
+- AucTex >= 13.1.10 (可通过 ~M-x package-list-package~ 中查找 =auctex= 查看)
+** 临时打开
+~M-x prettify-symbols-mode~
+** =init.el= 文件设置
+#+begin_src elisp
+  (defun my-latex-hook ()
+    (prettify-symbols-mode t))
+  (add-hook 'LaTeX-mode-hook 'my-latex-hook)
+#+end_src
+** 字体设置
+保证 Unicode 数学符号可以正确显示
+#+begin_src elisp
+  (set-fontset-font "fontset-default" 'mathematical "Cambria Math")
+#+end_src
+** 自动展开
+设置自动展开光标附近的宏命令.
+#+begin_src elisp
+  (setq prettify-symbols-unprettify-at-point t)
+#+end_src
+tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~ 撤消, 而不是一个个字符删除. 
+* 加入自己的符号
+#+begin_src elisp
+  (require 'tex-mode)
+  (defun my/more-prettified-symbols ()
+    (mapc (lambda (pair) (cl-pushnew pair tex--prettify-symbols-alist))
+          '(("\\Z" . 8484) ;; 大多数人在latex中会用 \Z, \Q, \N, \R 表示数域
+            ("\\Q" . 8474)
+            ("\\N" . 8469)
+            ("\\R" . 8477)
+            ("\\eps" . 949)
+            ("\\ONE" . #x1D7D9)
+            ("\\mathbb{S}" . #x1D54A)
+            ("\\PP" . #x2119) ;; 个人需要, 经常要使用P和E的数学字体
+            ("\\P" . #x1D5AF )
+            ("\\Pp" . #x1D40F)
+            ("\\E" . #x1D5A4)
+            ("\\Ee" . #x1D404)
+            ("\\EE" . #x1D53C )
+            ("\\Fc" . #x2131)
+            ("\\Nc" . #x1D4A9))))
+  (my/more-prettified-symbols)
+#+end_src
+
+将 ~("<latex 宏命令>" . <unicode 编码>)~ 加入列表中
+- latex 宏命令一般以 "=\\=" 开头, 表示一个普通的 "=\=".
+- unicode 编码以 "=#x=" 表示是16进制数字, 否则就是10进制
+- 常用编码表: https://en.wikipedia.org/wiki/Mathematical_operators_and_symbols_in_Unicode
+  
+
+个人加入编码的原则
+- 原列表中没有的编码
+- 像 =\N= , =\Z= 等大多数人使用的宏命令, 这样可以减少与他人合作的障碍
+- 进一步简化自己的常用命令, 像上面的各种 =E=, =P=. 
