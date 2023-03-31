@@ -76,3 +76,52 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
 - 原列表中没有的编码
 - 像 =\N= , =\Z= 等大多数人使用的宏命令, 这样可以减少与他人合作的障碍
 - 进一步简化自己的常用命令, 像上面的各种 =E=, =P=. 
+* LaTeX 相关设置汇总
+#+begin_src elisp
+  ;; 以下为LaTeX mode相关设置
+  (setq-default TeX-master nil) ;; 编译时问询主文件名称
+  (setq TeX-parse-selt t) ;; 对新文件自动解析(usepackage, bibliograph, newtheorem等信息)
+  ;; PDF正向搜索相关设置
+  (setq TeX-PDF-mode t) 
+  (setq TeX-source-correlate-mode t) 
+  (setq TeX-source-correlate-method 'synctex)
+
+  (setq TeX-view-program-selection '((output-pdf "PDF Tools"))) ;; 用pdf-tools 打开 pdf
+  (add-hook 'TeX-after-compilation-finished-functions
+            #'TeX-revert-document-buffer) ;; 在完成编译后刷新 pdf 文件
+
+  ;; 打开TeX文件时应该加载的mode/执行的命令
+  (defun my-latex-hook ()
+    (turn-on-cdlatex) ;; 加载cdlatex
+    (outline-minor-mode) ;; 加载outline mode
+    (prettify-symbols-mode t)
+    (turn-on-reftex)  ;; 加载reftex
+    (outline-hide-body)) ;; 打开文件时只显示章节标题
+
+  (add-hook 'LaTeX-mode-hook 'my-latex-hook)
+
+  (setq prettify-symbols-unprettify-at-point t)
+  (set-fontset-font "fontset-default" 'mathematical "Cambria Math")
+
+  (require 'tex-mode)
+  (defun my/more-prettified-symbols ()
+    (mapc (lambda (pair) (cl-pushnew pair tex--prettify-symbols-alist))
+          '(("\\Z" . 8484) ;; 大多数人在latex中会用 \Z, \Q, \N, \R 表示数域
+            ("\\Q" . 8474)
+            ("\\N" . 8469)
+            ("\\R" . 8477)
+            ("\\eps" . 949)
+            ("\\ONE" . #x1D7D9)
+            ("\\mathbb{S}" . #x1D54A)
+            ("\\PP" . #x2119) ;; 个人需要, 经常要使用P和E的数学字体
+            ("\\P" . #x1D5AF )
+            ("\\Pp" . #x1D40F)
+            ("\\E" . #x1D5A4)
+            ("\\Ee" . #x1D404)
+            ("\\EE" . #x1D53C )
+            ("\\Fc" . #x2131)
+            ("\\Nc" . #x1D4A9))))
+  (my/more-prettified-symbols)
+
+#+end_src
+
