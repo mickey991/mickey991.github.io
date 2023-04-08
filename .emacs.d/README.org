@@ -1,0 +1,22 @@
+#+title: 配置文件使用说明
+* straight 使用方法
+- 系统中需要安装 =git=. 
+  - =Windows= 用户可使用 =msys2= 安装.
+- 需要添加 =early-init.el= 禁用 =package.el=
+- 第一次 =straight= 自动下载并安装所有插件大概需要 15 分钟.
+- 如果 ~use-package~ 代码块中不包含 ~:straight~ 关键字, 该代码块也可以直接在默认 =package.el= 的环境下使用. 如果包含 ~:straight~ 关键字, 需要修改成 =use-package= 中对应的代码. 
+* =emacs-config.org= 使用方法
+在 =org-babel= 正确加载的情况下, 在 Emacs 中所有对 =emacs-config.org= 的修改会自动写入 =init.el=, =cdlatex-config.el= 及 =auctex-config.el=. 所有, 任何的设置修改可以直接在 =emacs-config.el= 文件中进行. 或者可将 =emacs-config.org= 中有用的代码块逐步加入到个人的 =init.el= 之中.
+* 第三方字体
+- =Fira Mono= (默认字体, 可改成其它字体)
+- =JetBrains Mono= (默认不变间距字体, 可改成其它字体)
+- =all-the-icons= (用于界面美化, 可不安装)
+* 本地 =.el= 文件
+=cdlatex.el= 与 =flyspell.el= 放在 =./lisp/= 文件夹下, 需要手动维护
+* 其它依赖软件
+- =epdfinfo=: =pdf-tools= 调用
+- =texlive=: LaTeX 编辑
+- =gcc=: =org-roam= 用于编译 =emacsql-sqlite= 
+- =ImageMagick=: =org-download= (=Windows= 下) 调用
+- =aspell= / =hunspell=: =flyspell= 调用
+
