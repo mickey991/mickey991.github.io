@@ -1,4 +1,5 @@
 #+title: 配置文件使用说明
+此文件夹相当于 =.emacs.d= 文件夹.
 * straight 使用方法
 - 系统中需要安装 =git=. 
   - =Windows= 用户可使用 =msys2= 安装.
