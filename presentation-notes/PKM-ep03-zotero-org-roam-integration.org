@@ -1,0 +1,152 @@
+#+title: 从零搭建个人知识库: 用org-roam管理Zotero文献笔记
+
+本期我们将介绍如何整合 Zotero 文献管理与 =org-roam= 双链笔记系统, 包括在 =org-roam= 笔记中插入 Zotero 文献引用, 打开 Zotero 文献 PDF 并用 =org-noter= 做读书笔记, 以及将读书笔记加入 =org-roam= 个人知识库等. 
+
+* 前言
+作为 Emacs 和 Zotero 的重度老用户, 将 Emacs 的笔记功能与 Zotero 文献管理整合是我一直以来的梦想. 这次在学习使用 =org-roam= 的过程中, 终于在 =org-roam= 的框架下找到了一套成熟的工作流程. 这是我搭建个人知识库的最后一块重要拼图, 也让我毫无顾虑地把所有的笔记都投入到 =org-roam= 中. 这里非常高兴能与大家分享实现过程.
+
+** 为什么不用 Zotero 做笔记?
+Zotero 本身可以做文献笔记, 如果配合像 =Zotero Better Notes= ([[https://github.com/windingwind/zotero-better-notes/blob/master/UserGuideCN.md][见这里]]) 也能实现 =markdown= 格式双链笔记. 但是 Zotero 毕竟不是一个好的文本编辑器, 做笔记的效率无法与 Emacs 媲美. 尤其在 LaTeX 数学公式输入上, Emacs 属于第一档的编辑器 (同一档其它选项包括 [[https://code.visualstudio.com/][VScode]], [[https://neovim.io/][Neovim]], [[https://www.sublimetext.com/][Sublime]]). 几乎所有编辑 =.tex= 文件的操作技巧 (参考视频[[https://www.bilibili.com/video/BV1Xk4y1a7Gp/][BV1Xk4y1a7Gp]]) 都可以无缝对接到 =org= 或 =markdown= 笔记文件中. 更别说 Emacs 还可以轻松拓展到其它任务中.
+** 为什么不用 Emacs 管理文献?
+确实, Zotero 在整个工作流程中只是负责下载文献信息和 PDF 文件. 这些事情看起来很简单, 但是 Zotero 确实比 Emacs 做得好. Emacs 不适合复杂的浏览网页, 下载等操作; 时至今日, Emacs 中浏览网页也没有简单的实现方案. 有时候, 文献下载还需要使用代理. Zotero 可以很好地处理文献下载中会出现的种的场景. 另外, 使用网盘同步 Zotero 文件后, 在手机或平板上也能轻松阅读 PDF 文献, 这是 Zotero 的方便之处. 
+
+* 工作流程示例
+插入文献笔记流程如下. 具体可见视频中演示. 
+- 在 =org-roam= 笔记中, 执行命令 ~M-x orb-insert-link~ (快捷键建议: ~C-c n k~) 开始插入一则文献笔记.
+- 在 =helm-bibtex= (或 =ivy-bibtex=) 的文献搜索界面中, 输入关键词定位文献, 回车确认.
+- 进入 =org-roam= 模板选择界面, 选择预先设置好的文献笔记模板
+- 进入 =capture= 界面, 此后步骤与正常笔记一样
+- 这样创建的笔记有多重功能
+  - 是普通的 =org-roam= 双链笔记
+  - 在笔记界面执行 ~M-x org-noter~ (快捷键建议: ~C-c n n~) 可打开 =org-noter= 界面.
+  - 在笔记界面执行 ~M-x orb-note-action~ (快捷键建议: ~C-c n a~) 可执行其它一些操作, 如打开文献网址, 复制文献 =bibtex= 条目等.
+
+当一则文献笔记创建后, 可以采用 ~C-c n i~ 或 ~C-n n k~ 插入链接. 区别是
+- ~C-c n i~ (~M-x org-roam-node-insert~): 默认链接名是文件名, 也就是文献标题
+- ~C-c n k~: 默认链接名可以是引用键名
+* 用到的 Emacs 插件
+我们使用了许多插件相互配合才实现了最后的效果. 这里不同插件的设置环环相扣, 所以有必要在一开始对每个插件的角色和功能做一个梳理.
+
+- =Zotero=
+  - 用 =Better BibTeX= 导出文献数据至 =bib= 文件
+  - 用 =ZotFile= 保存 PDF 文件 (一般是网盘文件夹)
+- =helm/ivy-bibtex=:
+  - 将上面 =bib= 文件的信息读入 Emacs, 并提取文献的标题, 作者, 引用键名等
+  - 提供搜索文献信息的界面
+- =org-roam=:
+  准备一个符合 =org-noter= 的笔记格式的  =org-roam= 模板
+- =org-roam-bibtex= + =org-roam=
+  - 利用提取的文献信息和上面的模板生成一则 =org-roam= 笔记 
+  - 其它一些操作, 如打开文献网址, 打开文献 =bibtex= 条目等
+- =org-noter= + =pdf-tools=
+  打开 =org-roam= 笔记中的 PDF 文件并阅读, 做读书笔记.
+
+
+关于 =org-noter= 和 =pdf-tools= 的设置请参考:
+- [[https://www.bilibili.com/video/BV1pg4y1s7Z9/][【Emacs+LaTeX教程】Emacs最强内置pdf阅读器pdf-tools简介]]
+- [[https://www.bilibili.com/video/BV1Tc411s7Tu/][【从零搭建Emacs个人知识库】org-noter配置及使用]]
+* 代码
+- 这部分代码建立在 =org-roam= 的基础设置上, 大家可以参考
+   [[https://www.bilibili.com/video/BV1Tc411s7Tu/][【从零搭建Emacs个人知识库】org-noter配置及使用]] 
+- 设置代码中大量使用了 =use-package= 的功能. 如果想了解 =use-package= 的基本使用, 可以参考
+   [[https://www.bilibili.com/video/BV1nm4y117gn/][【省时省力写LaTeX】新手Emacs快速配置与插件管理]] 
+** =helm-bibtex= / =ivy-bibtex= 相关设置
+#+begin_src elisp
+  (setq zot_bib '("~/Nutstore/1/Nutstore/Zotero-Library/Better BibTeX Export/My Library.bib"
+                  "<另一个Zotero bib 文件>.bib") ; Zotero 用 Better BibTeX 导出的 .bib 文件. 可以是多个文件
+        zot_pdf "~/Nutstore/1/Nutstore/Zotero-Library" ; Zotero 的 ZotFile 同步文件夹
+        org_refs "~/repos/notes/ref/" ) ; 自定义的 org-roam 文献笔记目录. 我的 org-roam 根目录是 ~/repos/notes
+
+  (use-package helm-bibtex ; 这里也可以用 ivy-bibtex 替换 helm-bibtex
+    :ensure t
+    :custom
+    (bibtex-completion-notes-path org_refs)
+    (bibtex-completion-bibliography zot_bib)
+    (bibtex-completion-library-path zot_pdf))
+#+end_src
+
+这里我们设置了3个变量, 需要大家根据自己的情况调整. 
+- ~zot_bib~: Zotero 导出的 =bib= 文件. 这里可以有多个文件.
+- ~zot_pdf~: Zotero 的 PDF 文件目录. 这需要 =ZotFile= 插件
+- ~org_refs~: 自定义的文献笔记目录. 设置单独一个文献笔记目录便于我们管理. 这里我放在了 =org-roam= 主目录的下一级目录, 也会自动被 =org-roam= 的数据库收录.
+
+关于 Zotero 两个插件 =Better BibTeX= 和 =ZotFile= 的设置, 大家可以参考视频
+** =org-roam-bibtex= 设置
+#+begin_src elisp
+  (use-package org-roam-bibtex
+    :ensure t
+    :after org-roam
+    :hook (org-roam-mode . org-roam-bibtex-mode)i
+    :bind (("C-c n k" . orb-insert-link)
+           ("C-c n a" . orb-note-action))
+    :custom
+    (orb-insert-interface 'helm-bibtex) ; 与上面 helm-bibtex/ivy-bibtex 的选择保持一致
+    (orb-insert-link-description 'citekey) ; 默认是用标题, 但是论文的标题一般很长, 不适合作为笔记链接的名字
+    (orb-preformat-keywords
+     '("citekey" "title" "url" "author-or-editor" "keywords" "file"))
+    (orb-process-file-keyword t)
+    (orb-attached-file-extensions '("pdf")))
+#+end_src
+大家可以根据需要设置两个快捷键. 
+*** =org-roam= 设置
+#+begin_src elisp
+  (use-package org-roam
+    :ensure t ;; 自动安装
+    :custom
+    (org-roam-directory "~/repos/notes/") ;; 默认笔记目录, 提前手动创建好
+    (org-roam-dailies-directory "daily/") ;; 默认日记目录, 上一目录的相对路径
+    (org-roam-db-gc-threshold most-positive-fixnum) ;; 提高性能
+    :bind (("C-c n f" . org-roam-node-find)
+           ("C-c n i" . org-roam-node-insert)
+           ("C-c n c" . org-roam-capture)
+           ("C-c n l" . org-roam-buffer-toggle) ;; 显示后链窗口
+           ("C-c n u" . org-roam-ui-mode)) ;; 浏览器中可视化
+    :bind-keymap
+    ("C-c n d" . org-roam-dailies-map) ;; 日记菜单
+    :config
+    (require 'org-roam-dailies)  ;; 启用日记功能
+    ;;============= 新增内容 =================
+    ;; 下面的 (setq my/ref-template ...) 可以放到 use-package 代码块之外
+    (setq my/ref-template
+          (concat "#+FILETAGS: reading research \n"
+                  "- tags :: %^{keywords} \n"
+                  "* %^{title}\n"
+                  ":PROPERTIES:\n"
+                  ":Custom_ID: %^{citekey}\n"
+                  ":URL: %^{url}\n"
+                  ":AUTHOR: %^{author-or-editor}\n"
+                  ":NOTER_DOCUMENT: ~/Nutstore/1/Nutstore/Zotero-Library/%^{citekey}.pdf\n"
+                  ":NOTER_PAGE:\n"
+                  ":END:")) 
+    (add-to-list 'org-roam-capture-templates
+                 `("r" "Zotero 文献模板" plain ; 文献笔记模板
+                   ,my/ref-template 
+                   :target
+                   (file+head "ref/${citekey}.org" "#+title: ${title}\n")))
+    ;;============= 新增内容结束 =================
+    (org-roam-db-autosync-mode)) ;; 启动时自动同步数据库
+#+end_src
+这里我们要在 =org-roam= 的 =use-package= 代码块中增加文献笔记模板, 新增部分已经标出.
+
+为了方便, 我们先定义了名为 =my/ref-template= 的字符串来存放我们模板的主体部分. 利用 ~concat~ 函数, 我们进一步把一个长字符串按行, 也就是末尾的换行符 =\n=, 切割成一些短字符串.
+这里以 =:NOTER_DOCUMENT:= 开始的行是我们写入 PDF 文件路径的地方. 
+之前我们推荐在 Zotero 中用引用键名作为 PDF 文件名. 所以这里的 =%^{citakey}.pdf= 就是文献的 PDF 文件. 大家需要手动调整前面的文件夹路径. 它应该是你的 =ZotFile= 同步文件夹.
+
+模板在 =* %^{title}\n= 之后的部分都是 =org-noter= 需要的信息, 不建议大家修改. 这一行之前的部分大家可以自由发挥. 比如这里我加了两行. 以 =#+FILETAGS:= 开始的行是 =org-roam= 笔记的标签. 这种方式定义的标签是可以在 ~C-c n f~ 的界面中作为关键字被搜索的. 我用这种方式给不同用途的笔记分类. 第二行以 =- tags ::= 则是放置文献的自带的关键词. 在普通的 =org-roam= 笔记中, 我们一般也用这种格式加入那些作为标签功能的笔记链接.
+
+被那么之前就是文件路径, 大家要保证这就是你存放 PDF 的路径. 第二个是笔记文件名, 这里我把所有的文献笔记放在 ref 子文件夹下. 大家如果有别的名字. 也一定要修改.
+
+接下来的 ~add-to-list~ 函数就是加入一个文献笔记模板了. 这里第一个参数是 ="r"= , 是你在选择界面你的文献模板的快捷键. 第二个字符串是说明信息. 然后是我们刚刚设置的模板主体部分. 注意这里前面有一个逗号, 而最前面有一个反引号 =`= .  这样 Emacs 才会把我们设置的变量识别为一个字符串, 否则就只是一个叫 =my/ref-template= 的符号.
+
+最后, 在 =file+head= 之后, 第一个字符串是笔记文件的文件名. 我们需要在文件名中加入一开始 =org_refs= 对应的文件路径. 这里的路径是从 =org-roam= 主目录算起的相对路径. 
+* =helm-bibtex= 搜索指南
+最后简单介绍 =helm-bibtex= 的一些搜索规则
+- 所有关键字以空格分开. 默认可以搜索标题, 作者, 年份, 作品类型, 引用键名
+- 关键字前加 =!= 表示取否定. 例如 =brown !motion= 不会匹配 =browian motion=, 但可以匹配 =browian web=.
+- 全小写的关键字可以匹配大小写, 但是所有关键字中包含至少一个大写字母, 则必须大小写精确匹配. 例如: =Brown motion= 可以匹配 =Brownian motion=, 但不能匹配 =Brownian Motion=, =brownian motion=. 但是 =brown motion= 就可以匹配以上所有选项
+- 支持正则表达式. 常用的有
+  - =.?= 表示零个或一个字符
+  - =.*= 表示零个或多个字符
+  - =201[2-8]= 可以匹配 2012 年至 2018 年的文献, =19[6-8]= 可以匹配 1960 年至 1989 年的文献.
+  - =brown \(web\|motion\)= 可以匹配 =brownian web= 或者 =brownian motion=. 
+
