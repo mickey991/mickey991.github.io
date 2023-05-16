@@ -49,3 +49,6 @@ flycheck_*.el
 
 # hugo lock
 .hugo_build.lock
+
+# hugo theme folder
+/themes
