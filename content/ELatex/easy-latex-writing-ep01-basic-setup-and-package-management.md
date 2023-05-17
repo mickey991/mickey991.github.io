@@ -1,6 +1,5 @@
 +++
 title = "Emacs 快速配置与插件管理"
-author = ["termux"]
 draft = false
 +++
 
