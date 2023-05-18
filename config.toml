@@ -1,6 +1,6 @@
 baseURL = 'http://example.org/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = '金色飞贼小米的主页'
 
 theme = "PaperMod"
 [markup.goldmark.renderer]
@@ -8,3 +8,5 @@ theme = "PaperMod"
 
 [params]
 	math = true
+	ShowCodeCopyButtons = true
+	showtoc = true
