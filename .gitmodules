@@ -1,3 +1,6 @@
 [submodule "themes/PaperMod"]
 	path = themes/PaperMod
 	url = https://github.com/adityatelange/hugo-PaperMod.git
+[submodule "my-emacs-config"]
+	path = my-emacs-config
+	url = https://gitee.com/mickey991/emacs-config.git
