@@ -10,7 +10,7 @@ draft = false
 
 Emacs 可以运行在 Windows, Linux, MacOS 上, 也可以通过 `termux` 运行在 Android 手机或平板上. 这里我们只介绍电脑系统上的 Emacs 安装.
 
-在本文撰写时 (2023.4), Emacs 的最新正式版本为 28.2, 最近的测试版本为 29.090. 下面介绍的安装方法针对的是正式版.
+在本文撰写时 (2023.4), Emacs 的最新正式版本为 28.2, 最近的测试版本为 29.090. 下面介绍的安装方法针对的是正式版. (更新: 2023.8 已经可以下载 Emacs 29 正式版.)
 
 在多数平台上, 我们是利用合适的开源软件管理器来安装 Emacs. 在 Linux 中这是自带的, 在 Windows 和 MacOS 中大家需要自行安装. 我们下面详细说明.
 
@@ -64,17 +64,31 @@ pacman -S mingw-w64-x86_64-emacs
 
 #### Windows {#windows}
 
-Windows 中更改键位需要修改注册表. 方法如下:
+Windows 中更改键位可以通过注册表或者最新的 `PowerToys` 软件.
 
--   <kbd>Win</kbd> + <kbd>r</kbd> 并输入 `regedit` 打开注册表
--   找到目录 `[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]`
--   新建 `Scancode` 文件, 把内容修改为
-    ```nil
-    00 00 00 00 00 00 00 00
-    03 00 00 00 1d 00 3a 00
-    3a 00 1d 00 00 00 00 00
-    ```
--   保存 `Scancode` 文件并重启电脑
+<!--list-separator-->
+
+-  注册表方法 (适用于Win 10 以前)
+
+    方法如下:
+
+    -   <kbd>Win</kbd> + <kbd>r</kbd> 并输入 `regedit` 打开注册表
+    -   找到目录 `[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]`
+    -   新建 `Scancode` 文件, 把内容修改为
+        ```nil
+        00 00 00 00 00 00 00 00
+        03 00 00 00 1d 00 3a 00
+        3a 00 1d 00 00 00 00 00
+        ```
+    -   保存 `Scancode` 文件并重启电脑
+
+<!--list-separator-->
+
+-  `PowerToys` (适用于 Win 10, Win 11)
+
+    -   将系统中 `微软商店` 更新到最新版本 (Win 10 不更新可能会找不到 `PowerToys`)
+    -   在 `微软商店` 中搜索 `PowerToys` 并安装
+    -   在 `PowerToys` 中找到键位设置, 并交换 <kbd>Caps Lock</kbd> 和 <kbd>Left Control</kbd>
 
 
 #### Ubuntu 及其它 Linux 系统 {#ubuntu-及其它-linux-系统}

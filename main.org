@@ -27,6 +27,7 @@
 :END:
 - 引子: 五分钟说服你用 Emacs 写 LaTeX ([[https://www.bilibili.com/video/BV1Xk4y1a7Gp/][视频]])
 - 第1节: [[#emacs-setup][Emacs 快速配置与插件管理]] ([[https://www.bilibili.com/video/BV1nm4y117gn/][视频]])
+- 第2节: [[id:easy-latex-writing-ep02-math-symbol-and-modify][cdlatex 中快速输入数学符号和字体与自定义设置]]
 - 附录1: [[#easy-latex-writing-ap01-pdf-tools][Emacs最强内置pdf阅读器 pdf-tools 简介]] ([[https://www.bilibili.com/video/BV1pg4y1s7Z9/][视频]])
 - 附录2: [[#easy-latex-writing-ap02-prettify][如何优雅地预览公式]] ([[https://www.bilibili.com/video/BV1tv4y1V7xY/][视频]])
  
@@ -41,7 +42,7 @@
 *** Emacs 安装
 Emacs 可以运行在 Windows, Linux, MacOS 上, 也可以通过 =termux= 运行在 Android 手机或平板上. 这里我们只介绍电脑系统上的 Emacs 安装.
 
-在本文撰写时 (2023.4), Emacs 的最新正式版本为 28.2, 最近的测试版本为 29.090. 下面介绍的安装方法针对的是正式版.
+在本文撰写时 (2023.4), Emacs 的最新正式版本为 28.2, 最近的测试版本为 29.090. 下面介绍的安装方法针对的是正式版. (更新: 2023.8 已经可以下载 Emacs 29 正式版.)
 
 在多数平台上, 我们是利用合适的开源软件管理器来安装 Emacs. 在 Linux 中这是自带的, 在 Windows 和 MacOS 中大家需要自行安装. 我们下面详细说明.
 
@@ -73,7 +74,9 @@ Windows 下安装 Emacs 有两种常见方法. 第一种是安装 =msys2= ([[htt
 
 交换 ~Ctrl~ 与 ~Caps Lock~ 的方法在不同系统上也不一样.
 ***** Windows
-Windows 中更改键位需要修改注册表. 方法如下:
+Windows 中更改键位可以通过注册表或者最新的 =PowerToys= 软件.
+****** 注册表方法 (适用于Win 10 以前)
+方法如下:
 - ~Win~ + ~r~ 并输入 =regedit= 打开注册表
 - 找到目录 =[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]=
 - 新建 =Scancode= 文件, 把内容修改为
@@ -83,6 +86,10 @@ Windows 中更改键位需要修改注册表. 方法如下:
    3a 00 1d 00 00 00 00 00
   #+end_src
 - 保存 =Scancode= 文件并重启电脑
+****** =PowerToys= (适用于 Win 10, Win 11)
+- 将系统中 =微软商店= 更新到最新版本 (Win 10 不更新可能会找不到 =PowerToys=)
+- 在 =微软商店= 中搜索 =PowerToys= 并安装
+- 在 =PowerToys= 中找到键位设置, 并交换 ~Caps Lock~ 和 ~Left Control~
 ***** Ubuntu 及其它 Linux 系统
 在 Ubuntu 下, 可以安装 =gnome-tweaks=: 
 #+begin_src shell
@@ -355,7 +362,7 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 
 
 
-** Emacs
+** cdlatex 中快速输入数学符号和字体与自定义设置
 :PROPERTIES:
 :EXPORT_FILE_NAME: easy-latex-writing-ep02-math-symbol-and-modify
 :CUSTOM_ID:  easy-latex-writing-ep02-math-symbol-and-modify
