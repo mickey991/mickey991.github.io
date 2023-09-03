@@ -1,0 +1,18 @@
+baseURL: 'https://mickey991.gitee.io'
+languageCode: 'en-us'
+title: '金色飞贼小米的主页'
+theme: "PaperMod"
+
+markup.goldmark.renderer:
+  unsafe: true
+
+params:
+  math: true
+  ShowCodeCopyButtons: true
+  showtoc: true
+  title: '金色飞贼小米的主页'
+
+  ShowPostNavLinks: true
+  ShowWordCount: true
+  ShowReadingTime: true
+  UseHugoToc: true
