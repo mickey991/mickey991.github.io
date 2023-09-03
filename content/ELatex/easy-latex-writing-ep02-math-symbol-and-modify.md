@@ -86,7 +86,7 @@ Emacs 中的 LaTeX 编辑主要是依赖 `AucTeX` 和 `cdlatex` 这两个插件.
 
 ### 如何插入 LaTeX 左双引号 `` `` `` {#如何插入-latex-左双引号}
 
-反引号在 LaTeX 中写作几乎不会用到, 除了用于左双引号 `` `` `` (LaTeX 的右双引号是 `''` ). 这很好解决: 在 AucTeX 默认设置下, 第一个输入的双引号 <kbd>"</kbd> 会自动转换成为 <kbd>``</kbd> 插入, 第二个输入的双引号 <kbd>"</kbd> 会转换为 `''` . 例如, <kbd>"word"</kbd> 将插入 `` ``word'' ``.
+反引号在 LaTeX 中写作几乎不会用到, 除了用于左双引号 <kbd>\`\`</kbd> (laTeX 的右双引号是 `''` ). 这很好解决: 在 AucTeX 默认设置下, 第一个输入的双引号 <kbd>"</kbd> 会自动转换成为 <kbd>\`\`</kbd> 插入, 第二个输入的双引号 <kbd>"</kbd> 会转换为 <kbd>\'\'</kbd> . 例如, <kbd>"word"</kbd> 将插入 <kbd>``word\'\'</kbd>.
 
 当然, 你也可以把反引号修改成其它的键, 但是既然无须担心双引号输入的问题, 我觉得改的意义不大. 反引号已经是很好的选择.
 
@@ -168,13 +168,13 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 <kbd>\`<
 
 按单引号 <kbd>'</kbd> 默认会改变前一个字母的字体, 也包括希腊字母, 但只是前面一个字母. 例:
 
--   <kbd>\`a'b</kbd> 插入 `\mathbf{\alpha}`
--   <kbd>ab'b</kbd> 插入 `a\mathbf{b}`.
+-   <kbd>\`a\'b</kbd> 插入 `\mathbf{\alpha}`
+-   <kbd>ab\'b</kbd> 插入 `a\mathbf{b}`.
 
 如果需要改变多个字母的字体可以先选择字体, 再输入文本. 这就是第二种方法. 但是输入单引号时前面要是空格或者 `$`, `{` 这种功能性字符. 例:
 
--   <kbd>$'babc</kbd> 插入 `$\mathbf{abc}$`.
--   <kbd>$a'bc</kbd> 插入 `$\mathbf{a}c$`.
+-   <kbd>$\'babc</kbd> 插入 `$\mathbf{abc}$`.
+-   <kbd>$a\'bc</kbd> 插入 `$\mathbf{a}c$`.
 
 可以用于改变多个字符的字体.
 
@@ -185,16 +185,16 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 <kbd>\`<
 
 -   数学公式中对字母的其它修饰, 如
 
-    -   <kbd>'&gt;</kbd> 插入 `\vec{}`
-    -   <kbd>'^</kbd> 插入 `\hat{}`
-    -   <kbd>'-</kbd> 插入 `\bar{}`
+    -   <kbd>\'&gt;</kbd> 插入 `\vec{}`
+    -   <kbd>\'^</kbd> 插入 `\hat{}`
+    -   <kbd>\'-</kbd> 插入 `\bar{}`
 
     这里默认的快捷捷非常直观, 大家也可以按下单引号 `'` 稍等以查看提示界面.
 -   非数学公式中的文本字体, 如
-    -   <kbd>'b</kbd> 插入 `\textbf{}`
-    -   <kbd>'i</kbd> 插入 `\textit{}`
+    -   <kbd>\'b</kbd> 插入 `\textbf{}`
+    -   <kbd>\'i</kbd> 插入 `\textit{}`
 
-这里同样的 <kbd>'b</kbd>, 用在数学公式内就是 `\mathbf{}`, 用在文本中就是 `\textbf{}`. `cdlatex` 会自动检测当前环境是否为数学环境.
+这里同样的 <kbd>\'b</kbd>, 用在数学公式内就是 `\mathbf{}`, 用在文本中就是 `\textbf{}`. `cdlatex` 会自动检测当前环境是否为数学环境.
 
 
 ### 嵌套修饰 {#嵌套修饰}
@@ -203,8 +203,8 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 <kbd>\`<
 
 第一种方法只能修饰一个字母, 所以嵌套修饰只能使用第二种或第三种方法. 例:
 
--   <kbd>'-'bR</kbd> 插入 `\bar{\mathbf{R}}`.
--   <kbd>R'b</kbd> 插入 `\mathbf{R}`, 然后高亮选中按下 <kbd>'-</kbd>, 变成 `\bar{\mathbf{R}}`
+-   <kbd>\'-\'bR</kbd> 插入 `\bar{\mathbf{R}}`.
+-   <kbd>R\'b</kbd> 插入 `\mathbf{R}`, 然后高亮选中按下 <kbd>\'-</kbd>, 变成 `\bar{\mathbf{R}}`
 
 
 ## 自定义字体修饰 {#自定义字体修饰}
@@ -212,7 +212,7 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 <kbd>\`<
 这里需要设置的变量是 `cdlatex-math-modify-alist`. 打开设置界面的方法和前面一样, 输入
 <kbd>M-x customize-variable RET cdlatex-math-modify-alist RET</kbd>
 
-现在我们举一个例子. 假设我们想用 <kbd>'t</kbd> 在数学公式中插入空心粗体 `\mathbb{}`. 操作如下
+现在我们举一个例子. 假设我们想用 <kbd>\'t</kbd> 在数学公式中插入空心粗体 `\mathbb{}`. 操作如下
 
 -   打开 `cdlatex-math-modify-alist` 设置界面
 -   点击 <kbd>INS</kbd> 新建一个条目
@@ -222,7 +222,7 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 <kbd>\`<
 -   第四行: `Type` 改成 `command`. 两种方式几乎等价但是 `command` 现在更常用.
 -   第五, 第六行: 不变
 
-我们修改完之后, 按 `Apply and Save` 保存, 然后在 `tex` 文件缓冲区中用 <kbd>C-c C-n</kbd> 刷新设置, 这样我们在数学环境中按下 <kbd>'</kbd> 就能插入空心粗体 `\mathbb{}` 了.
+我们修改完之后, 按 `Apply and Save` 保存, 然后在 `tex` 文件缓冲区中用 <kbd>C-c C-n</kbd> 刷新设置, 这样我们在数学环境中按下 <kbd>\'</kbd> 就能插入空心粗体 `\mathbb{}` 了.
 
 
 ## `customize-variable` 设置保存位置 {#customize-variable-设置保存位置}
@@ -258,6 +258,6 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 <kbd>\`<
 
 ## 总结 {#总结}
 
-Emacs 中的 `cdlatex` 插件利用反引号 <kbd>\`</kbd> 和单引号 <kbd>'</kbd> 开始的快捷键可以快速插入数学字母, 符号和字体. 我们可以通过设置 `cdlatex-math-symbol-alist` 和 `cdlatex-math-modify-alist` 这两个变量修改和增加自己喜欢的快捷键.
+Emacs 中的 `cdlatex` 插件利用反引号 <kbd>\`</kbd> 和单引号 <kbd>\'</kbd> 开始的快捷键可以快速插入数学字母, 符号和字体. 我们可以通过设置 `cdlatex-math-symbol-alist` 和 `cdlatex-math-modify-alist` 这两个变量修改和增加自己喜欢的快捷键.
 
 在下期视频中我们将介绍 `cdlatex` 中 <kbd>Tab</kbd> 的命令/模板补全功能. 它可以帮助我们输入一些更复杂的宏命令, 或者插入环境模板等等.
