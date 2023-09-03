@@ -2,6 +2,11 @@ baseURL: "https://mickey991.gitee.io"
 # languageCode: "zh"
 defaultContentLanguage : "zh"
 title: "金色飞贼小米的主页"
+
+module:
+  imports:
+    - path: github.com/adityatelange/hugo-PaperMod
+      
 theme: "PaperMod"
 
 ## markup.goldmark.renderer:
