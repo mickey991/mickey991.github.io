@@ -39,11 +39,11 @@ menu:
       weight: 1
     - identifier: LaTeX
       name: LaTeX
-      url: /ELatex/easy-latex-writing/
+      url: /ELatex/
       weight: 10
     - identifier: PKM
       name: 个人知识库
-      url: /PKM/pkm-main/
+      url: /PKM/
       weight: 20
     - identifier: bilibili
       name: B站主页

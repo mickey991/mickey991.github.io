@@ -11,18 +11,17 @@
 
 我是一名科研工作者, 在业余时间制作了一些 Emacs 和 LaTeX 的教程, 希望能对大家有所帮助.
 ** [[#easy-latex-writing][省时省力写 LaTeX 系列]]
+本系列讲解 Emacs 中利用 =AucTeX= + =CDLaTeX= 等插件省时省力完成 LaTeX 写作, 轻松使用 LaTeX 做即时笔记. 
 
 ** [[#PKM-main][Emacs 上搭建你的终生个人知识库]]
 本系列讲解如何围绕 =org-roam= 在 Emacs 上实现双链笔记与搭建个人知识库.
 
 
-* Emacs-latex
+* 省时省力写 LaTeX 系列
 :PROPERTIES:
-:EXPORT_HUGO_SECTION: /ELatex
-:END:
-** 省时省力写 LaTeX 系列
-:PROPERTIES:
-:EXPORT_FILE_NAME: easy-latex-writing
+:EXPORT_HUGO_SECTION: /
+:EXPORT_HUGO_BUNDLE: ELatex
+:EXPORT_FILE_NAME: _index
 :CUSTOM_ID: easy-latex-writing
 :END:
 - 引子: 五分钟说服你用 Emacs 写 LaTeX ([[https://www.bilibili.com/video/BV1Xk4y1a7Gp/][视频]])
@@ -1115,14 +1114,11 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
 
 
 
-* Personal Knowledge Management
+* Emacs 上搭建你的终生个人知识库
 :PROPERTIES:
-:EXPORT_HUGO_SECTION: /PKM
-:END:
-
-** Emacs 上搭建你的终生个人知识库
-:PROPERTIES:
-:EXPORT_FILE_NAME: PKM-main
+:EXPORT_HUGO_SECTION: /
+:EXPORT_HUGO_BUNDLE: PKM
+:EXPORT_FILE_NAME: _index
 :CUSTOM_ID: PKM-main
 :END:
 - 第零节: [[#PKM-ep00-intro-org-roam][什么是双链笔记与 org-roam 初体验]] ([[https://www.bilibili.com/video/BV1qV4y1Z7h9/][视频]])
