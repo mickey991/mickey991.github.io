@@ -26,7 +26,7 @@
 :END:
 - 引子: 五分钟说服你用 Emacs 写 LaTeX ([[https://www.bilibili.com/video/BV1Xk4y1a7Gp/][视频]])
 - 第1节: [[#emacs-setup][Emacs 快速配置与插件管理]] ([[https://www.bilibili.com/video/BV1nm4y117gn/][视频]])
-- 第2节: [[id:easy-latex-writing-ep02-math-symbol-and-modify][cdlatex 中快速输入数学符号和字体与自定义设置]]
+- 第2节: [[id:easy-latex-writing-ep02-math-symbol-and-modify][cdlatex 中快速输入数学符号和字体与自定义设置]] ([[https://www.bilibili.com/video/BV1qa4y1u7Cd/][视频]])
 - 附录1: [[#easy-latex-writing-ap01-pdf-tools][Emacs最强内置pdf阅读器 pdf-tools 简介]] ([[https://www.bilibili.com/video/BV1pg4y1s7Z9/][视频]])
 - 附录2: [[#easy-latex-writing-ap02-prettify][如何优雅地预览公式]] ([[https://www.bilibili.com/video/BV1tv4y1V7xY/][视频]])
  
@@ -1123,9 +1123,9 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
 :END:
 - 第零节: [[#PKM-ep00-intro-org-roam][什么是双链笔记与 org-roam 初体验]] ([[https://www.bilibili.com/video/BV1qV4y1Z7h9/][视频]])
 - 第一节: [[#PKM-ep01-org-noter][PDF 读书笔记插件 org-noter]] ([[https://www.bilibili.com/video/BV1Tc411s7Tu/][视频]])
-- 第二节: [[#PKM-ep02-zotero-intro][Zotero文献管理系统简介]]
-- 第三节: [[#PKM-ep03-zotero-org-noter-integration][用org-roam管理Zotero文献笔记]]
-  
+- 第二节: [[#PKM-ep02-zotero-intro][Zotero文献管理系统简介]] ([[https://www.bilibili.com/video/BV1Lc411J7gQ/][视频]])
+- 第三节: [[#PKM-ep03-zotero-org-noter-integration][用org-roam管理Zotero文献笔记]] ([[https://www.bilibili.com/video/BV1Mg4y1j75u/][视频]])
+     
 ** 什么是双链笔记与 org-roam 初体验
 :PROPERTIES:
 :EXPORT_FILE_NAME: PKM-ep00-intro-org-roam
