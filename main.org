@@ -27,6 +27,7 @@
 - 引子: 五分钟说服你用 Emacs 写 LaTeX ([[https://www.bilibili.com/video/BV1Xk4y1a7Gp/][视频]])
 - 第1节: [[#emacs-setup][Emacs 快速配置与插件管理]] ([[https://www.bilibili.com/video/BV1nm4y117gn/][视频]])
 - 第2节: [[id:easy-latex-writing-ep02-math-symbol-and-modify][cdlatex 中快速输入数学符号和字体与自定义设置]] ([[https://www.bilibili.com/video/BV1qa4y1u7Cd/][视频]])
+- 第3节: [[id:easy-latex-writing-ep03-tab-completion][Tab 补全快速插入LaTeX代码]] ([[https://b23.tv/ypBKN9v][视频]])
 - 附录1: [[#easy-latex-writing-ap01-pdf-tools][Emacs最强内置pdf阅读器 pdf-tools 简介]] ([[https://www.bilibili.com/video/BV1pg4y1s7Z9/][视频]])
 - 附录2: [[#easy-latex-writing-ap02-prettify][如何优雅地预览公式]] ([[https://www.bilibili.com/video/BV1tv4y1V7xY/][视频]])
  
@@ -557,7 +558,134 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 ~\`~ 触
 Emacs 中的 =cdlatex= 插件利用反引号 ~\`~ 和单引号 ~\'~ 开始的快捷键可以快速插入数学字母, 符号和字体. 我们可以通过设置 =cdlatex-math-symbol-alist= 和 =cdlatex-math-modify-alist= 这两个变量修改和增加自己喜欢的快捷键.
 
 在下期视频中我们将介绍 =cdlatex= 中 ~Tab~ 的命令/模板补全功能. 它可以帮助我们输入一些更复杂的宏命令, 或者插入环境模板等等.
-** Emacs最强内置pdf阅读器 pdf-tools 简介
+** Tab 补全快速插入 LaTeX 代码
+:PROPERTIES:
+:EXPORT_FILE_NAME: easy-latex-writing-ep03-tab-completion
+:CUSTOM_ID:  easy-latex-writing-ep03-tab-completion
+:END:
+*** ~TAB~ 补全插入宏命令模板
+*原理*: 字母组合+ ~TAB~ 键生成 LaTeX 宏命令模板
+
+**** 预设命令举例
+保存在 =cdlatex-command-alist= 变量中
+
+- 空格 ~qq~ + ~TAB~ = ~\quad~
+- 分数 ~fr~ + ~TAB~ = ~\frac{}{}~
+- 根号 ~sq~ + ~TAB~ = ~\sqrt{}~ 
+- 括号 ~lr(~ + ~TAB~ = ~\left( \right)~ 
+- 标题 ~sn~ + ~TAB~ = ~\section{}~ 
+  
+如果宏命令有(多个)参数在括号 ~{}~, ~[]~ 内, 补全时光标会自动停在第一个括号内, 第一个参数输入完毕后按 ~TAB~ 可以将光标跳到第二个括号内, 以次类推.
+
+
+**** 一些自定义例子
+- ~te~ + ~TAB~ = ~\text{}~
+- ~se~ + ~TAB~ = ~\{ \}~ (set)
+- ~hl~ + ~TAB~ = ~\hline~, ~hhl~ + ~TAB~ = ~\\ \hline~
+- ~big(~ + ~TAB~ = ~\big( \big)~, ~lr<~ + ~TAB~ = ~\langle\rangle~
+- ~st~ + ~TAB~ = ~\stackover{}{}~
+
+原则: 使用宏命令的前两到三个字母
+*** ~TAB~ 补全环境模板
+**** 预设命令举例
+~equ~ + ~TAB~ 插入
+#+begin_src latex
+  \begin{equation}
+    \label{eq:NNN}
+   ?
+  \end{equation}
+#+end_src
+- ~NNN~ 是 =reftex= 自动生成的一串数字
+- ~?~ 是光标停留的位置.
+
+~enu~ + ~TAB~ 插入 (等同于 ~cdlatex-environment~ / ~C-c {~  + ~enumerate~)
+#+begin_src latex
+  \begin{enumerate}
+  \item 
+  \end{enumerate}
+#+end_src
+此时, 在 =enumerate= 环境中: 
+- ~it~ + ~TAB~ = ~\item~
+- ~C-ENTER~ 会换行并生成 ~\item~
+
+*** 自定义补全
+现有的补全命令可以通过 ~C-c ?~ 查看.
+- =MATH= 关键字表示补全可以在 *数学环境* 中触发
+- =TEXT= 关键字表示补全可以在 *文本环境* 中触发
+
+加入新的补全命令通过修改变量 =cdlatex-command-alist=.
+**** 带参数宏命令
+例子: ~te~ + ~TAB~ 输入 ~\text{?}~ (光标停在括号内)
+- keyword: =te=
+- Docstring: 随便填, 只是用于说明
+- Replacement: =\text{?}= (? 表示光标停留的位置)
+- Hook: =cdlatex-position-cursor= (需要指定光标必填!)
+- Argument: =nil= (这是上面 =hook 的参数)
+- Text Mode: =nil=, Math mode: =t=
+
+保存设置后, 在已经打开的 =tex= 文件中用 ~C-c C-n~ 可以刷新设置.
+**** 插入匹配的括号
+例子: ~big{~ + ~TAB~ 插入 ~\big\{? \big\}~
+
+这里有一个细节: =cdlatex= 中输入括号会自动匹配, 具体可以查看 =cdlatex-paired-parens=, 主要针对 ~()~, ~[]~, ~{}~
+
+- keyword: =big{=
+- Docstring: 随便填
+- Replacement: =\big\{? \big\= (因为 ={}= 已经配对输入了, 所以这里要少输一个 =}=!)
+- Hook: =cdlatex-position-cursor= 
+- Argument: =nil= 
+- Text Mode: =nil=, Math mode: =t=
+**** 插入环境
+例子: ~case~ + ~TAB~ 插入 
+#+begin_src latex
+  \begin{cases}
+   & \\
+   &
+  \end{cases} 
+#+end_src
+
+- keyword: =case=
+- Docstring: 随便填
+- Replacement: 输入框内用 ~C-j~ 换行
+- Hook: =cdlatex-position-cursor= 
+- Argument: =nil= 
+- Text Mode: =nil=, Math mode: =t=
+
+**** 插入环境 II
+例子: ~des~ + ~TAB~ 插入 =description= 环境
+#+begin_src latex
+  \begin{description}
+  \item[?]
+  \end{description}
+#+end_src
+两种用命令的插入方法
+- ~C-c C-e~ + ~description~
+- ~C-c {~ + ~description~
+
+- keyword: =des=
+- Docstring: 随便填
+- Replacement: =nil=
+- Hook: =cdlatex-environment= 
+- Argument: =("description")= 
+- Text Mode: =t=, Math mode: =nil=
+
+~cdlatex-environment~ 会调用 =cdlatex-env-alist-comb= 中的环境模板, 因此 ~des~ + ~TAB~ 相当于 ~C-c {~ + ~description~
+
+自定义环境模板可以修改 =cdlatex-env-alist=.
+
+使用模板的好处:
+- 支持自动插入标签: =AUTOLABEL= 关键字
+- 支持多行环境的 =item= 模板 (~C-ENTER~ 触发)
+*** 总结
+- ~XXXX~ + ~TAB~ 可以快速输入复杂命令和环境, 自定义也很方便 (=cdlatex-command-alist=)
+- 插入环境有两种方法:
+  - 把环境模板放到 =cdlatex-command-alist= 中: 自由度大
+  - 利用 =cdlatex-environment=, 把环境模板放到 =cdlatex-env-alist= 中: 支持标签、多行环境
+- 更多例子可以参考我的 Emacs 配置: =gitee.com:mickey991/emacs-config.git=
+下期: 如何高效交叉引用, 包括特殊的补全命令 ~lbl~ + ~TAB~, ~ref~ + ~TAB~ 以及 =refTeX= 配置.
+
+
+** Emacs 最强内置 pdf阅读器 pdf-tools 简介
 :PROPERTIES:
 :EXPORT_FILE_NAME: easy-latex-writing-ap01-pdf-tools
 :CUSTOM_ID: easy-latex-writing-ap01-pdf-tools
