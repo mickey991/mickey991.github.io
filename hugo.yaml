@@ -1,4 +1,4 @@
-baseURL: "https://mickey991.gitee.io/"
+baseURL: "https://mickey991.github.io/"
 # languageCode: "zh"
 defaultContentLanguage : "zh"
 title: "金色飞贼小米的主页"
@@ -6,8 +6,17 @@ title: "金色飞贼小米的主页"
      
 theme: "PaperMod"
 
-## markup.goldmark.renderer:
-##  unsafe: true 
+markup:
+  ## use chroma for syntax highlighting
+  highlight:
+    # anchorLineNos: true
+    codeFences: true
+    guessSyntax: true
+    # noClasses: false
+    style: monokai
+  goldmark:
+    renderer:
+      unsafe: true 
 
 params:
   math: true
@@ -50,12 +59,3 @@ menu:
       url: https://space.bilibili.com/314984514
       weight: 30
 
-## use chroma for syntax highlighting
-markup:
-  highlight:
-    # anchorLineNos: true
-    codeFences: true
-    guessSyntax: true
-    lineNos: true
-    # noClasses: false
-    style: monokai
