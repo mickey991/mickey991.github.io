@@ -7,15 +7,14 @@
 :EXPORT_HUGO_SECTION: /
 :END:
 
-大家好, 我是 B 站 UP 主[[https://space.bilibili.com/314984514][金色飞贼小米]]. 这是我的个人主页 (建设中).
+大家好, 我是 B 站 UP 主[[https://space.bilibili.com/314984514][金色飞贼小米]]. 这是我的个人主页.
 
-我是一名科研工作者, 在业余时间制作了一些 Emacs 和 LaTeX 的教程, 希望能对大家有所帮助.
+我是一名科研工作者, 在业余时间制作了一些 [[https://www.gnu.org/s/emacs/][Emacs]] 和 LaTeX 的教程, 希望能对大家有所帮助.
 ** [[#easy-latex-writing][省时省力写 LaTeX 系列]]
-本系列讲解 Emacs 中利用 =AucTeX= + =CDLaTeX= 等插件省时省力完成 LaTeX 写作, 轻松使用 LaTeX 做即时笔记. 
+本系列讲解 Emacs 中利用 [[https://www.gnu.org/s/auctex][AucTeX]] + [[https://github.com/cdominik/cdlatex][CDLaTeX]]  等插件省时省力完成 LaTeX 写作, 轻松使用 LaTeX 做即时笔记. 
 
 ** [[#PKM-main][Emacs 上搭建你的终生个人知识库]]
-本系列讲解如何围绕 =org-roam= 在 Emacs 上实现双链笔记与搭建个人知识库.
-
+本系列讲解如何围绕 [[https://www.orgroam.com/][Org-roam]] 在 Emacs 上实现双链笔记与搭建个人知识库.
 
 * 省时省力写 LaTeX 系列
 :PROPERTIES:
@@ -37,7 +36,7 @@
 :CUSTOM_ID: emacs-setup
 :END:
 
-本小节将介绍如何快速配置一个用于 LaTeX 写作的 Emacs, 包括软件安装和插件管理, 以及 Emacs 的一些必要的入门知识. 最后将推荐两组非常实用的插件: 第一组插件 =which-key= + =keycast= + =helpful= 将帮助我们快速熟悉 Emacs 的操作和概念, 第二组插件 =vertico= + =marginalia= + =orderless= 将有效提升我们在小缓冲区的补全体验, 并附上 =cdlatax= 和 =AucTeX= 的基本设置.
+本小节将介绍如何快速配置一个用于 LaTeX 写作的 [[https://www.gnu.org/s/emacs/][Emacs]], 包括软件安装和插件管理, 以及 Emacs 的一些必要的入门知识. 最后将推荐两组非常实用的插件: 第一组插件 [[https://github.com/justbur/emacs-which-key][Which-key]] + [[https://github.com/tarsius/keycast][Keycast]] + [[https://github.com/Wilfred/helpful][Helpful]] 将帮助我们快速熟悉 Emacs 的操作和概念, 第二组插件 [[https://github.com/minad/vertico][Vertico]] + [[https://github.com/minad/marginalia][Marginalia]] + [[https://github.com/oantolin/orderless][Orderless]] 将有效提升我们在小缓冲区的补全体验, 并附上 [[https://www.gnu.org/s/auctex][AucTeX]] 和 [[https://github.com/cdominik/cdlatex][CDLaTeX]] 的基本设置.
 
 *** Emacs 安装
 Emacs 可以运行在 Windows, Linux, MacOS 上, 也可以通过 =termux= 运行在 Android 手机或平板上. 这里我们只介绍电脑系统上的 Emacs 安装.
@@ -56,20 +55,20 @@ MacOS 中需要先安装 [[https://brew.sh/][Homebrew]]. 方法是在命令行�
 #+begin_src shell
  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 #+end_src
-当 =Homebrew= 安装成功后会有提示, 然后就可以使用 =Homebrew= 安装 Emacs 了: 在命令行中输入
+当 Homebrew 安装成功后会有提示, 然后就可以使用 Homebrew 安装 Emacs 了: 在命令行中输入
 #+begin_src shell
  brew install emacs
 #+end_src
 **** Windows
-Windows 下安装 Emacs 有两种常见方法. 第一种是安装 =msys2= ([[https://www.msys2.org/][下载链接]]). 安装后打开 =C:/msys64/mingw64.exe= (=C:/msys64/= 是 =msys2= 的默认安装目录, 根据实际情况调整). 在命令行中输入
+Windows 下安装 Emacs 有两种常见方法. 第一种是安装 MSYS2 ([[https://www.msys2.org/][下载链接]]). 安装后打开 =C:/msys64/mingw64.exe= (=C:/msys64/= 是 MSYS2 的默认安装目录, 根据实际情况调整). 在命令行中输入
 #+begin_src shell
   pacman -S mingw-w64-x86_64-emacs
 #+end_src
-通过 =msys2= 安装的一个好处是我们可以通过 =pacman= 管理 Emacs 的更新. 另一个好处是在上面还可以很方便安装其它开源软件, 例如 =git=, =epdfinfo= 等. =epdfinfo= 是在 Windows 下使用 Emacs 的 =pdf-tools= 插件的必需软件 ([[https://www.bilibili.com/video/BV1pg4y1s7Z9/][BV1pg4y1s7Z9]]).
+通过 MSYS2 安装的一个好处是我们可以通过 Pacman 管理 Emacs 的更新. 另一个好处是在上面还可以很方便安装其它开源软件, 例如 Git, Epdfinfo 等. Epdfinfo 是在 Windows 下使用 Emacs 的 [[https://github.com/vedang/pdf-tools][PDF-tools]] 插件的必需软件 ([[https://www.bilibili.com/video/BV1pg4y1s7Z9/][BV1pg4y1s7Z9]]).
 
 另一种安装方法是直接从[[http://ftp.gnu.org/gnu/emacs/windows/emacs-28/][官网]]上下载安装包. Emacs 28 的安装包已经优化了不少, 会自动把程序安装至 =C:/Program Files/emacs= 目录下, 并附带卸载程序. 通过安装包安装的 Emacs 需要我们手动更新.
 *** 安装 Emacs 后的额外设置
-**** ~Ctrl~ 键设置
+**** Ctrl 键设置
 安装完 Emacs 之后, 我 *强烈建议* 大家交换 ~Caps Lock~  与 ~Left Ctrl~. Emacs 常常使用以 ~Ctrl~ 开始的快捷键, 因此把 ~Ctrl~ 与不常用的大写锁定 ~Caps Lock~ 交换是每个 Emacs 使用者对电脑 做的第一件事. ~Ctrl~ 键的广泛使用是因为在 Emacs 诞生之初, 当时通用的键盘 ~Ctrl~ 确实在当今的 ~Caps Lock~ 位置上. 再啰嗦一句: 交换 ~Caps lock~ 与 ~Ctrl~ 绝不是一件可有可无的事情, 它在我们日常使用 Emacs 中真的非常重要! 大家千万不要怕麻烦.
 
 交换 ~Ctrl~ 与 ~Caps Lock~ 的方法在不同系统上也不一样.
@@ -86,16 +85,16 @@ Windows 中更改键位可以通过注册表或者最新的 =PowerToys= 软件.
    3a 00 1d 00 00 00 00 00
   #+end_src
 - 保存 =Scancode= 文件并重启电脑
-****** =PowerToys= (适用于 Win 10, Win 11)
-- 将系统中 =微软商店= 更新到最新版本 (Win 10 不更新可能会找不到 =PowerToys=)
-- 在 =微软商店= 中搜索 =PowerToys= 并安装
-- 在 =PowerToys= 中找到键位设置, 并交换 ~Caps Lock~ 和 ~Left Control~
+****** PowerToys (适用于 Win 10, Win 11)
+- 将系统中 "微软商店" 更新到最新版本 (Win 10 不更新可能会找不到 PowerToys)
+- 在 "微软商店"= 中搜索 =PowerToys= 并安装
+- 在 PowerToys 中找到键位设置, 并交换 ~Caps Lock~ 和 ~Left Control~
 ***** Ubuntu 及其它 Linux 系统
-在 Ubuntu 下, 可以安装 =gnome-tweaks=: 
+在 Ubuntu 下, 可以安装 Gnome-tweaks: 
 #+begin_src shell
  sudo apt install gnome-tweaks
 #+end_src
-然后打开 =gnome-tweaks= 的键盘设置, 在高级选项里有关于 ~Ctrl~ 键的设置. 你不仅仅可以交换它与 ~Caps Lock~, 也可以进行许多别的设置.
+然后打开 Gnome-tweaks 的键盘设置, 在高级选项里有关于 ~Ctrl~ 键的设置. 你不仅仅可以交换它与 ~Caps Lock~, 也可以进行许多别的设置.
 
 又或者, 在很多 Linux 系统的命令行下输入
 #+begin_src shell
@@ -120,7 +119,7 @@ Emacs 这个单词就来自于 macro, 即宏命令. 比如说我们想执行打�
 2. 执行 =open-file= 命令. 方法是按下 ~M-x~ (~M~ = ~Alt~), 然后在最下面的小缓冲区输入 =open-file=, 然后输入文件名.
 3. 按下 ~C-x C-f~ 快捷键, 并输入文件名.
 
-Emacs 中有许多有用的命令. 你未来也可以自己通过 =elisp= 语言编写自己命令. Emacs 把其中最常用的命令都绑定了快捷键, 用户自己也可以设置自己的快捷键. 当我们用熟了之后, 很多快捷键就会像打字一样形成肌肉记忆. 作为新手, 我们有很多键盘的快捷操作可以用鼠标代替, 因此你不必急于一下子掌握全部 Emacs 的快捷键.
+Emacs 中有许多有用的命令. 你未来也可以自己通过 Elisp 语言编写自己命令. Emacs 把其中最常用的命令都绑定了快捷键, 用户自己也可以设置自己的快捷键. 当我们用熟了之后, 很多快捷键就会像打字一样形成肌肉记忆. 作为新手, 我们有很多键盘的快捷操作可以用鼠标代替, 因此你不必急于一下子掌握全部 Emacs 的快捷键.
 
 但是, 仍有一些快捷键是大家最好尽快熟悉的. 下面这张表我给大家总结了新手必知的几个快捷键.
 在表中, ~C~ 表示 ~Ctrl~, ~M~ 表示 ~Alt~. 这也是 Emacs 快捷键通用写法. 最右边一列是快捷键对应的命令名, 也就是第一列所有的快捷键都等价于 ~M-x~ 加上第三列. 
@@ -168,10 +167,10 @@ Emacs 有自己一套复制/剪切/粘贴的快捷键: ~M-w~ / ~C-w~ / ~C-y~. �
 *** Emacs 插件管理
 接下来我们介绍如何更好地管理 Emacs 插件. Emacs 插件也叫 Emacs 包 (package). 插件可以给我们带来更多的功能, 是 Emacs 使用中不可缺少的一环. 插件的安装和设置与其它的 Emacs 设置一样, 都放在 Emacs 的启动文件 =~/.emacs.d/init.el= 中. 关于插件安装与设置, 我推荐大家使用现在常用的 =use-package= 语法, 它的语法更简洁, 还可以很方便地自动安装插件.
 
-Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件提供的). 常用的有两种, 一种是用内置的 =package.el=, 这个插件名字就叫 =package=, =.el= 后缀来自于 Emacs 的编程语言 Elisp.
-第二种是用 =straight.el=. =package.el= 会从官方的插件库或镜像网站上下载新插件, 而 =straight= 用下载插件的源代码并编译, 一般是利用 =git= 从 =github= 上下载. 为了使用 =straight=, 你需要系统上已经安装了 =git= 程序, 并且能正常地访问 =github.com=. 以下我们介绍两种安装方式如何设置.
+Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件提供的). 常用的有两种, 一种是用内置的 =package.el=, 这个插件名字就叫 =package.el=, =.el= 后缀来自于 Emacs 的编程语言 Elisp.
+第二种是用 [[https://github.com/radian-software/straight.el][Straight]]. =package.el= 会从官方的插件库 (ELPA, MELPA) 或镜像网站上下载新插件, 而 Straight 用下载插件的源代码并编译, 一般是利用 Git 从 Github 上下载. 为了使用 Straight, 你需要系统上已经安装了 Git 程序, 并且能正常地访问 =github.com=. 以下我们介绍两种安装方式如何设置.
 
-我们在 =package.el= 和 =straight.el= 的设置示例中都手动检查并安装了 =use-package=. Emacs 29 后 =use-package= 已经是内置插件, 相关代码可以省去. 
+我们在 =package.el= 和 Straight 的设置示例中都手动检查并安装了 =use-package=. Emacs 29 后 =use-package= 已经是内置插件, 相关代码可以省去. 
 **** =package.el= 设置示例
 以下我们提供了 =package.el= 的一个设置示例. 大家需要把如下代码放入设置文件 =./.emacs.d/init.el= 中.
 #+begin_src elisp
@@ -258,18 +257,18 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
   (if (file-exists-p custom-file) (load-file custom-file))
   ;;========================================
 #+end_src
-这里大部分的代码是 =straight.el= 的 =github= 主页上提供的下载与安装 =straight= 的代码, 然后再用 =straight= 安装 =use-package=. 最后我用把 =straight-use-package-by-default= 变量设为 =t=, 这是在使用 =straight= 时进行插件自动安装的设置.
+这里大部分的代码是 =straight.el= 的 [[https://github.com/radian-software/straight.el][Github主页]]上提供的下载与安装 =straight= 的代码, 然后再用 =straight= 安装 =use-package=. 最后我用把 =straight-use-package-by-default= 变量设为 =t=, 这是在使用 =straight= 时进行插件自动安装的设置.
 *** 推荐插件
 下面我给大家推荐两组非常实用的插件. 在进行好 =package.el= 或者 =straight.el= 的设置后 (注意: 不能同时使用), 安装与设置插件只需要把相关的 =use-package= 代码块复制到 =init.el= 即可. 而且在两个体系下的代码块基本是通用的.
 
 我们之前也都设置了自动安装插件. 当你第一次执行 =init.el= 时 (通常是第一次重启 Emacs 的时候), Emacs 会自动检测你在 =init.el= 中声明的插件是否已经安装, 若没有则通过指定的方法 (=package.el= 或 =straight.el=) 自动下载安装. 如果大家在一台新的机器上使用 Emacs, 把 =init.el= 文件复制到新机器上就可以直接获得一模一样的使用体验!
 
-你也可以在修改完 =init.el= 后, 执行 ~M-x eval-buffer~ 命令手动加载新加的 =use-package= 代码块.
+你也可以在修改完 =init.el= 后, 执行 ~M-x~ =eval-buffer= 命令手动加载新加的 =use-package= 代码块.
 
-在复制代码块中最常见的问题是某个地方在复制的过程中漏了括号. 大家已经发现 elisp 语言中括号是必须配对的. 我们可以在修改 =init.el= 后手动的用 ~M-x match-paren~ 检查括号是否匹配. 如果有不匹配的括号, 那么光标就会跳过没有匹配成功的括号上, 否则这个命令不会用任何效果.
+在复制代码块中最常见的问题是某个地方在复制的过程中漏了括号. 大家已经发现 elisp 语言中括号是必须配对的. 我们可以在修改 =init.el= 后手动的用 ~M-x~ =match-paren= 检查括号是否匹配. 如果有不匹配的括号, 那么光标就会跳过没有匹配成功的括号上, 否则这个命令不会用任何效果.
 
 **** 插件组合1: 更多的帮助信息
-我们首先介绍 =which-key= + =keycast= + =helpful=. 安装代码如下
+我们首先介绍 [[https://github.com/justbur/emacs-which-key][Which-key]] + [[https://github.com/tarsius/keycast][Keycast]] + [[https://github.com/Wilfred/helpful][Helpful]]. 安装代码如下
 #+begin_src elisp
   (use-package which-key
     :custom (which-key-idle-delay 0.5) ; 延迟时间, 以秒为单位
@@ -299,8 +298,7 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 =helpful= 则优化了帮助界面的信息显示, 包括更多有用的信息和高亮.
 
 **** 插件组合2: 更好的补全界面
-
-在 Emacs 中输入命令或打开文件, 切换缓冲区等等都会用到小缓冲区补全. 第二组插件是针对小缓冲区补全的. 代码如下
+在 Emacs 中输入命令或打开文件, 切换缓冲区等等都会用到小缓冲区补全. 第二组插件 [[https://github.com/minad/vertico][Vertico]] + [[https://github.com/minad/marginalia][Marginalia]] + [[https://github.com/oantolin/orderless][Orderless]] 是针对小缓冲区补全的. 代码如下
 #+begin_src elisp
   (use-package vertico ; 竖式展开小缓冲区
     :custom (verticle-cycle t)
@@ -320,7 +318,7 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 
 在小缓冲区中输入时, 我们可以按 ~Tab~ 补全当前的输入. 加入 =vertico= 之后, 我们可以用 ~C-n~ 和 ~C-p~ 或者上下移动键来选择不同的补全选项. ~C-n~ 和 ~C-p~ 也是 Emacs 中上下移动光标的快捷键.
 
-最后的 =orderless= 允许我们在小缓冲区补全时忽略单词的顺序. 例如, 如果我们输入 ~M-x~, 想要匹配 =find-file= 命令, 在默认情况下必须先输入 =find=, 再输入 =file= 才能找到 =find-file=. 如果你用了 =orderless=, 则可以通过 =file find= 找到, 或者部分的单词 =fil fin <tab>= 找到. 
+最后的 =orderless= 允许我们在小缓冲区补全时忽略单词的顺序. 例如, 如果我们输入 ~M-x~, 想要匹配 =find-file= 命令, 在默认情况下必须先输入 =find=, 再输入 =file= 才能找到 =find-file=. 如果你用了 =orderless=, 则可以通过 =file find= 找到, 或者部分的单词 =fil fin= + ~Tab~= 找到. 
 
 *** 基本的 =CDLaTeX= + =AucTeX= 设置
 最后我们提供一个简单可用的 =CDLaTeX= 和 =AucTeX= 设置. 大家只要把这段代码复制进 =init.el= 就可以实现视频[[https://www.bilibili.com/video/BV1Xk4y1a7Gp/][五分钟说服你用Emacs写LaTeX]]中的大部分功能.
@@ -346,30 +344,26 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
     (add-hook 'LaTeX-mode-hook 'my-latex-hook)) ; 加载LaTeX模式设置
 #+end_src
 
-这个基本设置不一定能实现 =pdf= 正向或反向搜索, 因为这取决于操作系统与 =pdf= 阅读器. 如果你想在 Emacs 中获得统一的 =pdf= 体验, 可以考虑使用 =pdf-tools= (见视频 [[https://www.bilibili.com/video/BV1pg4y1s7Z9/][BV1pg4y1s7Z9]]).
+这个基本设置不一定能实现 PDF 正向或反向搜索, 因为这取决于操作系统与 PDF 阅读器. 如果你想在不同平台上使用 Emacs 并获得统一的 PDF 体验, 可以考虑使用 PDF-tools (见视频 [[https://www.bilibili.com/video/BV1pg4y1s7Z9/][BV1pg4y1s7Z9]]).
 
-关于 =CDLaTeX= 的安装, 要注意的是, 它并不在任何的软件源时. 如果使用 =package.el=, 你需要手动下载这个文件 (=github= 或者我网盘里的备份), 并用 ~:load-path~ 关键字指定文件的目录. 如果是 =straight=, 则需要我们指定 =github= 源码的网址.
+关于 CDLaTeX 的安装, 要注意的是, 它并不在任何的软件源时. 如果使用 =package.el=, 你需要手动下载这个文件 ([[https://github.com/cdominik/cdlatex/blob/master/cdlatex.el][Github链接]] 或者我网盘里的备份), 并用 ~:load-path~ 关键字指定文件的目录. 如果是 Straight, 则需要我们指定 Github 仓库的地址 =cdominik/cdlatex=.
 
-=AucTeX= 是通过 =use-package tex= 激活的. 因为不同名的问题, 我们要额外加入 =:ensure auctex= 或 =:straight auctex=. 另外, 其实 Emacs 已经内置了 =AucTeX=, 但不一定是最新版本, 我们这里的 =use-package= 则会把它更新到最新版.
+AucTeX 是通过 =(use-package tex)= 激活的. 因为包名不统一的问题, 我们要额外加入 =:ensure auctex= 或 =:straight auctex=. 其实 Emacs 已经内置了 AucTeX, 但不一定是最新版本, 我们这里的 =use-package= 则会把它更新到最新版.
 
 *** 有用的链接
 - Emacs 官网: https://www.gnu.org/software/emacs/
 - 我的坚果云分享: https://www.jianguoyun.com/p/DTiBwxMQ856tCxiflP0E
-- 我的 Emacs 设置: https://gitee.com/mickey991/emacs-latex/tree/master/my-emacs-config 
+- 我的 Emacs 设置: [[https://gitee.com/mickey991/emacs-config.git]] 
 
 
-
-
-
-
-** CDLaTeX中快速输入数学符号和字体与自定义设置
+** CDLaTeX 中快速输入数学符号和字体与自定义设置
 :PROPERTIES:
 :EXPORT_FILE_NAME: easy-latex-writing-ep02-math-symbol-and-modify
 :CUSTOM_ID:  easy-latex-writing-ep02-math-symbol-and-modify
 :END:
-大家好, 我是小米, 欢迎大家来到我的省时省力写 LaTeX 系列. 本期我们开始介绍 Emacs 的 =CDLaTeX= 插件. 这次讲解如何使用 =CDLaTeX= 快速插入数学字母, 符号和字体的功能, 以及如何自定义新的快捷键. 
-*** AucTeX 和 CDLaTeX基本设置
-Emacs 中的 LaTeX 编辑主要是依赖 =AucTeX= 和 =CDLaTeX= 这两个插件. =AucTeX= 提供了编辑 LaTeX 的基本功能, 而 =CDLaTeX= 主要提供了大量简化和易设置的输入方式.  为了安装并在 LaTeX 编辑时启用这两个插件, 我们需要在 =init.el= 中加入代码:
+大家好, 我是小米, 欢迎大家来到我的省时省力写 LaTeX 系列. 本期我们开始介绍 Emacs 的 CDLaTeX 插件. 这次讲解如何使用 CDLaTeX 快速插入数学字母, 符号和字体的功能, 以及如何自定义新的快捷键. 
+*** AucTeX 和 CDLaTeX 基本设置
+Emacs 中的 LaTeX 编辑主要是依赖 [[https://www.gnu.org/s/auctex][AucTeX]] 和 [[https://github.com/cdominik/cdlatex][CDLaTeX]] 这两个插件. AucTeX 提供了编辑 LaTeX 的基本功能, 而 CDLaTeX 主要提供了大量简化和易设置的输入方式.  为了安装并在 LaTeX 编辑时启用这两个插件, 我们需要在 =init.el= 中加入代码:
 #+begin_src elisp
   (defun my/latex-hook ()
     (turn-on-cdlatex) 
@@ -395,11 +389,11 @@ Emacs 中的 LaTeX 编辑主要是依赖 =AucTeX= 和 =CDLaTeX= 这两个插件.
     )
 #+end_src
 
-使用 =straight.el= 的用户需要根据注释内容适当调整. 在 =(use-package cdlatex ...)= 中我们指定了 =:after tex=, 是为了保证 =CDLaTeX= 在 =auctex= 之后加载. 把 =CDLaTeX= 代码块置于 =auctex= 之后也实现了相同效果; 而加了这一行后, 代码块次序可以随意调整.
+使用 =straight.el= 的用户需要根据注释内容适当调整. 在 =(use-package cdlatex ...)= 中我们指定了 =:after tex=, 是为了保证 =cdlateX= 在 =auctex= 之后加载. 把 =cdlatex= 的 =use-package= 代码块置于 =auctex= 之后也实现了相同效果; 而加了这一行后, 代码块次序可以随意调整.
 
-=LaTeX-mode-hook= 是我们打开 LaTeX 文件时需要加载的设置, 这里我们定义了一个新的函数 =my/latex-hook= (名字可随意), 这样方便我们日后加入更多的功能. 函数的第一行 =(turn-on-cdlatex)= 就是打开 =tex= 文件时加载 =CDLaTeX= 的命令.
+=LaTeX-mode-hook= 是我们打开 LaTeX 文件时需要加载的设置, 这里我们定义了一个新的函数 =my/latex-hook= (名字可随意), 这样方便我们日后加入更多的功能. 函数的第一行 =(turn-on-cdlatex)= 就是打开 =tex= 文件时加载 =cdlatex-mode= 的命令.
 
-成功设置后, 当我们打开 =tex= 文件时, 大家应当可以看到模式栏中的 =LaTeX/P= 和 =CDL=, 就表示加载了 =AucTeX= 和 =CDLaTeX=. 通过 ~C-h m~ (~m~ 表示 =mode=) 可以查看当前加载的所有主要模式和次要模式.
+成功设置后, 当我们打开 =tex= 文件时, 大家应当可以看到模式栏中的 =LaTeX/P= 和 =CDL=, 就表示加载了 =aucteX= 和 =cdlatex=. 通过 ~C-h m~ (~m~ 表示 mode) 可以查看当前加载的所有主要模式和次要模式.
 
 *** 数学符号输入 
 这里的数学符号也包括各种非拉丁字母如 =\alpha=, =\aleph= 等. 输入方法是用反引号 (~Tab~ 上方) 加另一个键组成的快捷键输入. 
@@ -414,7 +408,7 @@ Emacs 中的 LaTeX 编辑主要是依赖 =AucTeX= 和 =CDLaTeX= 这两个插件.
 如果你不熟悉希腊字母对应的拉丁字母, 没有关系, 只要在按下 ~\`~ 后稍稍停顿, 就会弹出一个提示界面.
 大家刚开始使用时可以多查看这个提示界面. 
 **** 数学符号
-大家在提示界面可以看到, 除了希腊字母以外, 我们还可以用同样的方法快速插入数学符号. =CDLaTeX= 预置了很多好记的默认设置. 例如, ~\`~ + ~8~ 插入 =\infty=, 因为数字8放平就是无穷, 又如, ~\`~ + ~*~ 插入 =\times= 乘号, ~\`~ + ~+~ 插入 =\cup= (并集), ~\`~ + ~>~ 插入 =\rightarrow= (右箭头) 等.
+大家在提示界面可以看到, 除了希腊字母以外, 我们还可以用同样的方法快速插入数学符号. CDLaTeX 预置了很多好记的默认设置. 例如, ~\`~ + ~8~ 插入 =\infty=, 因为数字8放平就是无穷, 又如, ~\`~ + ~*~ 插入 =\times= 乘号, ~\`~ + ~+~ 插入 =\cup= (并集), ~\`~ + ~>~ 插入 =\rightarrow= (右箭头) 等.
 **** 第二和第三层目录
 =CDLaTeX= 中连续按下两次反引号 ~\`~ 可以打开第二层目录. 第二层通常用于希腊字母的变体, 如
 - ~\`e~ 插入 =\epsilon=, ~\`\`e~ 插入 =\varepsilon=
@@ -439,9 +433,9 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 ~\`~ 触
 
 打开一个变量的设置界面主要有两种方式 (以 =cdlatex-math-symbol-alist= 为例)
 1. 通过 =customize-variable= 命令:
-   ~M-x customize-variable RET M-x cdlatex-math-symbol-alist RET~
+   ~M-x~ =customize-variable=  ~RET~ ~M-x~ =cdlatex-math-symbol-alist=
 2. 从变量的帮助界面进入设置界面:
-    ~C-h v cdlatex-math-symbol-alist RET~ 并点击 =Customize=
+    ~C-h v~ =cdlatex-math-symbol-alist=  并点击 =customize=
 
 **** 设置实例
 我们想调换 ~\`e~ 和 ~\`\`e~ 原本的快捷键设置, 即实现如下效果:  ~\`e~ 插入 =\varepsilon=, ~\`\`e~ 插入 =\epsilon=. (这么做的原因是 =\varepsilon= 更常用).
@@ -466,9 +460,9 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 ~\`~ 触
 2. 一个是打开新的 =tex= 文件
 3. 在原来的 =.tex= 文件缓冲区, 按下 ~C-c C-n~.
 
-第三种方法可以刷新 =LaTeX= 模式设置, 也适用于其它与 =CDLaTeX= 的设置. 此时, 大家按下反引号 ~\`~ 就可以看到更新后的列表了.
+第三种方法可以刷新 LaTeX 模式设置, 也适用于其它与 =cdlatex= 的设置. 此时, 大家按下反引号 ~\`~ 就可以看到更新后的列表了.
 **** 怎么选择快捷键
-原则上这个机制可以插入任意的数学表达式, 如 =\stackrel{\mathrm{a.s.}}{==}=, 但是建议只绑定原子化的数学符号. 复杂的表达式更适合用 =CDLaTeX= 的命令补全功能.
+原则上这个机制可以插入任意的数学表达式, 如 =\stackrel{\mathrm{a.s.}}{==}=, 但是建议只绑定原子化的数学符号. 复杂的表达式更适合用 CDLaTeX 的命令补全功能. (参考 [[id:easy-latex-writing-ep03-tab-completion][Tab 补全快速插入LaTeX代码]])
 
 快捷键要易记, 直观, 凭你的第一感觉就能找到. 否则不能提高输入速度. 大家也可以查看默认的设置寻找灵感. 反例就是把左箭头 =\leftarrow= 绑到 ~\`>~ 上.
 
@@ -480,7 +474,7 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 ~\`~ 触
 
 *** 数学字体修饰
 **** 数学字体
- =CDLaTeX= 还可以快速插入不同的数学字体, 像 =\mathrm{}=, =\mathbf{}= 等等.
+ CDLaTeX 还可以快速插入不同的数学字体, 像 =\mathrm{}=, =\mathbf{}= 等等.
  例如, 我们常常用粗体 R 表示实数域, 也就是 =\mathbf{R}=. 我们可以按3个键完成输入: ~R~ + ~\'~ + ~b~
  - ~R~: 输入字母 R
  - ~\'~ (单引号): 打开数学字体列表. 作用相当于前面的 ~\`~
@@ -505,7 +499,7 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 ~\`~ 触
    - ~\'b~ 插入 =\textbf{}=
    - ~\'i~ 插入 =\textit{}=
 
-这里同样的 ~\'b~, 用在数学公式内就是 =\mathbf{}=, 用在文本中就是 =\textbf{}=. =CDLaTeX= 会自动检测当前环境是否为数学环境.
+这里同样的 ~\'b~, 用在数学公式内就是 =\mathbf{}=, 用在文本中就是 =\textbf{}=. CDLaTeX 会自动检测当前环境是否为数学环境.
 **** 嵌套修饰
 触发字体修饰的第三种方法是选先高亮选中一段文本, 再选择修饰. 例如, 选中数学环境外的 =blabla=, 然后按 ~'b~, 则 =blabla= 会变成 =\textbf{blabla}=. 如果 =blabla= 在数学环境内, 则变成 =\mathbf{blabla}=
 
@@ -515,7 +509,7 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 ~\`~ 触
 
 *** 自定义字体修饰
 这里需要设置的变量是 =cdlatex-math-modify-alist=. 打开设置界面的方法和前面一样, 输入
-~M-x customize-variable RET cdlatex-math-modify-alist RET~
+~M-x~ =customize-variable= ~RET~ =cdlatex-math-modify-alist=
 
 现在我们举一个例子. 假设我们想用 ~\'t~ 在数学公式中插入空心粗体 =\mathbb{}=. 操作如下
 - 打开 =cdlatex-math-modify-alist= 设置界面
@@ -551,24 +545,24 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 ~\`~ 触
 
 如果没有特别的设置, =customize-variable= 设置的变量默认会由 Emacs 保存到 =init.el= 文件的最后. 我们的设置可以区分自己的设置和 Emacs 保存的设置.
 
-当然, 你也可以手动把 =custom-set-variables= 中的内容用 =(setq ...)= 语句写在你的 =init.el= 当中, 尤其可以放在相应插件的 =use-package= 代码块中. 这样的好处是方便单独管理每个插件的设置, 并且利用 =use-package= 的延迟加载功能加快打开 Emacs 的时间. 当我们的 =CDLaTeX= 设置很长的时候, 这样做可以把 Emacs 的启动时间从10多秒减少到1秒以下. 大家可以在熟悉了 Emacs 的设置后再做尝试, 新手不推荐这么做. 
+当然, 你也可以手动把 =custom-set-variables= 中的内容用 =(setq ...)= 语句写在你的 =init.el= 当中, 尤其可以放在相应插件的 =use-package= 代码块中. 这样的好处是方便单独管理每个插件的设置, 并且利用 =use-package= 的延迟加载功能加快打开 Emacs 的时间. 当我们的 CDLaTeX 设置很长的时候, 这样做可以把 Emacs 的启动时间从10多秒减少到1秒以下. 大家可以在熟悉了 Emacs 的设置后再做尝试, 新手不推荐这么做. 
 
 *** 总结
-Emacs 中的 =CDLaTeX= 插件利用反引号 ~\`~ 和单引号 ~\'~ 开始的快捷键可以快速插入数学字母, 符号和字体. 我们可以通过设置 =cdlatex-math-symbol-alist= 和 =cdlatex-math-modify-alist= 这两个变量修改和增加自己喜欢的快捷键.
+Emacs 中的 CDLaTeX 插件利用反引号 ~\`~ 和单引号 ~\'~ 开始的快捷键可以快速插入数学字母, 符号和字体. 我们可以通过设置 =cdlatex-math-symbol-alist= 和 =cdlatex-math-modify-alist= 这两个变量修改和增加自己喜欢的快捷键.
 
-在下期视频中我们将介绍 =CDLaTeX= 中 ~Tab~ 的命令/模板补全功能. 它可以帮助我们输入一些更复杂的宏命令, 或者插入环境模板等等.
+在下期视频中我们将介绍 CDLaTeX 中 ~Tab~ 的命令/模板补全功能. 它可以帮助我们输入一些更复杂的宏命令, 或者插入环境模板等等.
 ** Tab 补全快速插入 LaTeX 代码
 :PROPERTIES:
 :EXPORT_FILE_NAME: easy-latex-writing-ep03-tab-completion
 :CUSTOM_ID:  easy-latex-writing-ep03-tab-completion
 :END:
 
-大家好, 我是小米. 本期我们将介绍如何在 =CDLaTeX= 中用 =Tab= 补全命令快速地输入复杂的宏命令和环境模板.
-*** =Tab= 补全插入宏命令
+大家好, 我是小米. 本期我们将介绍如何在 CDLaTeX 中用 =Tab= 补全命令快速地输入复杂的宏命令和环境模板.
+*** Tab 补全插入宏命令
 补全原理很简单, 用几个字母组合加 ~Tab~ 生成一些复杂的命令. 例如, =fr= + ~Tab~ 就会生成 =\frac{}{}=, 这里光标会停留在第一个括号内; 在第一个括号内完成输入后, 按 ~Tab~ 光标就会跳到下一个括号中. 因此, 输入一个常见的分数 =\frac{1}{2}= 只需要输入 ~f~ + ~r~ + ~Tab~ + ~1~ + ~Tab~ + ~2~.
 
 **** 内置命令举例
-=CDLaTeX= 内置了一些可补全的命令, 可以在 =cdlatex-command-alist-default= 变量中查看 (~C-h v~). 我们举一些例子 (以下 =?= 所在位置表示补全后光标停留的位置.)
+CDLaTeX 内置了一些可补全的命令, 可以在 =cdlatex-command-alist-default= 变量中查看 (~C-h v~). 我们举一些例子 (以下 =?= 所在位置表示补全后光标停留的位置.)
 - 分数 =fr= + ~Tab~ = =\frac{?}{}=, 根号 =sq= + ~Tab~ = =\sqrt{?}= 
 - 空格 =qq= + ~Tab~ = =\quad=, 大空格 =qqq= + ~Tab~ = =\qquad= 
 - 括号 =lr(= + ~Tab~ = =\left(?\right)=, =lr[= = =\left[?\right]= 
@@ -583,7 +577,7 @@ Emacs 中的 =CDLaTeX= 插件利用反引号 ~\`~ 和单引号 ~\'~ 开始的快
 - =lr<= + ~Tab~ = =\langle?\rangle=, 一对尖括号 \(\langle  \rangle\).
 
 显然, 这里的关键字选择都是用命令中最开始的两到三个字母, 这样非常好记, 也很容易使用.
-*** =Tab= 补全环境模板
+*** Tab 补全环境模板
 大家可以看到这里的 =Tab= 补全其实就是一个替换字符串的过程. 当然字符串中也可以包括换行, 因此同样的机制也可以输入形如 =\begin{XXX} ... \end{XXX}= 的环境.
 
 **** 内置命令举例
@@ -611,7 +605,7 @@ Emacs 中的 =CDLaTeX= 插件利用反引号 ~\`~ 和单引号 ~\'~ 开始的快
 - =it= + ~Tab~ = =\item=
 - ~C-<enter>~ 会换行并生成 =\item=
 
-这里, ~enu~ + ~Tab~ 等同于用 ~cdlatex-environment~ (~C-c {~ ) 插入 =enumerate= 环境
+这里, =enu= + ~Tab~ 等同于用 =cdlatex-environment= (~C-c {~ ) 插入 =enumerate= 环境
 
 类似的还有
 - =ite= + ~Tab~ 插入 =itemize= 环境
@@ -624,7 +618,7 @@ Emacs 中的 =CDLaTeX= 插件利用反引号 ~\`~ 和单引号 ~\'~ 开始的快
 - =MATH= 关键字表示补全可以在 *数学环境* 中触发
 - =TEXT= 关键字表示补全可以在 *文本环境* 中触发
 
-加入自定义新的补全命令通过修改变量 =cdlatex-command-alist=. 方法是调用 ~M-x customize-variable <enter>~, 然后输入变量名 =cdlatex-command-alist=.
+加入自定义新的补全命令通过修改变量 =cdlatex-command-alist=. 方法是调用 ~M-x~ =customize-variable =, 然后输入变量名 =cdlatex-command-alist=.
 **** 带参数的宏命令
 例子: =te= + ~Tab~ 输入 =\text{?}= (光标停在括号内). 我们需要填入如下参数
 - keyword: =te=
@@ -671,8 +665,8 @@ Emacs 中的 =CDLaTeX= 插件利用反引号 ~\`~ 和单引号 ~\'~ 开始的快
 **** 插入环境 II
 插入环境除了直接在 =cdlatex-command-alist= 的 =Replacement= 中写入环境模板以外, 还可以通过调用函数 =cdlatex-environment= 的方式实现.
 在 LaTeX 编辑模式中, 有两种用环境名插入环境的方法
-- ~M-x LaTeX-environment~ (~C-c C-e~) + =description=: 这会调用 =AucTeX= 的环境模板
-- ~M-x cdlatex-environment~ (~C-c {~ ) + =description=: 这会调用 =CDLaTeX= 的环境模板. 
+- ~M-x~ =LaTeX-environment= (~C-c C-e~) + =description=: 这会调用 =AucTeX= 的环境模板
+- ~M-x~ =cdlatex-environment= (~C-c {~ ) + =description=: 这会调用 =CDLaTeX= 的环境模板. 
 两种模板略有不同. 这第二种插入环境的方法就是用 ~Tab~ 补全触发第二个命令.
 
 例子: =des= + ~Tab~ 插入 =description= 环境

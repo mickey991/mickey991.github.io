@@ -3,17 +3,17 @@ title = "Tab 补全快速插入 LaTeX 代码"
 draft = false
 +++
 
-大家好, 我是小米. 本期我们将介绍如何在 `CDLaTeX` 中用 `Tab` 补全命令快速地输入复杂的宏命令和环境模板.
+大家好, 我是小米. 本期我们将介绍如何在 CDLaTeX 中用 `Tab` 补全命令快速地输入复杂的宏命令和环境模板.
 
 
-## `Tab` 补全插入宏命令 {#tab-补全插入宏命令}
+## Tab 补全插入宏命令 {#tab-补全插入宏命令}
 
 补全原理很简单, 用几个字母组合加 <kbd>Tab</kbd> 生成一些复杂的命令. 例如, `fr` + <kbd>Tab</kbd> 就会生成 `\frac{}{}`, 这里光标会停留在第一个括号内; 在第一个括号内完成输入后, 按 <kbd>Tab</kbd> 光标就会跳到下一个括号中. 因此, 输入一个常见的分数 `\frac{1}{2}` 只需要输入 <kbd>f</kbd> + <kbd>r</kbd> + <kbd>Tab</kbd> + <kbd>1</kbd> + <kbd>Tab</kbd> + <kbd>2</kbd>.
 
 
 ### 内置命令举例 {#内置命令举例}
 
-`CDLaTeX` 内置了一些可补全的命令, 可以在 `cdlatex-command-alist-default` 变量中查看 (<kbd>C-h v</kbd>). 我们举一些例子 (以下 `?` 所在位置表示补全后光标停留的位置.)
+CDLaTeX 内置了一些可补全的命令, 可以在 `cdlatex-command-alist-default` 变量中查看 (<kbd>C-h v</kbd>). 我们举一些例子 (以下 `?` 所在位置表示补全后光标停留的位置.)
 
 -   分数 `fr` + <kbd>Tab</kbd> = `\frac{?}{}`, 根号 `sq` + <kbd>Tab</kbd> = `\sqrt{?}`
 -   空格 `qq` + <kbd>Tab</kbd> = `\quad`, 大空格 `qqq` + <kbd>Tab</kbd> = `\qquad`
@@ -33,7 +33,7 @@ draft = false
 显然, 这里的关键字选择都是用命令中最开始的两到三个字母, 这样非常好记, 也很容易使用.
 
 
-## `Tab` 补全环境模板 {#tab-补全环境模板}
+## Tab 补全环境模板 {#tab-补全环境模板}
 
 大家可以看到这里的 `Tab` 补全其实就是一个替换字符串的过程. 当然字符串中也可以包括换行, 因此同样的机制也可以输入形如 `\begin{XXX} ... \end{XXX}` 的环境.
 
@@ -75,7 +75,7 @@ draft = false
 -   `it` + <kbd>Tab</kbd> = `\item`
 -   <kbd>C-&lt;enter&gt;</kbd> 会换行并生成 `\item`
 
-这里, <kbd>enu</kbd> + <kbd>Tab</kbd> 等同于用 <kbd>cdlatex-environment</kbd> (<kbd>C-c {</kbd> ) 插入 `enumerate` 环境
+这里, `enu` + <kbd>Tab</kbd> 等同于用 `cdlatex-environment` (<kbd>C-c {</kbd> ) 插入 `enumerate` 环境
 
 类似的还有
 
@@ -92,7 +92,7 @@ draft = false
 -   `MATH` 关键字表示补全可以在 **数学环境** 中触发
 -   `TEXT` 关键字表示补全可以在 **文本环境** 中触发
 
-加入自定义新的补全命令通过修改变量 `cdlatex-command-alist`. 方法是调用 <kbd>M-x customize-variable &lt;enter&gt;</kbd>, 然后输入变量名 `cdlatex-command-alist`.
+加入自定义新的补全命令通过修改变量 `cdlatex-command-alist`. 方法是调用 <kbd>M-x</kbd> `customize-variable =, 然后输入变量名 =cdlatex-command-alist`.
 
 
 ### 带参数的宏命令 {#带参数的宏命令}
@@ -151,8 +151,8 @@ draft = false
 插入环境除了直接在 `cdlatex-command-alist` 的 `Replacement` 中写入环境模板以外, 还可以通过调用函数 `cdlatex-environment` 的方式实现.
 在 LaTeX 编辑模式中, 有两种用环境名插入环境的方法
 
--   <kbd>M-x LaTeX-environment</kbd> (<kbd>C-c C-e</kbd>) + `description`: 这会调用 `AucTeX` 的环境模板
--   <kbd>M-x cdlatex-environment</kbd> (<kbd>C-c {</kbd> ) + `description`: 这会调用 `CDLaTeX` 的环境模板.
+-   <kbd>M-x</kbd> `LaTeX-environment` (<kbd>C-c C-e</kbd>) + `description`: 这会调用 `AucTeX` 的环境模板
+-   <kbd>M-x</kbd> `cdlatex-environment` (<kbd>C-c {</kbd> ) + `description`: 这会调用 `CDLaTeX` 的环境模板.
 
 两种模板略有不同. 这第二种插入环境的方法就是用 <kbd>Tab</kbd> 补全触发第二个命令.
 

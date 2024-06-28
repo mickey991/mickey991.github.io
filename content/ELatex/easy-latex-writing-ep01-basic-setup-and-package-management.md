@@ -3,7 +3,7 @@ title = "Emacs 快速配置与插件管理"
 draft = false
 +++
 
-本小节将介绍如何快速配置一个用于 LaTeX 写作的 Emacs, 包括软件安装和插件管理, 以及 Emacs 的一些必要的入门知识. 最后将推荐两组非常实用的插件: 第一组插件 `which-key` + `keycast` + `helpful` 将帮助我们快速熟悉 Emacs 的操作和概念, 第二组插件 `vertico` + `marginalia` + `orderless` 将有效提升我们在小缓冲区的补全体验, 并附上 `cdlatax` 和 `AucTeX` 的基本设置.
+本小节将介绍如何快速配置一个用于 LaTeX 写作的 [Emacs](https://www.gnu.org/s/emacs/), 包括软件安装和插件管理, 以及 Emacs 的一些必要的入门知识. 最后将推荐两组非常实用的插件: 第一组插件 [Which-key](https://github.com/justbur/emacs-which-key) + [Keycast](https://github.com/tarsius/keycast) + [Helpful](https://github.com/Wilfred/helpful) 将帮助我们快速熟悉 Emacs 的操作和概念, 第二组插件 [Vertico](https://github.com/minad/vertico) + [Marginalia](https://github.com/minad/marginalia) + [Orderless](https://github.com/oantolin/orderless) 将有效提升我们在小缓冲区的补全体验, 并附上 [AucTeX](https://www.gnu.org/s/auctex) 和 [CDLaTeX](https://github.com/cdominik/cdlatex) 的基本设置.
 
 
 ## Emacs 安装 {#emacs-安装}
@@ -32,7 +32,7 @@ MacOS 中需要先安装 [Homebrew](https://brew.sh/). 方法是在命令行中�
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-当 `Homebrew` 安装成功后会有提示, 然后就可以使用 `Homebrew` 安装 Emacs 了: 在命令行中输入
+当 Homebrew 安装成功后会有提示, 然后就可以使用 Homebrew 安装 Emacs 了: 在命令行中输入
 
 ```shell
 brew install emacs
@@ -41,13 +41,13 @@ brew install emacs
 
 ### Windows {#windows}
 
-Windows 下安装 Emacs 有两种常见方法. 第一种是安装 `msys2` ([下载链接](https://www.msys2.org/)). 安装后打开 `C:/msys64/mingw64.exe` (`C:/msys64/` 是 `msys2` 的默认安装目录, 根据实际情况调整). 在命令行中输入
+Windows 下安装 Emacs 有两种常见方法. 第一种是安装 MSYS2 ([下载链接](https://www.msys2.org/)). 安装后打开 `C:/msys64/mingw64.exe` (`C:/msys64/` 是 MSYS2 的默认安装目录, 根据实际情况调整). 在命令行中输入
 
 ```shell
 pacman -S mingw-w64-x86_64-emacs
 ```
 
-通过 `msys2` 安装的一个好处是我们可以通过 `pacman` 管理 Emacs 的更新. 另一个好处是在上面还可以很方便安装其它开源软件, 例如 `git`, `epdfinfo` 等. `epdfinfo` 是在 Windows 下使用 Emacs 的 `pdf-tools` 插件的必需软件 ([BV1pg4y1s7Z9](https://www.bilibili.com/video/BV1pg4y1s7Z9/)).
+通过 MSYS2 安装的一个好处是我们可以通过 Pacman 管理 Emacs 的更新. 另一个好处是在上面还可以很方便安装其它开源软件, 例如 Git, Epdfinfo 等. Epdfinfo 是在 Windows 下使用 Emacs 的 [PDF-tools](https://github.com/vedang/pdf-tools) 插件的必需软件 ([BV1pg4y1s7Z9](https://www.bilibili.com/video/BV1pg4y1s7Z9/)).
 
 另一种安装方法是直接从[官网](http://ftp.gnu.org/gnu/emacs/windows/emacs-28/)上下载安装包. Emacs 28 的安装包已经优化了不少, 会自动把程序安装至 `C:/Program Files/emacs` 目录下, 并附带卸载程序. 通过安装包安装的 Emacs 需要我们手动更新.
 
@@ -55,7 +55,7 @@ pacman -S mingw-w64-x86_64-emacs
 ## 安装 Emacs 后的额外设置 {#安装-emacs-后的额外设置}
 
 
-### <kbd>Ctrl</kbd> 键设置 {#ctrl-键设置}
+### Ctrl 键设置 {#ctrl-键设置}
 
 安装完 Emacs 之后, 我 **强烈建议** 大家交换 <kbd>Caps Lock</kbd>  与 <kbd>Left Ctrl</kbd>. Emacs 常常使用以 <kbd>Ctrl</kbd> 开始的快捷键, 因此把 <kbd>Ctrl</kbd> 与不常用的大写锁定 <kbd>Caps Lock</kbd> 交换是每个 Emacs 使用者对电脑 做的第一件事. <kbd>Ctrl</kbd> 键的广泛使用是因为在 Emacs 诞生之初, 当时通用的键盘 <kbd>Ctrl</kbd> 确实在当今的 <kbd>Caps Lock</kbd> 位置上. 再啰嗦一句: 交换 <kbd>Caps lock</kbd> 与 <kbd>Ctrl</kbd> 绝不是一件可有可无的事情, 它在我们日常使用 Emacs 中真的非常重要! 大家千万不要怕麻烦.
 
@@ -84,22 +84,22 @@ Windows 中更改键位可以通过注册表或者最新的 `PowerToys` 软件.
 
 <!--list-separator-->
 
--  `PowerToys` (适用于 Win 10, Win 11)
+-  PowerToys (适用于 Win 10, Win 11)
 
-    -   将系统中 `微软商店` 更新到最新版本 (Win 10 不更新可能会找不到 `PowerToys`)
-    -   在 `微软商店` 中搜索 `PowerToys` 并安装
-    -   在 `PowerToys` 中找到键位设置, 并交换 <kbd>Caps Lock</kbd> 和 <kbd>Left Control</kbd>
+    -   将系统中 "微软商店" 更新到最新版本 (Win 10 不更新可能会找不到 PowerToys)
+    -   在 "微软商店"= 中搜索 `PowerToys` 并安装
+    -   在 PowerToys 中找到键位设置, 并交换 <kbd>Caps Lock</kbd> 和 <kbd>Left Control</kbd>
 
 
 #### Ubuntu 及其它 Linux 系统 {#ubuntu-及其它-linux-系统}
 
-在 Ubuntu 下, 可以安装 `gnome-tweaks`:
+在 Ubuntu 下, 可以安装 Gnome-tweaks:
 
 ```shell
 sudo apt install gnome-tweaks
 ```
 
-然后打开 `gnome-tweaks` 的键盘设置, 在高级选项里有关于 <kbd>Ctrl</kbd> 键的设置. 你不仅仅可以交换它与 <kbd>Caps Lock</kbd>, 也可以进行许多别的设置.
+然后打开 Gnome-tweaks 的键盘设置, 在高级选项里有关于 <kbd>Ctrl</kbd> 键的设置. 你不仅仅可以交换它与 <kbd>Caps Lock</kbd>, 也可以进行许多别的设置.
 
 又或者, 在很多 Linux 系统的命令行下输入
 
@@ -135,7 +135,7 @@ Emacs 这个单词就来自于 macro, 即宏命令. 比如说我们想执行打�
 2.  执行 `open-file` 命令. 方法是按下 <kbd>M-x</kbd> (<kbd>M</kbd> = <kbd>Alt</kbd>), 然后在最下面的小缓冲区输入 `open-file`, 然后输入文件名.
 3.  按下 <kbd>C-x C-f</kbd> 快捷键, 并输入文件名.
 
-Emacs 中有许多有用的命令. 你未来也可以自己通过 `elisp` 语言编写自己命令. Emacs 把其中最常用的命令都绑定了快捷键, 用户自己也可以设置自己的快捷键. 当我们用熟了之后, 很多快捷键就会像打字一样形成肌肉记忆. 作为新手, 我们有很多键盘的快捷操作可以用鼠标代替, 因此你不必急于一下子掌握全部 Emacs 的快捷键.
+Emacs 中有许多有用的命令. 你未来也可以自己通过 Elisp 语言编写自己命令. Emacs 把其中最常用的命令都绑定了快捷键, 用户自己也可以设置自己的快捷键. 当我们用熟了之后, 很多快捷键就会像打字一样形成肌肉记忆. 作为新手, 我们有很多键盘的快捷操作可以用鼠标代替, 因此你不必急于一下子掌握全部 Emacs 的快捷键.
 
 但是, 仍有一些快捷键是大家最好尽快熟悉的. 下面这张表我给大家总结了新手必知的几个快捷键.
 在表中, <kbd>C</kbd> 表示 <kbd>Ctrl</kbd>, <kbd>M</kbd> 表示 <kbd>Alt</kbd>. 这也是 Emacs 快捷键通用写法. 最右边一列是快捷键对应的命令名, 也就是第一列所有的快捷键都等价于 <kbd>M-x</kbd> 加上第三列.
@@ -192,10 +192,10 @@ Emacs 有自己一套复制/剪切/粘贴的快捷键: <kbd>M-w</kbd> / <kbd>C-w
 
 接下来我们介绍如何更好地管理 Emacs 插件. Emacs 插件也叫 Emacs 包 (package). 插件可以给我们带来更多的功能, 是 Emacs 使用中不可缺少的一环. 插件的安装和设置与其它的 Emacs 设置一样, 都放在 Emacs 的启动文件 `~/.emacs.d/init.el` 中. 关于插件安装与设置, 我推荐大家使用现在常用的 `use-package` 语法, 它的语法更简洁, 还可以很方便地自动安装插件.
 
-Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件提供的). 常用的有两种, 一种是用内置的 `package.el`, 这个插件名字就叫 `package`, `.el` 后缀来自于 Emacs 的编程语言 Elisp.
-第二种是用 `straight.el`. `package.el` 会从官方的插件库或镜像网站上下载新插件, 而 `straight` 用下载插件的源代码并编译, 一般是利用 `git` 从 `github` 上下载. 为了使用 `straight`, 你需要系统上已经安装了 `git` 程序, 并且能正常地访问 `github.com`. 以下我们介绍两种安装方式如何设置.
+Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件提供的). 常用的有两种, 一种是用内置的 `package.el`, 这个插件名字就叫 `package.el`, `.el` 后缀来自于 Emacs 的编程语言 Elisp.
+第二种是用 [Straight](https://github.com/radian-software/straight.el). `package.el` 会从官方的插件库 (ELPA, MELPA) 或镜像网站上下载新插件, 而 Straight 用下载插件的源代码并编译, 一般是利用 Git 从 Github 上下载. 为了使用 Straight, 你需要系统上已经安装了 Git 程序, 并且能正常地访问 `github.com`. 以下我们介绍两种安装方式如何设置.
 
-我们在 `package.el` 和 `straight.el` 的设置示例中都手动检查并安装了 `use-package`. Emacs 29 后 `use-package` 已经是内置插件, 相关代码可以省去.
+我们在 `package.el` 和 Straight 的设置示例中都手动检查并安装了 `use-package`. Emacs 29 后 `use-package` 已经是内置插件, 相关代码可以省去.
 
 
 ### `package.el` 设置示例 {#package-dot-el-设置示例}
@@ -293,7 +293,7 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 ;;========================================
 ```
 
-这里大部分的代码是 `straight.el` 的 `github` 主页上提供的下载与安装 `straight` 的代码, 然后再用 `straight` 安装 `use-package`. 最后我用把 `straight-use-package-by-default` 变量设为 `t`, 这是在使用 `straight` 时进行插件自动安装的设置.
+这里大部分的代码是 `straight.el` 的 [Github主页](https://github.com/radian-software/straight.el)上提供的下载与安装 `straight` 的代码, 然后再用 `straight` 安装 `use-package`. 最后我用把 `straight-use-package-by-default` 变量设为 `t`, 这是在使用 `straight` 时进行插件自动安装的设置.
 
 
 ## 推荐插件 {#推荐插件}
@@ -302,14 +302,14 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 
 我们之前也都设置了自动安装插件. 当你第一次执行 `init.el` 时 (通常是第一次重启 Emacs 的时候), Emacs 会自动检测你在 `init.el` 中声明的插件是否已经安装, 若没有则通过指定的方法 (`package.el` 或 `straight.el`) 自动下载安装. 如果大家在一台新的机器上使用 Emacs, 把 `init.el` 文件复制到新机器上就可以直接获得一模一样的使用体验!
 
-你也可以在修改完 `init.el` 后, 执行 <kbd>M-x eval-buffer</kbd> 命令手动加载新加的 `use-package` 代码块.
+你也可以在修改完 `init.el` 后, 执行 <kbd>M-x</kbd> `eval-buffer` 命令手动加载新加的 `use-package` 代码块.
 
-在复制代码块中最常见的问题是某个地方在复制的过程中漏了括号. 大家已经发现 elisp 语言中括号是必须配对的. 我们可以在修改 `init.el` 后手动的用 <kbd>M-x match-paren</kbd> 检查括号是否匹配. 如果有不匹配的括号, 那么光标就会跳过没有匹配成功的括号上, 否则这个命令不会用任何效果.
+在复制代码块中最常见的问题是某个地方在复制的过程中漏了括号. 大家已经发现 elisp 语言中括号是必须配对的. 我们可以在修改 `init.el` 后手动的用 <kbd>M-x</kbd> `match-paren` 检查括号是否匹配. 如果有不匹配的括号, 那么光标就会跳过没有匹配成功的括号上, 否则这个命令不会用任何效果.
 
 
 ### 插件组合1: 更多的帮助信息 {#插件组合1-更多的帮助信息}
 
-我们首先介绍 `which-key` + `keycast` + `helpful`. 安装代码如下
+我们首先介绍 [Which-key](https://github.com/justbur/emacs-which-key) + [Keycast](https://github.com/tarsius/keycast) + [Helpful](https://github.com/Wilfred/helpful). 安装代码如下
 
 ```elisp
 (use-package which-key
@@ -342,7 +342,7 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 
 ### 插件组合2: 更好的补全界面 {#插件组合2-更好的补全界面}
 
-在 Emacs 中输入命令或打开文件, 切换缓冲区等等都会用到小缓冲区补全. 第二组插件是针对小缓冲区补全的. 代码如下
+在 Emacs 中输入命令或打开文件, 切换缓冲区等等都会用到小缓冲区补全. 第二组插件 [Vertico](https://github.com/minad/vertico) + [Marginalia](https://github.com/minad/marginalia) + [Orderless](https://github.com/oantolin/orderless) 是针对小缓冲区补全的. 代码如下
 
 ```elisp
 (use-package vertico ; 竖式展开小缓冲区
@@ -363,7 +363,7 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 
 在小缓冲区中输入时, 我们可以按 <kbd>Tab</kbd> 补全当前的输入. 加入 `vertico` 之后, 我们可以用 <kbd>C-n</kbd> 和 <kbd>C-p</kbd> 或者上下移动键来选择不同的补全选项. <kbd>C-n</kbd> 和 <kbd>C-p</kbd> 也是 Emacs 中上下移动光标的快捷键.
 
-最后的 `orderless` 允许我们在小缓冲区补全时忽略单词的顺序. 例如, 如果我们输入 <kbd>M-x</kbd>, 想要匹配 `find-file` 命令, 在默认情况下必须先输入 `find`, 再输入 `file` 才能找到 `find-file`. 如果你用了 `orderless`, 则可以通过 `file find` 找到, 或者部分的单词 `fil fin <tab>` 找到.
+最后的 `orderless` 允许我们在小缓冲区补全时忽略单词的顺序. 例如, 如果我们输入 <kbd>M-x</kbd>, 想要匹配 `find-file` 命令, 在默认情况下必须先输入 `find`, 再输入 `file` 才能找到 `find-file`. 如果你用了 `orderless`, 则可以通过 `file find` 找到, 或者部分的单词 `fil fin` + ~Tab~= 找到.
 
 
 ## 基本的 `CDLaTeX` + `AucTeX` 设置 {#基本的-cdlatex-plus-auctex-设置}
@@ -392,15 +392,15 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
   (add-hook 'LaTeX-mode-hook 'my-latex-hook)) ; 加载LaTeX模式设置
 ```
 
-这个基本设置不一定能实现 `pdf` 正向或反向搜索, 因为这取决于操作系统与 `pdf` 阅读器. 如果你想在 Emacs 中获得统一的 `pdf` 体验, 可以考虑使用 `pdf-tools` (见视频 [BV1pg4y1s7Z9](https://www.bilibili.com/video/BV1pg4y1s7Z9/)).
+这个基本设置不一定能实现 PDF 正向或反向搜索, 因为这取决于操作系统与 PDF 阅读器. 如果你想在不同平台上使用 Emacs 并获得统一的 PDF 体验, 可以考虑使用 PDF-tools (见视频 [BV1pg4y1s7Z9](https://www.bilibili.com/video/BV1pg4y1s7Z9/)).
 
-关于 `CDLaTeX` 的安装, 要注意的是, 它并不在任何的软件源时. 如果使用 `package.el`, 你需要手动下载这个文件 (`github` 或者我网盘里的备份), 并用 <kbd>:load-path</kbd> 关键字指定文件的目录. 如果是 `straight`, 则需要我们指定 `github` 源码的网址.
+关于 CDLaTeX 的安装, 要注意的是, 它并不在任何的软件源时. 如果使用 `package.el`, 你需要手动下载这个文件 ([Github链接](https://github.com/cdominik/cdlatex/blob/master/cdlatex.el) 或者我网盘里的备份), 并用 <kbd>:load-path</kbd> 关键字指定文件的目录. 如果是 Straight, 则需要我们指定 Github 仓库的地址 `cdominik/cdlatex`.
 
-`AucTeX` 是通过 `use-package tex` 激活的. 因为不同名的问题, 我们要额外加入 `:ensure auctex` 或 `:straight auctex`. 另外, 其实 Emacs 已经内置了 `AucTeX`, 但不一定是最新版本, 我们这里的 `use-package` 则会把它更新到最新版.
+AucTeX 是通过 `(use-package tex)` 激活的. 因为包名不统一的问题, 我们要额外加入 `:ensure auctex` 或 `:straight auctex`. 其实 Emacs 已经内置了 AucTeX, 但不一定是最新版本, 我们这里的 `use-package` 则会把它更新到最新版.
 
 
 ## 有用的链接 {#有用的链接}
 
 -   Emacs 官网: <https://www.gnu.org/software/emacs/>
 -   我的坚果云分享: <https://www.jianguoyun.com/p/DTiBwxMQ856tCxiflP0E>
--   我的 Emacs 设置: <https://gitee.com/mickey991/emacs-latex/tree/master/my-emacs-config>
+-   我的 Emacs 设置: <https://gitee.com/mickey991/emacs-config.git>
