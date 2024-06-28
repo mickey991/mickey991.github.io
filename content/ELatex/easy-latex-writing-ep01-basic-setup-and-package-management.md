@@ -366,9 +366,9 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 最后的 `orderless` 允许我们在小缓冲区补全时忽略单词的顺序. 例如, 如果我们输入 <kbd>M-x</kbd>, 想要匹配 `find-file` 命令, 在默认情况下必须先输入 `find`, 再输入 `file` 才能找到 `find-file`. 如果你用了 `orderless`, 则可以通过 `file find` 找到, 或者部分的单词 `fil fin <tab>` 找到.
 
 
-## 基本的 `cdlatex` + `AucTeX` 设置 {#基本的-cdlatex-plus-auctex-设置}
+## 基本的 `CDLaTeX` + `AucTeX` 设置 {#基本的-cdlatex-plus-auctex-设置}
 
-最后我们提供一个简单可用的 `cdlatex` 和 `AucTeX` 设置. 大家只要把这段代码复制进 `init.el` 就可以实现视频[五分钟说服你用Emacs写LaTeX](https://www.bilibili.com/video/BV1Xk4y1a7Gp/)中的大部分功能.
+最后我们提供一个简单可用的 `CDLaTeX` 和 `AucTeX` 设置. 大家只要把这段代码复制进 `init.el` 就可以实现视频[五分钟说服你用Emacs写LaTeX](https://www.bilibili.com/video/BV1Xk4y1a7Gp/)中的大部分功能.
 
 ```elisp
 (defun my/latex-hook ()
@@ -394,7 +394,7 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 
 这个基本设置不一定能实现 `pdf` 正向或反向搜索, 因为这取决于操作系统与 `pdf` 阅读器. 如果你想在 Emacs 中获得统一的 `pdf` 体验, 可以考虑使用 `pdf-tools` (见视频 [BV1pg4y1s7Z9](https://www.bilibili.com/video/BV1pg4y1s7Z9/)).
 
-关于 `cdlatex` 的安装, 要注意的是, 它并不在任何的软件源时. 如果使用 `package.el`, 你需要手动下载这个文件 (`github` 或者我网盘里的备份), 并用 <kbd>:load-path</kbd> 关键字指定文件的目录. 如果是 `straight`, 则需要我们指定 `github` 源码的网址.
+关于 `CDLaTeX` 的安装, 要注意的是, 它并不在任何的软件源时. 如果使用 `package.el`, 你需要手动下载这个文件 (`github` 或者我网盘里的备份), 并用 <kbd>:load-path</kbd> 关键字指定文件的目录. 如果是 `straight`, 则需要我们指定 `github` 源码的网址.
 
 `AucTeX` 是通过 `use-package tex` 激活的. 因为不同名的问题, 我们要额外加入 `:ensure auctex` 或 `:straight auctex`. 另外, 其实 Emacs 已经内置了 `AucTeX`, 但不一定是最新版本, 我们这里的 `use-package` 则会把它更新到最新版.
 

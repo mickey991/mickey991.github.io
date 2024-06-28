@@ -1,5 +1,5 @@
 +++
-title = "Emacs最强内置pdf阅读器 pdf-tools 简介"
+title = "Emacs 最强内置 pdf阅读器 pdf-tools 简介"
 draft = false
 +++
 

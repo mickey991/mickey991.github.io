@@ -338,7 +338,7 @@ draft = false
 方法3
 : 选中文字后, 按 <kbd>&lt;tab&gt;</kbd> / <kbd>M-i</kbd> 或 <kbd>i</kbd> 在选中文字位置插入笔记
 
-在笔记中还可以使用 `cdlatex` 编辑数学公式, 以及用 `org-download` 插入截图. 请到教程的最后查看这些功能的基本设置.
+在笔记中还可以使用 `CDLaTeX` 编辑数学公式, 以及用 `org-download` 插入截图. 请到教程的最后查看这些功能的基本设置.
 
 
 #### 位置同步 {#位置同步}
@@ -465,9 +465,9 @@ draft = false
 )
 ```
 
-`cdlatex` 的设置可以参考我的视频
+`CDLaTeX` 的设置可以参考我的视频
 
--   [【教程】 LaTeX+Emacs 从零开始2-2节: cdLaTeX 简介](https://www.bilibili.com/video/BV134411v7jn/)
+-   [【教程】 LaTeX+Emacs 从零开始2-2节: CDLaTeX简介](https://www.bilibili.com/video/BV134411v7jn/)
 -   [【教程】 LaTeX+Emacs从零开始2-4节：cdLaTeX自定义设置](https://www.bilibili.com/video/BV1Z4411Y7F7/)
 
 我会在另一期教程中详细介绍 `org-mode` 中 `LaTeX` 编辑的设置.

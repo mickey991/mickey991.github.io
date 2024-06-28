@@ -27,7 +27,7 @@
 - 引子: 五分钟说服你用 Emacs 写 LaTeX ([[https://www.bilibili.com/video/BV1Xk4y1a7Gp/][视频]])
 - 第1节: [[#emacs-setup][Emacs 快速配置与插件管理]] ([[https://www.bilibili.com/video/BV1nm4y117gn/][视频]])
 - 第2节: [[id:easy-latex-writing-ep02-math-symbol-and-modify][cdlatex 中快速输入数学符号和字体与自定义设置]] ([[https://www.bilibili.com/video/BV1qa4y1u7Cd/][视频]])
-- 第3节: [[id:easy-latex-writing-ep03-tab-completion][Tab 补全快速插入LaTeX代码]] ([[https://b23.tv/ypBKN9v][视频]])
+- 第3节: [[id:easy-latex-writing-ep03-tab-completion][Tab 补全快速插入LaTeX代码]] ([[https://www.bilibili.com/video/BV1Rb421J7eS][视频]])
 - 附录1: [[#easy-latex-writing-ap01-pdf-tools][Emacs最强内置pdf阅读器 pdf-tools 简介]] ([[https://www.bilibili.com/video/BV1pg4y1s7Z9/][视频]])
 - 附录2: [[#easy-latex-writing-ap02-prettify][如何优雅地预览公式]] ([[https://www.bilibili.com/video/BV1tv4y1V7xY/][视频]])
  
@@ -322,8 +322,8 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 
 最后的 =orderless= 允许我们在小缓冲区补全时忽略单词的顺序. 例如, 如果我们输入 ~M-x~, 想要匹配 =find-file= 命令, 在默认情况下必须先输入 =find=, 再输入 =file= 才能找到 =find-file=. 如果你用了 =orderless=, 则可以通过 =file find= 找到, 或者部分的单词 =fil fin <tab>= 找到. 
 
-*** 基本的 =cdlatex= + =AucTeX= 设置
-最后我们提供一个简单可用的 =cdlatex= 和 =AucTeX= 设置. 大家只要把这段代码复制进 =init.el= 就可以实现视频[[https://www.bilibili.com/video/BV1Xk4y1a7Gp/][五分钟说服你用Emacs写LaTeX]]中的大部分功能.
+*** 基本的 =CDLaTeX= + =AucTeX= 设置
+最后我们提供一个简单可用的 =CDLaTeX= 和 =AucTeX= 设置. 大家只要把这段代码复制进 =init.el= 就可以实现视频[[https://www.bilibili.com/video/BV1Xk4y1a7Gp/][五分钟说服你用Emacs写LaTeX]]中的大部分功能.
 #+begin_src elisp
   (defun my/latex-hook ()
     (turn-on-cdlatex) 
@@ -348,7 +348,7 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 
 这个基本设置不一定能实现 =pdf= 正向或反向搜索, 因为这取决于操作系统与 =pdf= 阅读器. 如果你想在 Emacs 中获得统一的 =pdf= 体验, 可以考虑使用 =pdf-tools= (见视频 [[https://www.bilibili.com/video/BV1pg4y1s7Z9/][BV1pg4y1s7Z9]]).
 
-关于 =cdlatex= 的安装, 要注意的是, 它并不在任何的软件源时. 如果使用 =package.el=, 你需要手动下载这个文件 (=github= 或者我网盘里的备份), 并用 ~:load-path~ 关键字指定文件的目录. 如果是 =straight=, 则需要我们指定 =github= 源码的网址.
+关于 =CDLaTeX= 的安装, 要注意的是, 它并不在任何的软件源时. 如果使用 =package.el=, 你需要手动下载这个文件 (=github= 或者我网盘里的备份), 并用 ~:load-path~ 关键字指定文件的目录. 如果是 =straight=, 则需要我们指定 =github= 源码的网址.
 
 =AucTeX= 是通过 =use-package tex= 激活的. 因为不同名的问题, 我们要额外加入 =:ensure auctex= 或 =:straight auctex=. 另外, 其实 Emacs 已经内置了 =AucTeX=, 但不一定是最新版本, 我们这里的 =use-package= 则会把它更新到最新版.
 
@@ -362,15 +362,14 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 
 
 
-** cdlatex 中快速输入数学符号和字体与自定义设置
+** CDLaTeX中快速输入数学符号和字体与自定义设置
 :PROPERTIES:
 :EXPORT_FILE_NAME: easy-latex-writing-ep02-math-symbol-and-modify
 :CUSTOM_ID:  easy-latex-writing-ep02-math-symbol-and-modify
 :END:
-
-大家好, 我是小米, 欢迎大家来到我的省时省力写 LaTeX 系列. 本期我们开始介绍 Emacs 的 =cdlatex= 插件. 这次讲解如何使用 =cdlatex= 快速插入数学字母, 符号和字体的功能, 以及如何自定义新的快捷键. 
-*** AucTeX 和 cdlatex 基本设置
-Emacs 中的 LaTeX 编辑主要是依赖 =AucTeX= 和 =cdlatex= 这两个插件. =AucTeX= 提供了编辑 LaTeX 的基本功能, 而 =cdlatex= 主要提供了大量简化和易设置的输入方式.  为了安装并在 LaTeX 编辑时启用这两个插件, 我们需要在 =init.el= 中加入代码:
+大家好, 我是小米, 欢迎大家来到我的省时省力写 LaTeX 系列. 本期我们开始介绍 Emacs 的 =CDLaTeX= 插件. 这次讲解如何使用 =CDLaTeX= 快速插入数学字母, 符号和字体的功能, 以及如何自定义新的快捷键. 
+*** AucTeX 和 CDLaTeX基本设置
+Emacs 中的 LaTeX 编辑主要是依赖 =AucTeX= 和 =CDLaTeX= 这两个插件. =AucTeX= 提供了编辑 LaTeX 的基本功能, 而 =CDLaTeX= 主要提供了大量简化和易设置的输入方式.  为了安装并在 LaTeX 编辑时启用这两个插件, 我们需要在 =init.el= 中加入代码:
 #+begin_src elisp
   (defun my/latex-hook ()
     (turn-on-cdlatex) 
@@ -396,11 +395,11 @@ Emacs 中的 LaTeX 编辑主要是依赖 =AucTeX= 和 =cdlatex= 这两个插件.
     )
 #+end_src
 
-使用 =straight.el= 的用户需要根据注释内容适当调整. 在 =(use-package cdlatex ...)= 中我们指定了 =:after tex=, 是为了保证 =cdlatex= 在 =auctex= 之后加载. 把 =cdlatex= 代码块置于 =auctex= 之后也实现了相同效果; 而加了这一行后, 代码块次序可以随意调整.
+使用 =straight.el= 的用户需要根据注释内容适当调整. 在 =(use-package cdlatex ...)= 中我们指定了 =:after tex=, 是为了保证 =CDLaTeX= 在 =auctex= 之后加载. 把 =CDLaTeX= 代码块置于 =auctex= 之后也实现了相同效果; 而加了这一行后, 代码块次序可以随意调整.
 
-=LaTeX-mode-hook= 是我们打开 LaTeX 文件时需要加载的设置, 这里我们定义了一个新的函数 =my/latex-hook= (名字可随意), 这样方便我们日后加入更多的功能. 函数的第一行 =(turn-on-cdlatex)= 就是打开 =tex= 文件时加载 =cdlatex= 的命令.
+=LaTeX-mode-hook= 是我们打开 LaTeX 文件时需要加载的设置, 这里我们定义了一个新的函数 =my/latex-hook= (名字可随意), 这样方便我们日后加入更多的功能. 函数的第一行 =(turn-on-cdlatex)= 就是打开 =tex= 文件时加载 =CDLaTeX= 的命令.
 
-成功设置后, 当我们打开 =tex= 文件时, 大家应当可以看到模式栏中的 =LaTeX/P= 和 =CDL=, 就表示加载了 =AucTeX= 和 =cdlatex=. 通过 ~C-h m~ (~m~ 表示 =mode=) 可以查看当前加载的所有主要模式和次要模式.
+成功设置后, 当我们打开 =tex= 文件时, 大家应当可以看到模式栏中的 =LaTeX/P= 和 =CDL=, 就表示加载了 =AucTeX= 和 =CDLaTeX=. 通过 ~C-h m~ (~m~ 表示 =mode=) 可以查看当前加载的所有主要模式和次要模式.
 
 *** 数学符号输入 
 这里的数学符号也包括各种非拉丁字母如 =\alpha=, =\aleph= 等. 输入方法是用反引号 (~Tab~ 上方) 加另一个键组成的快捷键输入. 
@@ -415,9 +414,9 @@ Emacs 中的 LaTeX 编辑主要是依赖 =AucTeX= 和 =cdlatex= 这两个插件.
 如果你不熟悉希腊字母对应的拉丁字母, 没有关系, 只要在按下 ~\`~ 后稍稍停顿, 就会弹出一个提示界面.
 大家刚开始使用时可以多查看这个提示界面. 
 **** 数学符号
-大家在提示界面可以看到, 除了希腊字母以外, 我们还可以用同样的方法快速插入数学符号. =cdlatex= 预置了很多好记的默认设置. 例如, ~\`~ + ~8~ 插入 =\infty=, 因为数字8放平就是无穷, 又如, ~\`~ + ~*~ 插入 =\times= 乘号, ~\`~ + ~+~ 插入 =\cup= (并集), ~\`~ + ~>~ 插入 =\rightarrow= (右箭头) 等.
+大家在提示界面可以看到, 除了希腊字母以外, 我们还可以用同样的方法快速插入数学符号. =CDLaTeX= 预置了很多好记的默认设置. 例如, ~\`~ + ~8~ 插入 =\infty=, 因为数字8放平就是无穷, 又如, ~\`~ + ~*~ 插入 =\times= 乘号, ~\`~ + ~+~ 插入 =\cup= (并集), ~\`~ + ~>~ 插入 =\rightarrow= (右箭头) 等.
 **** 第二和第三层目录
-=cdlatex= 中连续按下两次反引号 ~\`~ 可以打开第二层目录. 第二层通常用于希腊字母的变体, 如
+=CDLaTeX= 中连续按下两次反引号 ~\`~ 可以打开第二层目录. 第二层通常用于希腊字母的变体, 如
 - ~\`e~ 插入 =\epsilon=, ~\`\`e~ 插入 =\varepsilon=
 - ~\`r~ 插入 =\rho=, ~\`\`r~ 插入 =\varrho=
 又或者是一些类似的符号, 如
@@ -455,21 +454,21 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 ~\`~ 触
 
 这就完成了基本设置. 如果大家想绑定 ~\`\`\`e~ 和 ~\`\`\`\`e~ 等, 只需要再加入新的行以及你需要的 LaTeX 宏命令即可.
 
-这里因为 ~\`e~ 已经在 =cdlatex= 的默认设置中, 所以我们是覆盖了原有设置. 你可以在一开始的按下 ~\`~ 的提示界面中看到默认设置, 或者通过查看变量 =cdlatex-math-symbol-alist-default=.
+这里因为 ~\`e~ 已经在 =CDLaTeX= 的默认设置中, 所以我们是覆盖了原有设置. 你可以在一开始的按下 ~\`~ 的提示界面中看到默认设置, 或者通过查看变量 =cdlatex-math-symbol-alist-default=.
 
 **** 保存与加载设置
 设置完毕我们会点击 =Apply and Save=.
 - =Apply=: 改变了当前 =cdlatex-math-symbol-alist= 的値, 重启 Emacs 后失效
 - =Save=: 保存设置, 重启后仍生效.
 
-但是已经打开的 =tex= 文件是看不到更新的设置的. 想要重新加载 =cdlatex= 的设置. 这有3种方法:
+但是已经打开的 =tex= 文件是看不到更新的设置的. 想要重新加载 =CDLaTeX= 的设置. 这有3种方法:
 1. 重启 Emacs
 2. 一个是打开新的 =tex= 文件
 3. 在原来的 =.tex= 文件缓冲区, 按下 ~C-c C-n~.
 
-第三种方法可以刷新 =LaTeX= 模式设置, 也适用于其它与 =cdlatex= 的设置. 此时, 大家按下反引号 ~\`~ 就可以看到更新后的列表了.
+第三种方法可以刷新 =LaTeX= 模式设置, 也适用于其它与 =CDLaTeX= 的设置. 此时, 大家按下反引号 ~\`~ 就可以看到更新后的列表了.
 **** 怎么选择快捷键
-原则上这个机制可以插入任意的数学表达式, 如 =\stackrel{\mathrm{a.s.}}{==}=, 但是建议只绑定原子化的数学符号. 复杂的表达式更适合用 =cdlatex= 的命令补全功能.
+原则上这个机制可以插入任意的数学表达式, 如 =\stackrel{\mathrm{a.s.}}{==}=, 但是建议只绑定原子化的数学符号. 复杂的表达式更适合用 =CDLaTeX= 的命令补全功能.
 
 快捷键要易记, 直观, 凭你的第一感觉就能找到. 否则不能提高输入速度. 大家也可以查看默认的设置寻找灵感. 反例就是把左箭头 =\leftarrow= 绑到 ~\`>~ 上.
 
@@ -481,7 +480,7 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 ~\`~ 触
 
 *** 数学字体修饰
 **** 数学字体
- =cdlatex= 还可以快速插入不同的数学字体, 像 =\mathrm{}=, =\mathbf{}= 等等.
+ =CDLaTeX= 还可以快速插入不同的数学字体, 像 =\mathrm{}=, =\mathbf{}= 等等.
  例如, 我们常常用粗体 R 表示实数域, 也就是 =\mathbf{R}=. 我们可以按3个键完成输入: ~R~ + ~\'~ + ~b~
  - ~R~: 输入字母 R
  - ~\'~ (单引号): 打开数学字体列表. 作用相当于前面的 ~\`~
@@ -506,7 +505,7 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 ~\`~ 触
    - ~\'b~ 插入 =\textbf{}=
    - ~\'i~ 插入 =\textit{}=
 
-这里同样的 ~\'b~, 用在数学公式内就是 =\mathbf{}=, 用在文本中就是 =\textbf{}=. =cdlatex= 会自动检测当前环境是否为数学环境.
+这里同样的 ~\'b~, 用在数学公式内就是 =\mathbf{}=, 用在文本中就是 =\textbf{}=. =CDLaTeX= 会自动检测当前环境是否为数学环境.
 **** 嵌套修饰
 触发字体修饰的第三种方法是选先高亮选中一段文本, 再选择修饰. 例如, 选中数学环境外的 =blabla=, 然后按 ~'b~, 则 =blabla= 会变成 =\textbf{blabla}=. 如果 =blabla= 在数学环境内, 则变成 =\mathbf{blabla}=
 
@@ -523,7 +522,7 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 ~\`~ 触
 - 点击 ~INS~ 新建一个条目
 - 第一行 =character= 输入 ~t~
 - 第二行: =\mathbb=
-- 第三行: 保持空白, 因为文本模式下没有空心粗体, 或者输入 =\text=, 这是 =cdlatex= 的默认设置.
+- 第三行: 保持空白, 因为文本模式下没有空心粗体, 或者输入 =\text=, 这是 =CDLaTeX= 的默认设置.
 - 第四行: =Type= 改成 =command=. 两种方式几乎等价但是 =command= 现在更常用.
 - 第五, 第六行: 不变
 
@@ -552,137 +551,210 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 ~\`~ 触
 
 如果没有特别的设置, =customize-variable= 设置的变量默认会由 Emacs 保存到 =init.el= 文件的最后. 我们的设置可以区分自己的设置和 Emacs 保存的设置.
 
-当然, 你也可以手动把 =custom-set-variables= 中的内容用 =(setq ...)= 语句写在你的 =init.el= 当中, 尤其可以放在相应插件的 =use-package= 代码块中. 这样的好处是方便单独管理每个插件的设置, 并且利用 =use-package= 的延迟加载功能加快打开 Emacs 的时间. 当我们的 =cdlatex= 设置很长的时候, 这样做可以把 Emacs 的启动时间从10多秒减少到1秒以下. 大家可以在熟悉了 Emacs 的设置后再做尝试, 新手不推荐这么做. 
+当然, 你也可以手动把 =custom-set-variables= 中的内容用 =(setq ...)= 语句写在你的 =init.el= 当中, 尤其可以放在相应插件的 =use-package= 代码块中. 这样的好处是方便单独管理每个插件的设置, 并且利用 =use-package= 的延迟加载功能加快打开 Emacs 的时间. 当我们的 =CDLaTeX= 设置很长的时候, 这样做可以把 Emacs 的启动时间从10多秒减少到1秒以下. 大家可以在熟悉了 Emacs 的设置后再做尝试, 新手不推荐这么做. 
 
 *** 总结
-Emacs 中的 =cdlatex= 插件利用反引号 ~\`~ 和单引号 ~\'~ 开始的快捷键可以快速插入数学字母, 符号和字体. 我们可以通过设置 =cdlatex-math-symbol-alist= 和 =cdlatex-math-modify-alist= 这两个变量修改和增加自己喜欢的快捷键.
+Emacs 中的 =CDLaTeX= 插件利用反引号 ~\`~ 和单引号 ~\'~ 开始的快捷键可以快速插入数学字母, 符号和字体. 我们可以通过设置 =cdlatex-math-symbol-alist= 和 =cdlatex-math-modify-alist= 这两个变量修改和增加自己喜欢的快捷键.
 
-在下期视频中我们将介绍 =cdlatex= 中 ~Tab~ 的命令/模板补全功能. 它可以帮助我们输入一些更复杂的宏命令, 或者插入环境模板等等.
+在下期视频中我们将介绍 =CDLaTeX= 中 ~Tab~ 的命令/模板补全功能. 它可以帮助我们输入一些更复杂的宏命令, 或者插入环境模板等等.
 ** Tab 补全快速插入 LaTeX 代码
 :PROPERTIES:
 :EXPORT_FILE_NAME: easy-latex-writing-ep03-tab-completion
 :CUSTOM_ID:  easy-latex-writing-ep03-tab-completion
 :END:
-*** ~TAB~ 补全插入宏命令模板
-*原理*: 字母组合+ ~TAB~ 键生成 LaTeX 宏命令模板
 
-**** 预设命令举例
-保存在 =cdlatex-command-alist= 变量中
+大家好, 我是小米. 本期我们将介绍如何在 =CDLaTeX= 中用 =Tab= 补全命令快速地输入复杂的宏命令和环境模板.
+*** =Tab= 补全插入宏命令
+补全原理很简单, 用几个字母组合加 ~Tab~ 生成一些复杂的命令. 例如, =fr= + ~Tab~ 就会生成 =\frac{}{}=, 这里光标会停留在第一个括号内; 在第一个括号内完成输入后, 按 ~Tab~ 光标就会跳到下一个括号中. 因此, 输入一个常见的分数 =\frac{1}{2}= 只需要输入 ~f~ + ~r~ + ~Tab~ + ~1~ + ~Tab~ + ~2~.
 
-- 空格 ~qq~ + ~TAB~ = ~\quad~
-- 分数 ~fr~ + ~TAB~ = ~\frac{}{}~
-- 根号 ~sq~ + ~TAB~ = ~\sqrt{}~ 
-- 括号 ~lr(~ + ~TAB~ = ~\left( \right)~ 
-- 标题 ~sn~ + ~TAB~ = ~\section{}~ 
-  
-如果宏命令有(多个)参数在括号 ~{}~, ~[]~ 内, 补全时光标会自动停在第一个括号内, 第一个参数输入完毕后按 ~TAB~ 可以将光标跳到第二个括号内, 以次类推.
-
+**** 内置命令举例
+=CDLaTeX= 内置了一些可补全的命令, 可以在 =cdlatex-command-alist-default= 变量中查看 (~C-h v~). 我们举一些例子 (以下 =?= 所在位置表示补全后光标停留的位置.)
+- 分数 =fr= + ~Tab~ = =\frac{?}{}=, 根号 =sq= + ~Tab~ = =\sqrt{?}= 
+- 空格 =qq= + ~Tab~ = =\quad=, 大空格 =qqq= + ~Tab~ = =\qquad= 
+- 括号 =lr(= + ~Tab~ = =\left(?\right)=, =lr[= = =\left[?\right]= 
+- 章节标题 =sn= + ~Tab~ = =\section{?}=, =ss= + ~Tab~ = =\subsection{?}=, =sss= + ~Tab~ = =\subsubsubsection{?}=
 
 **** 一些自定义例子
-- ~te~ + ~TAB~ = ~\text{}~
-- ~se~ + ~TAB~ = ~\{ \}~ (set)
-- ~hl~ + ~TAB~ = ~\hline~, ~hhl~ + ~TAB~ = ~\\ \hline~
-- ~big(~ + ~TAB~ = ~\big( \big)~, ~lr<~ + ~TAB~ = ~\langle\rangle~
-- ~st~ + ~TAB~ = ~\stackover{}{}~
+- =te= + ~Tab~ = =\text{}=
+- =se= + ~Tab~ = =\{ \}= (set)
+- =st= + ~Tab~ = =\stackover{}{}=
+- =hl= + ~Tab~ = =\hline=, =hhl= + ~Tab~ = =\\ \hline= (表格中常用)
+- =big(= + ~Tab~ = =\big(?\big)=, =Big(= + ~Tab~ = =\Big(?\Big)=, =bigg(= + ~Tab~ = =\bigg(?\bigg)= (=\big=, =\Big=, =\bigg= 等是 =amsmath= 中调整括号大小的命令)
+- =lr<= + ~Tab~ = =\langle?\rangle=, 一对尖括号 \(\langle  \rangle\).
 
-原则: 使用宏命令的前两到三个字母
-*** ~TAB~ 补全环境模板
-**** 预设命令举例
-~equ~ + ~TAB~ 插入
+显然, 这里的关键字选择都是用命令中最开始的两到三个字母, 这样非常好记, 也很容易使用.
+*** =Tab= 补全环境模板
+大家可以看到这里的 =Tab= 补全其实就是一个替换字符串的过程. 当然字符串中也可以包括换行, 因此同样的机制也可以输入形如 =\begin{XXX} ... \end{XXX}= 的环境.
+
+**** 内置命令举例
+***** =equation= 环境
+=equ= + ~Tab~ 插入如下模板:
 #+begin_src latex
   \begin{equation}
     \label{eq:NNN}
-   ?
+    ?
   \end{equation}
 #+end_src
-- ~NNN~ 是 =reftex= 自动生成的一串数字
-- ~?~ 是光标停留的位置.
+其中, =\label{eq:XXX}= 是 =CDLaTeX= 调用 =reftex= 自动生成的数字标签.
 
-~enu~ + ~TAB~ 插入 (等同于 ~cdlatex-environment~ / ~C-c {~  + ~enumerate~)
+类似的数学公式环境还有如
+- =ali= + ~Tab~ 插入 =align= 环境 (自动生成标签), =ali*= + ~Tab~ 插入 =align*= 环境 (无标签)
+- =gat= + ~Tab~ 插入 =gather= 环境 (自动生成标签), =gat*= + ~Tab~ 插入 =gather*= 环境 (无标签)
+***** 列表环境
+=enu= + ~Tab~ 插入 
 #+begin_src latex
   \begin{enumerate}
   \item 
   \end{enumerate}
 #+end_src
 此时, 在 =enumerate= 环境中: 
-- ~it~ + ~TAB~ = ~\item~
-- ~C-ENTER~ 会换行并生成 ~\item~
+- =it= + ~Tab~ = =\item=
+- ~C-<enter>~ 会换行并生成 =\item=
 
-*** 自定义补全
-现有的补全命令可以通过 ~C-c ?~ 查看.
+这里, ~enu~ + ~Tab~ 等同于用 ~cdlatex-environment~ (~C-c {~ ) 插入 =enumerate= 环境
+
+类似的还有
+- =ite= + ~Tab~ 插入 =itemize= 环境
+- =fg= + ~Tab~ 插入 =figure= 环境
+
+*** 自定义补全命令
+现在我们介绍如何自定义你自己需要的补全命令. 默认的补全命令都在 =cdlatex-command-alist-default= 中, 而现有的所有命令, 包括内置的和自定义的, 都可以通过 ~C-c ?~ 查看.
+
+在用 ~C-c ?~ 查看时, 我们会在最右一列看到 =TEXT= 和 =MATH= 关键字:
 - =MATH= 关键字表示补全可以在 *数学环境* 中触发
 - =TEXT= 关键字表示补全可以在 *文本环境* 中触发
 
-加入新的补全命令通过修改变量 =cdlatex-command-alist=.
-**** 带参数宏命令
-例子: ~te~ + ~TAB~ 输入 ~\text{?}~ (光标停在括号内)
+加入自定义新的补全命令通过修改变量 =cdlatex-command-alist=. 方法是调用 ~M-x customize-variable <enter>~, 然后输入变量名 =cdlatex-command-alist=.
+**** 带参数的宏命令
+例子: =te= + ~Tab~ 输入 =\text{?}= (光标停在括号内). 我们需要填入如下参数
 - keyword: =te=
-- Docstring: 随便填, 只是用于说明
-- Replacement: =\text{?}= (? 表示光标停留的位置)
-- Hook: =cdlatex-position-cursor= (需要指定光标必填!)
-- Argument: =nil= (这是上面 =hook 的参数)
+- Docstring: 随便填, 只是用于说明的解释性文字, 例如 =insert \text{}=
+- Replacement: =\text{?}= (=?= 表示光标停留的位置)
+- Hook: =cdlatex-position-cursor= (如果需要指定光标则必填!)
+- Argument: =nil= (这是上面 hook 的参数)
 - Text Mode: =nil=, Math mode: =t=
+  
+保存设置 (=Apply and Save=) 之后, 在已经打开的 =tex= 文件中用 ~C-c C-n~ 可以刷新设置, 就可以开始使用了.
 
-保存设置后, 在已经打开的 =tex= 文件中用 ~C-c C-n~ 可以刷新设置.
 **** 插入匹配的括号
-例子: ~big{~ + ~TAB~ 插入 ~\big\{? \big\}~
 
-这里有一个细节: =cdlatex= 中输入括号会自动匹配, 具体可以查看 =cdlatex-paired-parens=, 主要针对 ~()~, ~[]~, ~{}~
-
+例子: =big{= + ~Tab~ 插入 =\big\{? \big\}=
 - keyword: =big{=
-- Docstring: 随便填
-- Replacement: =\big\{? \big\= (因为 ={}= 已经配对输入了, 所以这里要少输一个 =}=!)
+- Docstring: =insert \big\{? \big\}=
+- Replacement: =\big\{? \big\= 
 - Hook: =cdlatex-position-cursor= 
 - Argument: =nil= 
 - Text Mode: =nil=, Math mode: =t=
+
+这里有两个细节. 第一是我们在 =?= 后面手动多加了一个空格, 这里因为在 LaTeX 编辑模式下, 按 ~Tab~ 会自动跳到一个空格位置, 因此我们尽量用空格把代码分隔开来, 便于以后的修改; 既然如此, 我们干脆在模板中加入这个空格.
+
+第二个细节时我们的替换字符串最后少了一个 =}=. 这是因为 =CDLaTeX= 中默认会自动匹配输入一对括号 ={}=. 因此我们只需要补全除了右花括号 =}= 以外的部分就可以.
+=CDLaTeX= 中自动匹配的括号可以通过 =cdlatex-paired-parens= 设置, 只针对 =$([{<|= 6个字符. 我一般会自动匹配
+=$([{= . 这里大家只需要注意你在 =cdlatex-command-alist= 中的设置与 =cdlatex-paired-parens= 保持一致就可以了.
+
 **** 插入环境
-例子: ~case~ + ~TAB~ 插入 
+例子: =case= + ~Tab~ 插入 
 #+begin_src latex
   \begin{cases}
-   & \\
+  ? & \\
    &
   \end{cases} 
 #+end_src
 
 - keyword: =case=
-- Docstring: 随便填
-- Replacement: 输入框内用 ~C-j~ 换行
+- Docstring: =insert \begin{cases} \end{cases}=
+- Replacement: 输入框内用 ~C-j~ 换行, 然后正常输入需要替换的文本即可
 - Hook: =cdlatex-position-cursor= 
 - Argument: =nil= 
 - Text Mode: =nil=, Math mode: =t=
 
 **** 插入环境 II
-例子: ~des~ + ~TAB~ 插入 =description= 环境
+插入环境除了直接在 =cdlatex-command-alist= 的 =Replacement= 中写入环境模板以外, 还可以通过调用函数 =cdlatex-environment= 的方式实现.
+在 LaTeX 编辑模式中, 有两种用环境名插入环境的方法
+- ~M-x LaTeX-environment~ (~C-c C-e~) + =description=: 这会调用 =AucTeX= 的环境模板
+- ~M-x cdlatex-environment~ (~C-c {~ ) + =description=: 这会调用 =CDLaTeX= 的环境模板. 
+两种模板略有不同. 这第二种插入环境的方法就是用 ~Tab~ 补全触发第二个命令.
+
+例子: =des= + ~Tab~ 插入 =description= 环境
 #+begin_src latex
   \begin{description}
   \item[?]
   \end{description}
 #+end_src
-两种用命令的插入方法
-- ~C-c C-e~ + ~description~
-- ~C-c {~ + ~description~
-
 - keyword: =des=
-- Docstring: 随便填
+- Docstring: =insert \begin{description} \end{description}= 
 - Replacement: =nil=
 - Hook: =cdlatex-environment= 
-- Argument: =("description")= 
+- Argument: =("description")=
 - Text Mode: =t=, Math mode: =nil=
+这里需要注意的是我们用了一个不同的 =hook=! 所插入的模板是由 =cdlatex-env-alist=, =cdlatex-env-alist-default= 控制的.
 
-~cdlatex-environment~ 会调用 =cdlatex-env-alist-comb= 中的环境模板, 因此 ~des~ + ~TAB~ 相当于 ~C-c {~ + ~description~
-
-自定义环境模板可以修改 =cdlatex-env-alist=.
-
-使用模板的好处:
-- 支持自动插入标签: =AUTOLABEL= 关键字
-- 支持多行环境的 =item= 模板 (~C-ENTER~ 触发)
-*** 总结
-- ~XXXX~ + ~TAB~ 可以快速输入复杂命令和环境, 自定义也很方便 (=cdlatex-command-alist=)
-- 插入环境有两种方法:
-  - 把环境模板放到 =cdlatex-command-alist= 中: 自由度大
-  - 利用 =cdlatex-environment=, 把环境模板放到 =cdlatex-env-alist= 中: 支持标签、多行环境
-- 更多例子可以参考我的 Emacs 配置: =gitee.com:mickey991/emacs-config.git=
-下期: 如何高效交叉引用, 包括特殊的补全命令 ~lbl~ + ~TAB~, ~ref~ + ~TAB~ 以及 =refTeX= 配置.
+使用这种方式插入环境的好处:
+- 支持自动插入标签: =AUTOLABEL= 关键字 (=equ= + ~Tab~ 生成带标签的环境的实现方式)
+- 支持多行环境的 =item= 模板 (~C-<enter>~ 触发)
+不过, 在一般情况下, 第一种方法直接把环境模板写进 =cdlatex-command-alist= 也能实现大部分的功能了.
+*** 我的一些设置分享
+我的 =cdlatex-command-alist= 变量, 仅做抛砖引玉之用.
+#+begin_src elisp
+  (setq cdlatex-command-alist
+        '(("eq" "insert pairs of \\[ \\]" "\\[ ? \\]" cdlatex-position-cursor nil t t)
+          ("Big(" "insert Big ()" "\\Big( ? \\Big" cdlatex-position-cursor nil nil t)
+          ("Big[" "insert Big[" "\\Big[ ? \\Big" cdlatex-position-cursor nil nil t)
+          ("Big\\|" "insert Big \\|" "\\Big\\| ? \\Big\\|" cdlatex-position-cursor nil nil t)
+          ("Big{" "insert Big{}" "\\Big\\{ ? \\Big\\" cdlatex-position-cursor nil nil t)
+          ("Big|" "insert Big|" "\\Big| ? \\Big|" cdlatex-position-cursor nil nil t)
+          ("aali" "insert equation" "\\left\\{\\begin{aligned}\n? \n\\end{aligned}\\right." cdlatex-position-cursor nil nil t)
+          ("alb" "Insert beamer alert block with overlay" "\\begin{alertblock}<+->{ ? } \n\n\\end{alertblock}" cdlatex-position-cursor nil t nil)
+          ("alb*" "Insert beamer alert block without overlay" "\\begin{alertblock}{ ? } \n\n\\end{alertblock}" cdlatex-position-cursor nil t nil)
+          ("big(" "insert big ()" "\\big( ? \\big" cdlatex-position-cursor nil nil t)
+          ("big[" "insert big []" "\\big[ ? \\big" cdlatex-position-cursor nil nil t)
+          ("big\\|" "insert big \\|" "\\big\\| ? \\big\\|" cdlatex-position-cursor nil nil t)
+          ("bigg(" "insert bigg()" "\\bigg( ? \\bigg" cdlatex-position-cursor nil nil t)
+          ("bigg[" "insert bigg[" "\\bigg[ ? \\bigg" cdlatex-position-cursor nil nil t)
+          ("bigg\\|" "insert bigg\\|" "\\bigg\\| ? \\bigg\\|" cdlatex-position-cursor nil nil t)
+          ("bigg{" "insert bigg{}" "\\bigg\\{ ? \\bigg\\" cdlatex-position-cursor nil nil t)
+          ("bigg|" "insert bigg|" "\\bigg| ? \\bigg|" cdlatex-position-cursor nil nil t)
+          ("big{" "insert big {}" "\\big\\{ ? \\big\\" cdlatex-position-cursor nil nil t)
+          ("big|" "insert big|" "\\big| ? \\big|" cdlatex-position-cursor nil nil t)
+          ("blo" "Insert beamer block with overlay" "\\begin{block}<+->{ ? } \n\n\\end{block}" cdlatex-position-cursor nil t nil)
+          ("blo*" "Insert beamer block WITHOUT overlay" "\\begin{block}{ ? } \n\n\\end{block}" cdlatex-position-cursor nil t nil)
+          ("bn" "binomial" "\\binom{?}{}" cdlatex-position-cursor nil nil t)
+          ("capl" "insert \\bigcap\\limits_{}^{}" "\\bigcap\\limits_{?}^{}" cdlatex-position-cursor nil nil t)
+          ("case" "insert cases" "\\begin{cases}\n? & \\\\\n &\n\\end{cases}" cdlatex-position-cursor nil nil t)
+          ("cd" "insert cdots" "\\cdots" nil nil t t)
+          ("cupl" "insert \\bigcup\\limits_{}^{}" "\\bigcup\\limits_{?}^{}" cdlatex-position-cursor nil nil t)
+          ("dd" "insert ddots" "\\ddots" nil nil t t)
+          ("def" "insert definition env" "" cdlatex-environment ("definition") t nil)
+          ("des" "insert description" "" cdlatex-environment ("description") t nil)
+          ("enu*" "insert enu" "\\begin{enumerate}\n\\item ?\n\\end{enumerate}" cdlatex-position-cursor nil t nil)
+          ("equ*" "insert unlabel equation" "" cdlatex-environment ("equation*") t nil)
+          ("exb" "Insert beamer example block with overlay" "\\begin{exampleblock}<+->{ ? } \n\n\\end{exampleblock}" cdlatex-position-cursor nil t nil)
+          ("exb*" "Insert beamer example block without overlay" "\\begin{exampleblock}{ ? } \n\n\\end{exampleblock}" cdlatex-position-cursor nil t nil)
+          ("exe" "Insert exercise" "\\begin{exercise}\n? \n\\end{exercise}" cdlatex-position-cursor nil t nil)
+          ("fra" "insert frame (for beamer)" "" cdlatex-environment ("frame") t nil)
+          ("hhl" "insert \\ \\hline" "\\\\ \\hline" ignore nil t nil)
+          ("hl" "insert \\hline" "\\hline" ignore nil t nil)
+          ("ipenu" "insert in paragraph enumerate" "" cdlatex-environment ("inparaenum") t nil)
+          ("ipite" "insert in paragraph itemize" "" cdlatex-environment ("inparaitem") t nil)
+          ("it" "insert \\item" "\\item?" cdlatex-position-cursor nil t nil)
+          ("ld" "insert ldots" "\\ldots" nil nil t t)
+          ("lem" "insert lemma env" "" cdlatex-environment ("lemma") t nil)
+          ("liml" "insert \\lim\\limits_{}" "\\lim\\limits_{?}" cdlatex-position-cursor nil nil t)
+          ("lr<" "insert bra-ket" "\\langle ? \\rangle" cdlatex-position-cursor nil nil t)
+          ("myenu" "insert in my enumerate for beamer" "" cdlatex-environment ("myenumerate") t nil)
+          ("myite" "insert in my itemize for beamer" "" cdlatex-environment ("myitemize") t nil)
+          ("ons" "" "\\onslide<?>{ }" cdlatex-position-cursor nil t t)
+          ("pa" "insert pause" "\\pause" ignore nil t nil)
+          ("pro" "insert proof env" "" cdlatex-environment ("proof") t nil)
+          ("prodl" "insert \\prod\\limits_{}^{}" " \\prod\\limits_{?}^{}" cdlatex-position-cursor nil nil t)
+          ("prop" "insert proposition" "" cdlatex-environment ("proposition") t nil)
+          ("se" "insert \\{\\}" "\\{ ? \\}" cdlatex-position-cursor nil nil t)
+          ("spl" "insert split" "" cdlatex-environment ("split") nil t)
+          ("st" "stackrel" "\\stackrel{?}{}" cdlatex-position-cursor nil nil t)
+          ("te" "insert text" "\\text{?}" cdlatex-position-cursor nil nil t)
+          ("thm" "insert theorem env" "" cdlatex-environment ("theorem") t nil)
+          ("vd" "insert vdots" "\\vdots" nil nil t t)))
+#+end_src
 
 
 ** Emacs 最强内置 pdf阅读器 pdf-tools 简介
@@ -1519,7 +1591,7 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
 - 方法2 :: 按 ~M-i~ 在鼠标点击位置插入笔记 (precise note)
 - 方法3 :: 选中文字后, 按 ~<tab>~ / ~M-i~ 或 ~i~ 在选中文字位置插入笔记
 
-在笔记中还可以使用 =cdlatex= 编辑数学公式, 以及用 =org-download= 插入截图. 请到教程的最后查看这些功能的基本设置.  
+在笔记中还可以使用 =CDLaTeX= 编辑数学公式, 以及用 =org-download= 插入截图. 请到教程的最后查看这些功能的基本设置.  
 **** 位置同步
 - =pdf= -> =org=: 自动
 - =org= -> =pdf=: 手动
@@ -1613,8 +1685,8 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
   )
 #+end_src
 
- =cdlatex= 的设置可以参考我的视频
- - [[https://www.bilibili.com/video/BV134411v7jn/][【教程】 LaTeX+Emacs 从零开始2-2节: cdLaTeX 简介]]
+ =CDLaTeX= 的设置可以参考我的视频
+ - [[https://www.bilibili.com/video/BV134411v7jn/][【教程】 LaTeX+Emacs 从零开始2-2节: CDLaTeX简介]]
  - [[https://www.bilibili.com/video/BV1Z4411Y7F7/][【教程】 LaTeX+Emacs从零开始2-4节：cdLaTeX自定义设置]]
 
 我会在另一期教程中详细介绍 =org-mode= 中 =LaTeX= 编辑的设置. 

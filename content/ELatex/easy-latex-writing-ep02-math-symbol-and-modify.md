@@ -1,14 +1,14 @@
 +++
-title = "cdlatex 中快速输入数学符号和字体与自定义设置"
+title = "CDLaTeX中快速输入数学符号和字体与自定义设置"
 draft = false
 +++
 
-大家好, 我是小米, 欢迎大家来到我的省时省力写 LaTeX 系列. 本期我们开始介绍 Emacs 的 `cdlatex` 插件. 这次讲解如何使用 `cdlatex` 快速插入数学字母, 符号和字体的功能, 以及如何自定义新的快捷键.
+大家好, 我是小米, 欢迎大家来到我的省时省力写 LaTeX 系列. 本期我们开始介绍 Emacs 的 `CDLaTeX` 插件. 这次讲解如何使用 `CDLaTeX` 快速插入数学字母, 符号和字体的功能, 以及如何自定义新的快捷键.
 
 
-## AucTeX 和 cdlatex 基本设置 {#auctex-和-cdlatex-基本设置}
+## AucTeX 和 CDLaTeX基本设置 {#auctex-和-cdlatex基本设置}
 
-Emacs 中的 LaTeX 编辑主要是依赖 `AucTeX` 和 `cdlatex` 这两个插件. `AucTeX` 提供了编辑 LaTeX 的基本功能, 而 `cdlatex` 主要提供了大量简化和易设置的输入方式.  为了安装并在 LaTeX 编辑时启用这两个插件, 我们需要在 `init.el` 中加入代码:
+Emacs 中的 LaTeX 编辑主要是依赖 `AucTeX` 和 `CDLaTeX` 这两个插件. `AucTeX` 提供了编辑 LaTeX 的基本功能, 而 `CDLaTeX` 主要提供了大量简化和易设置的输入方式.  为了安装并在 LaTeX 编辑时启用这两个插件, 我们需要在 `init.el` 中加入代码:
 
 ```elisp
 (defun my/latex-hook ()
@@ -35,11 +35,11 @@ Emacs 中的 LaTeX 编辑主要是依赖 `AucTeX` 和 `cdlatex` 这两个插件.
   )
 ```
 
-使用 `straight.el` 的用户需要根据注释内容适当调整. 在 `(use-package cdlatex ...)` 中我们指定了 `:after tex`, 是为了保证 `cdlatex` 在 `auctex` 之后加载. 把 `cdlatex` 代码块置于 `auctex` 之后也实现了相同效果; 而加了这一行后, 代码块次序可以随意调整.
+使用 `straight.el` 的用户需要根据注释内容适当调整. 在 `(use-package cdlatex ...)` 中我们指定了 `:after tex`, 是为了保证 `CDLaTeX` 在 `auctex` 之后加载. 把 `CDLaTeX` 代码块置于 `auctex` 之后也实现了相同效果; 而加了这一行后, 代码块次序可以随意调整.
 
-`LaTeX-mode-hook` 是我们打开 LaTeX 文件时需要加载的设置, 这里我们定义了一个新的函数 `my/latex-hook` (名字可随意), 这样方便我们日后加入更多的功能. 函数的第一行 `(turn-on-cdlatex)` 就是打开 `tex` 文件时加载 `cdlatex` 的命令.
+`LaTeX-mode-hook` 是我们打开 LaTeX 文件时需要加载的设置, 这里我们定义了一个新的函数 `my/latex-hook` (名字可随意), 这样方便我们日后加入更多的功能. 函数的第一行 `(turn-on-cdlatex)` 就是打开 `tex` 文件时加载 `CDLaTeX` 的命令.
 
-成功设置后, 当我们打开 `tex` 文件时, 大家应当可以看到模式栏中的 `LaTeX/P` 和 `CDL`, 就表示加载了 `AucTeX` 和 `cdlatex`. 通过 <kbd>C-h m</kbd> (<kbd>m</kbd> 表示 `mode`) 可以查看当前加载的所有主要模式和次要模式.
+成功设置后, 当我们打开 `tex` 文件时, 大家应当可以看到模式栏中的 `LaTeX/P` 和 `CDL`, 就表示加载了 `AucTeX` 和 `CDLaTeX`. 通过 <kbd>C-h m</kbd> (<kbd>m</kbd> 表示 `mode`) 可以查看当前加载的所有主要模式和次要模式.
 
 
 ## 数学符号输入 {#数学符号输入}
@@ -63,12 +63,12 @@ Emacs 中的 LaTeX 编辑主要是依赖 `AucTeX` 和 `cdlatex` 这两个插件.
 
 ### 数学符号 {#数学符号}
 
-大家在提示界面可以看到, 除了希腊字母以外, 我们还可以用同样的方法快速插入数学符号. `cdlatex` 预置了很多好记的默认设置. 例如, <kbd>\`</kbd> + <kbd>8</kbd> 插入 `\infty`, 因为数字8放平就是无穷, 又如, <kbd>\`</kbd> + <kbd>*</kbd> 插入 `\times` 乘号, <kbd>\`</kbd> + <kbd>+</kbd> 插入 `\cup` (并集), <kbd>\`</kbd> + <kbd>&gt;</kbd> 插入 `\rightarrow` (右箭头) 等.
+大家在提示界面可以看到, 除了希腊字母以外, 我们还可以用同样的方法快速插入数学符号. `CDLaTeX` 预置了很多好记的默认设置. 例如, <kbd>\`</kbd> + <kbd>8</kbd> 插入 `\infty`, 因为数字8放平就是无穷, 又如, <kbd>\`</kbd> + <kbd>*</kbd> 插入 `\times` 乘号, <kbd>\`</kbd> + <kbd>+</kbd> 插入 `\cup` (并集), <kbd>\`</kbd> + <kbd>&gt;</kbd> 插入 `\rightarrow` (右箭头) 等.
 
 
 ### 第二和第三层目录 {#第二和第三层目录}
 
-`cdlatex` 中连续按下两次反引号 <kbd>\`</kbd> 可以打开第二层目录. 第二层通常用于希腊字母的变体, 如
+`CDLaTeX` 中连续按下两次反引号 <kbd>\`</kbd> 可以打开第二层目录. 第二层通常用于希腊字母的变体, 如
 
 -   <kbd>\`e</kbd> 插入 `\epsilon`, <kbd>\`\`e</kbd> 插入 `\varepsilon`
 -   <kbd>\`r</kbd> 插入 `\rho`, <kbd>\`\`r</kbd> 插入 `\varrho`
@@ -122,7 +122,7 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 <kbd>\`<
 
 这就完成了基本设置. 如果大家想绑定 <kbd>\`\`\`e</kbd> 和 <kbd>\`\`\`\`e</kbd> 等, 只需要再加入新的行以及你需要的 LaTeX 宏命令即可.
 
-这里因为 <kbd>\`e</kbd> 已经在 `cdlatex` 的默认设置中, 所以我们是覆盖了原有设置. 你可以在一开始的按下 <kbd>\`</kbd> 的提示界面中看到默认设置, 或者通过查看变量 `cdlatex-math-symbol-alist-default`.
+这里因为 <kbd>\`e</kbd> 已经在 `CDLaTeX` 的默认设置中, 所以我们是覆盖了原有设置. 你可以在一开始的按下 <kbd>\`</kbd> 的提示界面中看到默认设置, 或者通过查看变量 `cdlatex-math-symbol-alist-default`.
 
 
 ### 保存与加载设置 {#保存与加载设置}
@@ -132,18 +132,18 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 <kbd>\`<
 -   `Apply`: 改变了当前 `cdlatex-math-symbol-alist` 的値, 重启 Emacs 后失效
 -   `Save`: 保存设置, 重启后仍生效.
 
-但是已经打开的 `tex` 文件是看不到更新的设置的. 想要重新加载 `cdlatex` 的设置. 这有3种方法:
+但是已经打开的 `tex` 文件是看不到更新的设置的. 想要重新加载 `CDLaTeX` 的设置. 这有3种方法:
 
 1.  重启 Emacs
 2.  一个是打开新的 `tex` 文件
 3.  在原来的 `.tex` 文件缓冲区, 按下 <kbd>C-c C-n</kbd>.
 
-第三种方法可以刷新 `LaTeX` 模式设置, 也适用于其它与 `cdlatex` 的设置. 此时, 大家按下反引号 <kbd>\`</kbd> 就可以看到更新后的列表了.
+第三种方法可以刷新 `LaTeX` 模式设置, 也适用于其它与 `CDLaTeX` 的设置. 此时, 大家按下反引号 <kbd>\`</kbd> 就可以看到更新后的列表了.
 
 
 ### 怎么选择快捷键 {#怎么选择快捷键}
 
-原则上这个机制可以插入任意的数学表达式, 如 `\stackrel{\mathrm{a.s.}}{=`}=, 但是建议只绑定原子化的数学符号. 复杂的表达式更适合用 `cdlatex` 的命令补全功能.
+原则上这个机制可以插入任意的数学表达式, 如 `\stackrel{\mathrm{a.s.}}{=`}=, 但是建议只绑定原子化的数学符号. 复杂的表达式更适合用 `CDLaTeX` 的命令补全功能.
 
 快捷键要易记, 直观, 凭你的第一感觉就能找到. 否则不能提高输入速度. 大家也可以查看默认的设置寻找灵感. 反例就是把左箭头 `\leftarrow` 绑到 <kbd>\`&gt;</kbd> 上.
 
@@ -159,7 +159,7 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 <kbd>\`<
 
 ### 数学字体 {#数学字体}
 
-`cdlatex` 还可以快速插入不同的数学字体, 像 `\mathrm{}`, `\mathbf{}` 等等.
+`CDLaTeX` 还可以快速插入不同的数学字体, 像 `\mathrm{}`, `\mathbf{}` 等等.
 例如, 我们常常用粗体 R 表示实数域, 也就是 `\mathbf{R}`. 我们可以按3个键完成输入: <kbd>R</kbd> + <kbd>\'</kbd> + <kbd>b</kbd>
 
 -   <kbd>R</kbd>: 输入字母 R
@@ -194,7 +194,7 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 <kbd>\`<
     -   <kbd>\'b</kbd> 插入 `\textbf{}`
     -   <kbd>\'i</kbd> 插入 `\textit{}`
 
-这里同样的 <kbd>\'b</kbd>, 用在数学公式内就是 `\mathbf{}`, 用在文本中就是 `\textbf{}`. `cdlatex` 会自动检测当前环境是否为数学环境.
+这里同样的 <kbd>\'b</kbd>, 用在数学公式内就是 `\mathbf{}`, 用在文本中就是 `\textbf{}`. `CDLaTeX` 会自动检测当前环境是否为数学环境.
 
 
 ### 嵌套修饰 {#嵌套修饰}
@@ -218,7 +218,7 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 <kbd>\`<
 -   点击 <kbd>INS</kbd> 新建一个条目
 -   第一行 `character` 输入 <kbd>t</kbd>
 -   第二行: `\mathbb`
--   第三行: 保持空白, 因为文本模式下没有空心粗体, 或者输入 `\text`, 这是 `cdlatex` 的默认设置.
+-   第三行: 保持空白, 因为文本模式下没有空心粗体, 或者输入 `\text`, 这是 `CDLaTeX` 的默认设置.
 -   第四行: `Type` 改成 `command`. 两种方式几乎等价但是 `command` 现在更常用.
 -   第五, 第六行: 不变
 
@@ -253,11 +253,11 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 <kbd>\`<
 
 如果没有特别的设置, `customize-variable` 设置的变量默认会由 Emacs 保存到 `init.el` 文件的最后. 我们的设置可以区分自己的设置和 Emacs 保存的设置.
 
-当然, 你也可以手动把 `custom-set-variables` 中的内容用 `(setq ...)` 语句写在你的 `init.el` 当中, 尤其可以放在相应插件的 `use-package` 代码块中. 这样的好处是方便单独管理每个插件的设置, 并且利用 `use-package` 的延迟加载功能加快打开 Emacs 的时间. 当我们的 `cdlatex` 设置很长的时候, 这样做可以把 Emacs 的启动时间从10多秒减少到1秒以下. 大家可以在熟悉了 Emacs 的设置后再做尝试, 新手不推荐这么做.
+当然, 你也可以手动把 `custom-set-variables` 中的内容用 `(setq ...)` 语句写在你的 `init.el` 当中, 尤其可以放在相应插件的 `use-package` 代码块中. 这样的好处是方便单独管理每个插件的设置, 并且利用 `use-package` 的延迟加载功能加快打开 Emacs 的时间. 当我们的 `CDLaTeX` 设置很长的时候, 这样做可以把 Emacs 的启动时间从10多秒减少到1秒以下. 大家可以在熟悉了 Emacs 的设置后再做尝试, 新手不推荐这么做.
 
 
 ## 总结 {#总结}
 
-Emacs 中的 `cdlatex` 插件利用反引号 <kbd>\`</kbd> 和单引号 <kbd>\'</kbd> 开始的快捷键可以快速插入数学字母, 符号和字体. 我们可以通过设置 `cdlatex-math-symbol-alist` 和 `cdlatex-math-modify-alist` 这两个变量修改和增加自己喜欢的快捷键.
+Emacs 中的 `CDLaTeX` 插件利用反引号 <kbd>\`</kbd> 和单引号 <kbd>\'</kbd> 开始的快捷键可以快速插入数学字母, 符号和字体. 我们可以通过设置 `cdlatex-math-symbol-alist` 和 `cdlatex-math-modify-alist` 这两个变量修改和增加自己喜欢的快捷键.
 
-在下期视频中我们将介绍 `cdlatex` 中 <kbd>Tab</kbd> 的命令/模板补全功能. 它可以帮助我们输入一些更复杂的宏命令, 或者插入环境模板等等.
+在下期视频中我们将介绍 `CDLaTeX` 中 <kbd>Tab</kbd> 的命令/模板补全功能. 它可以帮助我们输入一些更复杂的宏命令, 或者插入环境模板等等.
