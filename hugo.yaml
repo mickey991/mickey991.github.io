@@ -1,5 +1,4 @@
 baseURL: "https://mickey991.github.io/"
-# languageCode: "zh"
 defaultContentLanguage : "zh"
 title: "金色飞贼小米的主页"
 
@@ -61,22 +60,22 @@ params:
 #   assets:
 #     disableHLJS: true
 
-# menu:
-#   main:
-#     - identifier: home
-#       name: 主页
-#       url: /
-#       weight: 1
-#     - identifier: LaTeX
-#       name: LaTeX
-#       url: /ELatex/
-#       weight: 10
-#     - identifier: PKM
-#       name: 个人知识库
-#       url: /PKM/
-#       weight: 20
-#     - identifier: bilibili
-#       name: B站主页
-#       url: https://space.bilibili.com/314984514
-#       weight: 30
+menu:
+  shortcuts:
+    # - identifier: home
+    #   name: 主页
+    #   url: /
+    #   weight: 1
+    # - identifier: LaTeX
+    #   name: LaTeX
+    #   url: /ELatex/
+    #   weight: 10
+    # - identifier: PKM
+    #   name: 个人知识库
+    #   url: /PKM/
+    #   weight: 20
+  - identifier: bilibili
+    name: B站主页
+    url: https://space.bilibili.com/314984514
+    weight: 30
 
