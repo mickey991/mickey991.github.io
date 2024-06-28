@@ -1,6 +1,7 @@
 +++
-title = "省时省力写 LaTeX 系列"
+title = "省时省力写 LaTeX"
 draft = false
+disableMathJax = false
 +++
 
 -   引子: 五分钟说服你用 Emacs 写 LaTeX ([视频](https://www.bilibili.com/video/BV1Xk4y1a7Gp/))

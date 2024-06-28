@@ -1,6 +1,7 @@
 +++
 title = "Emacs 快速配置与插件管理"
 draft = false
+weight = 10
 +++
 
 本小节将介绍如何快速配置一个用于 LaTeX 写作的 [Emacs](https://www.gnu.org/s/emacs/), 包括软件安装和插件管理, 以及 Emacs 的一些必要的入门知识. 最后将推荐两组非常实用的插件: 第一组插件 [Which-key](https://github.com/justbur/emacs-which-key) + [Keycast](https://github.com/tarsius/keycast) + [Helpful](https://github.com/Wilfred/helpful) 将帮助我们快速熟悉 Emacs 的操作和概念, 第二组插件 [Vertico](https://github.com/minad/vertico) + [Marginalia](https://github.com/minad/marginalia) + [Orderless](https://github.com/oantolin/orderless) 将有效提升我们在小缓冲区的补全体验, 并附上 [AucTeX](https://www.gnu.org/s/auctex) 和 [CDLaTeX](https://github.com/cdominik/cdlatex) 的基本设置.

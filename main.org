@@ -2,18 +2,19 @@
 #+options: creator:nil author:nil
 #+hugo_custom_front_matter: :disableMathJax false
 
-* 金色飞贼小米的主页
+* 小米的主页
 :PROPERTIES:
 :EXPORT_FILE_NAME: _index
 :EXPORT_HUGO_SECTION: /
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :archetype "home"
 :END:
 大家好, 我是 B 站 UP 主[[https://space.bilibili.com/314984514][金色飞贼小米]]. 这是我的个人主页.
 
 我是一名科研工作者, 在业余时间制作了一些 [[https://www.gnu.org/s/emacs/][Emacs]] 和 LaTeX 的教程, 希望能对大家有所帮助.
-** [[#easy-latex-writing][省时省力写 LaTeX 系列]]
+** [[id:easy-latex-writing][省时省力写 LaTeX 系列]]
 本系列讲解 Emacs 中利用 [[https://www.gnu.org/s/auctex][AucTeX]] + [[https://github.com/cdominik/cdlatex][CDLaTeX]]  等插件省时省力完成 LaTeX 写作, 轻松使用 LaTeX 做即时笔记. 
 
-** [[#PKM-main][Emacs 上搭建你的终生个人知识库]]
+** [[id:PKM-main][Emacs 上搭建你的终生个人知识库]]
 本系列讲解如何围绕 [[https://www.orgroam.com/][Org-roam]] 在 Emacs 上实现双链笔记与搭建个人知识库.
 
 * 省时省力写 LaTeX
@@ -24,16 +25,18 @@
 :CUSTOM_ID: easy-latex-writing
 :END:
 - 引子: 五分钟说服你用 Emacs 写 LaTeX ([[https://www.bilibili.com/video/BV1Xk4y1a7Gp/][视频]])
-- 第1节: [[#emacs-setup][Emacs 快速配置与插件管理]] ([[https://www.bilibili.com/video/BV1nm4y117gn/][视频]])
+- 第1节: [[id:emacs-setup][Emacs 快速配置与插件管理]] ([[https://www.bilibili.com/video/BV1nm4y117gn/][视频]])
 - 第2节: [[id:easy-latex-writing-ep02-math-symbol-and-modify][cdlatex 中快速输入数学符号和字体与自定义设置]] ([[https://www.bilibili.com/video/BV1qa4y1u7Cd/][视频]])
 - 第3节: [[id:easy-latex-writing-ep03-tab-completion][Tab 补全快速插入LaTeX代码]] ([[https://www.bilibili.com/video/BV1Rb421J7eS][视频]])
-- 附录1: [[#easy-latex-writing-ap01-pdf-tools][Emacs最强内置pdf阅读器 pdf-tools 简介]] ([[https://www.bilibili.com/video/BV1pg4y1s7Z9/][视频]])
-- 附录2: [[#easy-latex-writing-ap02-prettify][如何优雅地预览公式]] ([[https://www.bilibili.com/video/BV1tv4y1V7xY/][视频]])
+- 附录1: [[id:easy-latex-writing-ap01-pdf-tools][Emacs最强内置pdf阅读器 pdf-tools 简介]] ([[https://www.bilibili.com/video/BV1pg4y1s7Z9/][视频]])
+- 附录2: [[id:easy-latex-writing-ap02-prettify][如何优雅地预览公式]] ([[https://www.bilibili.com/video/BV1tv4y1V7xY/][视频]])
  
 ** Emacs 快速配置与插件管理 
 :PROPERTIES:
-:EXPORT_FILE_NAME: easy-latex-writing-ep01-basic-setup-and-package-management
+:EXPORT_HUGO_BUNDLE: easy-latex-writing-ep01-basic-setup-and-package-management
+:EXPORT_FILE_NAME: _index
 :CUSTOM_ID: emacs-setup
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :weight 10
 :END:
 
 本小节将介绍如何快速配置一个用于 LaTeX 写作的 [[https://www.gnu.org/s/emacs/][Emacs]], 包括软件安装和插件管理, 以及 Emacs 的一些必要的入门知识. 最后将推荐两组非常实用的插件: 第一组插件 [[https://github.com/justbur/emacs-which-key][Which-key]] + [[https://github.com/tarsius/keycast][Keycast]] + [[https://github.com/Wilfred/helpful][Helpful]] 将帮助我们快速熟悉 Emacs 的操作和概念, 第二组插件 [[https://github.com/minad/vertico][Vertico]] + [[https://github.com/minad/marginalia][Marginalia]] + [[https://github.com/oantolin/orderless][Orderless]] 将有效提升我们在小缓冲区的补全体验, 并附上 [[https://www.gnu.org/s/auctex][AucTeX]] 和 [[https://github.com/cdominik/cdlatex][CDLaTeX]] 的基本设置.
@@ -358,8 +361,10 @@ AucTeX 是通过 =(use-package tex)= 激活的. 因为包名不统一的问题, 
 
 ** CDLaTeX 中快速输入数学符号和字体与自定义设置
 :PROPERTIES:
-:EXPORT_FILE_NAME: easy-latex-writing-ep02-math-symbol-and-modify
+:EXPORT_HUGO_BUNDLE: easy-latex-writing-ep02-math-symbol-and-modify
+:EXPORT_FILE_NAME: _index
 :CUSTOM_ID:  easy-latex-writing-ep02-math-symbol-and-modify
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :weight 20
 :END:
 大家好, 我是小米, 欢迎大家来到我的省时省力写 LaTeX 系列. 本期我们开始介绍 Emacs 的 CDLaTeX 插件. 这次讲解如何使用 CDLaTeX 快速插入数学字母, 符号和字体的功能, 以及如何自定义新的快捷键. 
 *** AucTeX 和 CDLaTeX 基本设置
@@ -553,8 +558,10 @@ Emacs 中的 CDLaTeX 插件利用反引号 ~\`~ 和单引号 ~\'~ 开始的快�
 在下期视频中我们将介绍 CDLaTeX 中 ~Tab~ 的命令/模板补全功能. 它可以帮助我们输入一些更复杂的宏命令, 或者插入环境模板等等.
 ** Tab 补全快速插入 LaTeX 代码
 :PROPERTIES:
-:EXPORT_FILE_NAME: easy-latex-writing-ep03-tab-completion
+:EXPORT_HUGO_BUNDLE: easy-latex-writing-ep03-tab-completion
+:EXPORT_FILE_NAME: _index
 :CUSTOM_ID:  easy-latex-writing-ep03-tab-completion
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :weight 30
 :END:
 
 大家好, 我是小米. 本期我们将介绍如何在 CDLaTeX 中用 =Tab= 补全命令快速地输入复杂的宏命令和环境模板.
@@ -753,8 +760,10 @@ CDLaTeX 内置了一些可补全的命令, 可以在 =cdlatex-command-alist-defa
 
 ** Emacs 最强内置 pdf阅读器 pdf-tools 简介
 :PROPERTIES:
-:EXPORT_FILE_NAME: easy-latex-writing-ap01-pdf-tools
+:EXPORT_HUGO_BUNDLE: easy-latex-writing-ap01-pdf-tools
+:EXPORT_FILE_NAME: _index
 :CUSTOM_ID: easy-latex-writing-ap01-pdf-tools
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :weight 210
 :END:
 *** 使用 =pdf-tools= 的理由
 在用 Emacs 编写 LaTeX 文档的过程中, 你是否...
@@ -1177,8 +1186,10 @@ CDLaTeX 内置了一些可补全的命令, 可以在 =cdlatex-command-alist-defa
 
 ** 如何优雅地预览公式
 :PROPERTIES:
+:EXPORT_HUGO_BUNDLE: easy-latex-writing-ap02-prettify
+:EXPORT_FILE_NAME: _index
 :CUSTOM_ID: easy-latex-writing-ap02-prettify
-:EXPORT_FILE_NAME:  easy-latex-writing-ap02-prettify
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :weight 220
 :END:
 *** 所见即所得的实现方式
 文本编辑中的两个要素
@@ -1315,15 +1326,18 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
 :EXPORT_FILE_NAME: _index
 :CUSTOM_ID: PKM-main
 :END:
-- 第零节: [[#PKM-ep00-intro-org-roam][什么是双链笔记与 org-roam 初体验]] ([[https://www.bilibili.com/video/BV1qV4y1Z7h9/][视频]])
-- 第一节: [[#PKM-ep01-org-noter][PDF 读书笔记插件 org-noter]] ([[https://www.bilibili.com/video/BV1Tc411s7Tu/][视频]])
-- 第二节: [[#PKM-ep02-zotero-intro][Zotero文献管理系统简介]] ([[https://www.bilibili.com/video/BV1Lc411J7gQ/][视频]])
-- 第三节: [[#PKM-ep03-zotero-org-noter-integration][用org-roam管理Zotero文献笔记]] ([[https://www.bilibili.com/video/BV1Mg4y1j75u/][视频]])
+
+- 第零节: [[id:PKM-ep00-intro-org-roam][什么是双链笔记与 org-roam 初体验]] ([[https://www.bilibili.com/video/BV1qV4y1Z7h9/][视频]])
+- 第一节: [[id:PKM-ep01-org-noter][PDF 读书笔记插件 org-noter]] ([[https://www.bilibili.com/video/BV1Tc411s7Tu/][视频]])
+- 第二节: [[id:PKM-ep02-zotero-intro][Zotero文献管理系统简介]] ([[https://www.bilibili.com/video/BV1Lc411J7gQ/][视频]])
+- 第三节: [[id:PKM-ep03-zotero-org-noter-integration][用org-roam管理Zotero文献笔记]] ([[https://www.bilibili.com/video/BV1Mg4y1j75u/][视频]])
      
 ** 什么是双链笔记与 org-roam 初体验
 :PROPERTIES:
-:EXPORT_FILE_NAME: PKM-ep00-intro-org-roam
+:EXPORT_HUGO_BUNDLE: PKM-ep00-intro-org-roam
+:EXPORT_FILE_NAME: _index
 :CUSTOM_ID: PKM-ep00-intro-org-roam
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :weight 10
 :END:
 
 *** 什么是笔记?
@@ -1522,8 +1536,10 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
 
 ** PDF 读书笔记插件 org-noter
 :PROPERTIES:
+:EXPORT_HUGO_BUNDLE: PKM-ep01-org-noter
+:EXPORT_FILE_NAME: _index
 :CUSTOM_ID: PKM-ep01-org-noter
-:EXPORT_FILE_NAME: PKM-ep01-org-noter
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :weight 20
 :END:
 
 *** org-noter 是什么?
@@ -1729,7 +1745,8 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
   #+end_src
 ** Zotero文献管理系统简介
 :PROPERTIES:
-:EXPORT_FILE_NAME: PKM-ep02-zotero-intro
+:EXPORT_HUGO_BUNDLE: PKM-ep02-zotero-intro
+:EXPORT_FILE_NAME: _index
 :CUSTOM_ID: PKM-ep02-zotero-intro
 :END:
 
@@ -1812,8 +1829,10 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
 
 ** 用org-roam管理Zotero文献笔记
 :PROPERTIES:
+:EXPORT_HUGO_BUNDLE: PKM-ep03-zotero-org-noter-integration
+:EXPORT_FILE_NAME: _index
 :CUSTOM_ID: PKM-ep03-zotero-org-noter-integration
-:EXPORT_FILE_NAME: PKM-ep03-zotero-org-noter-integration
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :weight 30
 :END:
 *** 实现功能
 - =Emcas= 中读取 =Zotero= 文献数据库并进行引用

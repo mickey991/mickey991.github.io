@@ -1,6 +1,7 @@
 +++
 title = "什么是双链笔记与 org-roam 初体验"
 draft = false
+weight = 10
 +++
 
 ## 什么是笔记? {#什么是笔记}

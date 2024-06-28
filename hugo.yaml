@@ -78,4 +78,8 @@ menu:
     name: B站主页
     url: https://space.bilibili.com/314984514
     weight: 30
+  - identifier: emacs-config
+    name: 我的 Emacs 配置
+    url: https://gitee.com/mickey991/emacs-config.git
+    weight: 50
 

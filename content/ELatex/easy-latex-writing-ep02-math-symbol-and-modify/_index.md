@@ -1,6 +1,7 @@
 +++
 title = "CDLaTeX 中快速输入数学符号和字体与自定义设置"
 draft = false
+weight = 20
 +++
 
 大家好, 我是小米, 欢迎大家来到我的省时省力写 LaTeX 系列. 本期我们开始介绍 Emacs 的 CDLaTeX 插件. 这次讲解如何使用 CDLaTeX 快速插入数学字母, 符号和字体的功能, 以及如何自定义新的快捷键.

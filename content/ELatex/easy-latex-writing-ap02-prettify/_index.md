@@ -1,93 +1,87 @@
 +++
 title = "如何优雅地预览公式"
 draft = false
+weight = 220
 +++
 
-#### 所见即所得的实现方式 {#所见即所得的实现方式}
+## 所见即所得的实现方式 {#所见即所得的实现方式}
 
 文本编辑中的两个要素
 
 -   文本本身
 -   文本的格式
 
-<!--list-separator-->
 
--  pdf 文件预览: 正向与逆向搜索
+### pdf 文件预览: 正向与逆向搜索 {#pdf-文件预览-正向与逆向搜索}
 
-    [【Emacs+LaTeX教程】Emacs最强内置pdf阅读功能pdf-tools简介](https://www.bilibili.com/video/BV1pg4y1s7Z9/)
-    缺点
+[【Emacs+LaTeX教程】Emacs最强内置pdf阅读功能pdf-tools简介](https://www.bilibili.com/video/BV1pg4y1s7Z9/)
+缺点
 
-    -   需要大屏幕
-    -   如果编译错误就无法预览
-
-<!--list-separator-->
-
--  使用 `preview-latex`
-
-    [【教程】LaTeX+Emacs从零开始2-6节：所见即所得之Preview-latex](https://www.bilibili.com/video/BV1H4411a7fD/)
-    缺点
-
-    -   需要手动执行编译: 常用键 <kbd>C-c C-p C-p</kbd>
-    -   代码的可读性不强
-
-<!--list-separator-->
-
--  使用 `prettify-symbols-mode`
-
-    优点
-
-    -   不需要手动触发
-    -   没有编译过程, 不会报错
-    -   提高了代码的可读性
+-   需要大屏幕
+-   如果编译错误就无法预览
 
 
-#### 基本设置 {#基本设置}
+### 使用 `preview-latex` {#使用-preview-latex}
+
+[【教程】LaTeX+Emacs从零开始2-6节：所见即所得之Preview-latex](https://www.bilibili.com/video/BV1H4411a7fD/)
+缺点
+
+-   需要手动执行编译: 常用键 <kbd>C-c C-p C-p</kbd>
+-   代码的可读性不强
+
+
+### 使用 `prettify-symbols-mode` {#使用-prettify-symbols-mode}
+
+优点
+
+-   不需要手动触发
+-   没有编译过程, 不会报错
+-   提高了代码的可读性
+
+
+## 基本设置 {#基本设置}
 
 版本要求
 
 -   Emacs &gt;= 25
 -   AucTex &gt;= 13.1.10 (可通过 <kbd>M-x package-list-package</kbd> 中查找 `auctex` 查看)
 
-<!--list-separator-->
 
--  临时打开
+### 临时打开 {#临时打开}
 
-    <kbd>M-x prettify-symbols-mode</kbd>
-
-<!--list-separator-->
-
--  `init.el` 文件设置
-
-    ```elisp
-    (defun my-latex-hook ()
-      (prettify-symbols-mode t))
-    (add-hook 'LaTeX-mode-hook 'my-latex-hook)
-    ```
-
-<!--list-separator-->
-
--  字体设置
-
-    保证 Unicode 数学符号可以正确显示
-
-    ```elisp
-    (set-fontset-font "fontset-default" 'mathematical "Cambria Math")
-    ```
-
-<!--list-separator-->
-
--  自动展开
-
-    设置自动展开光标附近的宏命令.
-
-    ```elisp
-    (setq prettify-symbols-unprettify-at-point t)
-    ```
-
-    tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 <kbd>C-/</kbd> 撤消, 而不是一个个字符删除.
+<kbd>M-x prettify-symbols-mode</kbd>
 
 
-#### 加入自己的符号 {#加入自己的符号}
+### `init.el` 文件设置 {#init-dot-el-文件设置}
+
+```elisp
+(defun my-latex-hook ()
+  (prettify-symbols-mode t))
+(add-hook 'LaTeX-mode-hook 'my-latex-hook)
+```
+
+
+### 字体设置 {#字体设置}
+
+保证 Unicode 数学符号可以正确显示
+
+```elisp
+(set-fontset-font "fontset-default" 'mathematical "Cambria Math")
+```
+
+
+### 自动展开 {#自动展开}
+
+设置自动展开光标附近的宏命令.
+
+```elisp
+(setq prettify-symbols-unprettify-at-point t)
+```
+
+tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 <kbd>C-/</kbd> 撤消, 而不是一个个字符删除.
+
+
+## 加入自己的符号 {#加入自己的符号}
 
 ```elisp
 (require 'tex-mode)
@@ -124,7 +118,7 @@ draft = false
 -   进一步简化自己的常用命令, 像上面的各种 `E`, `P`.
 
 
-#### LaTeX 相关设置汇总 {#latex-相关设置汇总}
+## LaTeX 相关设置汇总 {#latex-相关设置汇总}
 
 ```elisp
 ;; 以下为LaTeX mode相关设置
@@ -172,6 +166,3 @@ draft = false
           ("\\Nc" . #x1D4A9))))
 (my/more-prettified-symbols)
 ```
-
-
-## Emac {#emac}

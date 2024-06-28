@@ -1,6 +1,7 @@
 +++
 title = "Tab 补全快速插入 LaTeX 代码"
 draft = false
+weight = 30
 +++
 
 大家好, 我是小米. 本期我们将介绍如何在 CDLaTeX 中用 `Tab` 补全命令快速地输入复杂的宏命令和环境模板.

@@ -1,6 +1,7 @@
 +++
 title = "Emacs 最强内置 pdf阅读器 pdf-tools 简介"
 draft = false
+weight = 210
 +++
 
 ## 使用 `pdf-tools` 的理由 {#使用-pdf-tools-的理由}

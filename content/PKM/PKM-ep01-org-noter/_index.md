@@ -1,6 +1,7 @@
 +++
 title = "PDF 读书笔记插件 org-noter"
 draft = false
+weight = 20
 +++
 
 ## org-noter 是什么? {#org-noter-是什么}

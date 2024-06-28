@@ -1,7 +1,7 @@
 +++
-title = "金色飞贼小米的主页"
+title = "小米的主页"
 draft = false
-disableMathJax = false
+archetype = "home"
 +++
 
 大家好, 我是 B 站 UP 主[金色飞贼小米](https://space.bilibili.com/314984514). 这是我的个人主页.
