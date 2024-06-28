@@ -1,15 +1,14 @@
 #+HUGO_BASE_DIR: .
 #+options: creator:nil author:nil
+#+hugo_custom_front_matter: :disableMathJax false
 
 * 金色飞贼小米的主页
 :PROPERTIES:
 :EXPORT_FILE_NAME: _index
 :EXPORT_HUGO_SECTION: /
 :END:
-
 大家好, 我是 B 站 UP 主[[https://space.bilibili.com/314984514][金色飞贼小米]]. 这是我的个人主页.
 
-\[a^2+b^2=c^2\]
 我是一名科研工作者, 在业余时间制作了一些 [[https://www.gnu.org/s/emacs/][Emacs]] 和 LaTeX 的教程, 希望能对大家有所帮助.
 ** [[#easy-latex-writing][省时省力写 LaTeX 系列]]
 本系列讲解 Emacs 中利用 [[https://www.gnu.org/s/auctex][AucTeX]] + [[https://github.com/cdominik/cdlatex][CDLaTeX]]  等插件省时省力完成 LaTeX 写作, 轻松使用 LaTeX 做即时笔记. 

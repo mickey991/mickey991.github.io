@@ -1,11 +1,11 @@
 +++
 title = "金色飞贼小米的主页"
 draft = false
+disableMathJax = false
 +++
 
 大家好, 我是 B 站 UP 主[金色飞贼小米](https://space.bilibili.com/314984514). 这是我的个人主页.
 
-$$a^2+b^2=c^2$$
 我是一名科研工作者, 在业余时间制作了一些 [Emacs](https://www.gnu.org/s/emacs/) 和 LaTeX 的教程, 希望能对大家有所帮助.
 
 
