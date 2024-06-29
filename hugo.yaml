@@ -39,6 +39,19 @@ params:
     - neon
     identifier: retro-auto
     name: Retro Learn/Neon
+  showVisitedLinks : true
+  disableRootBreadcrumb : true
+outputs:
+  # add `search` to the home to support Lunr search; This is a mandatory setting
+  # for the side wide search functionality
+  # add `searchpage` to the home to create a dedicated searchpage
+  # add `print` to home, section and page to activate the feature to print whole
+  # chapters
+  home: ["html", "rss", "print", "search", "searchpage"]
+  section: ["html", "rss", "print"]
+  page: ["html", "rss", "print"]
+
+
 #   math: true
 #   ## code
 #   ShowCodeCopyButtons: true
@@ -83,3 +96,5 @@ menu:
     url: https://gitee.com/mickey991/emacs-config.git
     weight: 50
 
+
+  
