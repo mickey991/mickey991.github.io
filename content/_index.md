@@ -1,6 +1,7 @@
 +++
-title = "Homepage"
+title = "小米的主页"
 draft = false
+archetype = "home"
 +++
 
 大家好, 我是 B 站 UP 主[金色飞贼小米](https://space.bilibili.com/314984514). 这是我的个人主页.

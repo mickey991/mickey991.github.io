@@ -1,61 +1,100 @@
 baseURL: "https://mickey991.github.io/"
-# languageCode: "zh"
 defaultContentLanguage : "zh"
 title: "金色飞贼小米的主页"
 
      
-theme: "PaperMod"
+theme: hugo-theme-relearn
 
 markup:
-  ## use chroma for syntax highlighting
-  highlight:
-    # anchorLineNos: true
-    codeFences: true
-    guessSyntax: true
-    # noClasses: false
-    style: monokai
+#   ## use chroma for syntax highlighting
+#   highlight:
+#     # anchorLineNos: true
+#     codeFences: true
+#     guessSyntax: true
+#     # noClasses: false
+#     style: monokai
   goldmark:
     renderer:
       unsafe: true 
+    extensions:
+      passthrough:
+        delimiters:
+          block:
+          - - \[
+            - \]
+          - - $$
+            - $$
+          inline:
+          - - \(
+            - \)
+          - - $
+            - $
+        enable: true
+
 
 params:
-  math: true
-  ## code
-  ShowCodeCopyButtons: true
+  themeVariant: 
+  - auto:
+    - learn
+    - neon
+    identifier: retro-auto
+    name: Retro Learn/Neon
+  showVisitedLinks : true
+  disableRootBreadcrumb : true
+outputs:
+  # add `search` to the home to support Lunr search; This is a mandatory setting
+  # for the side wide search functionality
+  # add `searchpage` to the home to create a dedicated searchpage
+  # add `print` to home, section and page to activate the feature to print whole
+  # chapters
+  home: ["html", "rss", "print", "search", "searchpage"]
+  section: ["html", "rss", "print"]
+  page: ["html", "rss", "print"]
 
-  ## toc
-  showtoc: true
-  tocopen: true
-  UseHugoToc: true
 
-  ## additional info
-  ShowPostNavLinks: true
-  ShowWordCount: true
-  ShowReadingTime: true
+#   math: true
+#   ## code
+#   ShowCodeCopyButtons: true
 
-  ## layout
-  ShowBreadCrumbs: true
+#   ## toc
+#   showtoc: true
+#   tocopen: true
+#   UseHugoToc: true
 
-  ## use chroma for markup
-  assets:
-    disableHLJS: true
+#   ## additional info
+#   ShowPostNavLinks: true
+#   ShowWordCount: true
+#   ShowReadingTime: true
+
+#   ## layout
+#   ShowBreadCrumbs: true
+
+#   ## use chroma for markup
+#   assets:
+#     disableHLJS: true
 
 menu:
-  main:
-    - identifier: home
-      name: 主页
-      url: /
-      weight: 1
-    - identifier: LaTeX
-      name: LaTeX
-      url: /ELatex/
-      weight: 10
-    - identifier: PKM
-      name: 个人知识库
-      url: /PKM/
-      weight: 20
-    - identifier: bilibili
-      name: B站主页
-      url: https://space.bilibili.com/314984514
-      weight: 30
+  shortcuts:
+    # - identifier: home
+    #   name: 主页
+    #   url: /
+    #   weight: 1
+    # - identifier: LaTeX
+    #   name: LaTeX
+    #   url: /ELatex/
+    #   weight: 10
+    # - identifier: PKM
+    #   name: 个人知识库
+    #   url: /PKM/
+    #   weight: 20
+  - identifier: bilibili
+    name: B站主页
+    url: https://space.bilibili.com/314984514
+    weight: 30
+  - identifier: emacs-config
+    name: 我的 Emacs 配置
+    url: https://gitee.com/mickey991/emacs-config.git
+    weight: 50
 
+
+  
