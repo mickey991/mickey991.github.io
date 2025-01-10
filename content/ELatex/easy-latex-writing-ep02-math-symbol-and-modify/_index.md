@@ -12,28 +12,28 @@ weight = 20
 Emacs 中的 LaTeX 编辑主要是依赖 [AucTeX](https://www.gnu.org/s/auctex) 和 [CDLaTeX](https://github.com/cdominik/cdlatex) 这两个插件. AucTeX 提供了编辑 LaTeX 的基本功能, 而 CDLaTeX 主要提供了大量简化和易设置的输入方式.  为了安装并在 LaTeX 编辑时启用这两个插件, 我们需要在 `init.el` 中加入代码:
 
 ```elisp
-(defun my/latex-hook ()
-  (turn-on-cdlatex)
-  (turn-on-reftex))
+  (defun my/latex-hook ()
+    (turn-on-cdlatex)
+    (turn-on-reftex))
 
-(use-package tex
-  :ensure auctex
-  ;; 若使用 straight, 注释前一行, 并取消下一行注释:
-  ;; :straight auctex
-  :custom
-  (TeX-parse-self t) ; 自动解析 tex 文件
-  (TeX-PDF-mode t)
-  (TeX-DVI-via-PDFTeX t)
-  :config
-  (setq-default TeX-master t) ; 默认询问主文件
-  (add-hook 'LaTeX-mode-hook 'my/latex-hook)) ; 加载LaTeX模式钩子
+  (use-package tex
+    :ensure auctex
+    ;; 若使用 straight, 注释前一行, 并取消下一行注释:
+    ;; :straight auctex
+    :custom
+    (TeX-parse-self t) ; 自动解析 tex 文件
+    (TeX-PDF-mode t)
+    (TeX-DVI-via-PDFTeX t)
+    :config
+    (setq-default TeX-master t) ; 默认询问主文件
+    (add-hook 'LaTeX-mode-hook 'my/latex-hook)) ; 加载LaTeX模式钩子
 
-(use-package cdlatex
-  :after tex ; 保证 cdlatex 在 auctex 之后加载
-  :load-path "lisp/" ; 需要手动从网盘或 https://github.com/cdominik/cdlatex/blob/master/cdlatex.el 下载 cdlatex.el 文件, 并置于 ~/.emacs.d/lisp/ 文件夹下
-  ;; 若使用 straight, 注释前一行, 并取消下一行注释:
-  ;; :straight (:host github :repo "cdominik/cdlatex" )
-  )
+  (use-package cdlatex
+    :after tex ; 保证 cdlatex 在 auctex 之后加载
+    :load-path "lisp/" ; 需要手动从网盘或 https://github.com/cdominik/cdlatex/blob/master/cdlatex.el 下载 cdlatex.el 文件, 并置于 ~/.emacs.d/lisp/ 文件夹下
+    ;; 若使用 straight, 注释前一行, 并取消下一行注释:
+    ;; :straight (:host github :repo "cdominik/cdlatex" )
+    )
 ```
 
 使用 `straight.el` 的用户需要根据注释内容适当调整. 在 `(use-package cdlatex ...)` 中我们指定了 `:after tex`, 是为了保证 `cdlateX` 在 `auctex` 之后加载. 把 `cdlatex` 的 `use-package` 代码块置于 `auctex` 之后也实现了相同效果; 而加了这一行后, 代码块次序可以随意调整.
@@ -231,23 +231,23 @@ CDLaTeX 还可以快速插入不同的数学字体, 像 `\mathrm{}`, `\mathbf{}`
 我们的 `init.el` 设置里面有这样两行:
 
 ```elisp
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-;; .....
-;; .....
-(if (file-exists-p custom-file) (load-file custom-file))
+    (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+    ;; .....
+    ;; .....
+    (if (file-exists-p custom-file) (load-file custom-file))
 ```
 
 这样 Emacs 会把通过 `customize-variable` 设置的变量保存在我们自定义的 `custom.el` 的文件中. 内容大概像这样:
 
 ```elisp
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(cdlatex-math-modify-alist '((116 "\\mathbb" "" t nil nil)))
- '(cdlatex-math-symbol-alist '((101 ("\\varepsilon" "\\epsilon")))))
-;; ......
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(cdlatex-math-modify-alist '((116 "\\mathbb" "" t nil nil)))
+   '(cdlatex-math-symbol-alist '((101 ("\\varepsilon" "\\epsilon")))))
+  ;; ......
 ```
 
 这里包含了我们前面对 `cdlatex-math-modify-alist` 和 `cdlatex-math-symbol-alist` 的设置.

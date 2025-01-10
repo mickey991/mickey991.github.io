@@ -57,12 +57,12 @@ weight = 210
 -   保证 `melpa-stable` 在 Emacs 包的列表中
     可以通过查看 `package-archives` 变量进行确认
     ```elisp
-    (require 'package) ;; Emacs 包管理器
-    (setq package-check-signature nil) ;; 如果有签名验证问题, 可以设置不检查签名
-    (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
-                             ("melpa-stable" . "https://stable.melpa.org/packages/") ;; 下载 pdf-tools 只需要这个
-                             ("melpa" . "https://melpa.org/packages/")
-                             ("gnu" . "http://elpa.gnu.org/packages/")))
+          (require 'package) ;; Emacs 包管理器
+          (setq package-check-signature nil) ;; 如果有签名验证问题, 可以设置不检查签名
+          (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
+                                   ("melpa-stable" . "https://stable.melpa.org/packages/") ;; 下载 pdf-tools 只需要这个
+                                   ("melpa" . "https://melpa.org/packages/")
+                                   ("gnu" . "http://elpa.gnu.org/packages/")))
     ```
 -   用 <kbd>M-x package-list-package</kbd> 打开 Emacs 包的列表
 -   用 <kbd>C-s pdf-tools</kbd> 找到 `pdf-tools`
@@ -100,7 +100,7 @@ weight = 210
 -   打开 `C:/msys64/` 下 `mingw64.exe`. 会弹出一个命令行终端
 -   在命令行终端中输入
     ```sh
-    pacman -S mingw-w64-x86_64-emacs-pdf-tools-server
+          pacman -S mingw-w64-x86_64-emacs-pdf-tools-server
     ```
     以上命令可以在[这里](https://packages.msys2.org/package/mingw-w64-x86_64-emacs-pdf-tools-server?repo=mingw64)找到.
 -   确认并安装所有依赖包.
@@ -116,13 +116,13 @@ weight = 210
 在 `init.el` 文件中加入
 
 ```elisp
-(pdf-tools-install)
+  (pdf-tools-install)
 ```
 
 如果想延迟启动 (如打开 pdf 文件后再启动, 节省 Emacs 启动时间), 可以用下面的代码替换
 
 ```elisp
-(pdf-loader-install)
+  (pdf-loader-install)
 ```
 
 
@@ -131,27 +131,27 @@ weight = 210
 保持不变的设置
 
 ```elisp
-(setq TeX-PDF-mode t)
-(setq TeX-source-correlate-mode t) ;; 编译后开启正反向搜索
-(setq TeX-source-correlate-method 'synctex) ;; 正反向搜索的执行方式
-(setq TeX-source-correlate-start-server t) ;; 不再询问是否开启服务器以执行反向搜索
+  (setq TeX-PDF-mode t)
+  (setq TeX-source-correlate-mode t) ;; 编译后开启正反向搜索
+  (setq TeX-source-correlate-method 'synctex) ;; 正反向搜索的执行方式
+  (setq TeX-source-correlate-start-server t) ;; 不再询问是否开启服务器以执行反向搜索
 ```
 
 使用 `Sumatra PDF` 的配置
 
 ```elisp
-(setq TeX-view-program-list
- '(("Sumatra PDF" ("\"C:/Program Files/SumatraPDF/SumatraPDF.exe\" -reuse-instance" (mode-io-correlate " -forward-search %b %n ") " %o"))))
-(assq-delete-all (quote output-pdf) TeX-view-program-selection)
-(add-to-list 'TeX-view-program-selection '(output-pdf "Sumatra PDF")
+  (setq TeX-view-program-list
+   '(("Sumatra PDF" ("\"C:/Program Files/SumatraPDF/SumatraPDF.exe\" -reuse-instance" (mode-io-correlate " -forward-search %b %n ") " %o"))))
+  (assq-delete-all (quote output-pdf) TeX-view-program-selection)
+  (add-to-list 'TeX-view-program-selection '(output-pdf "Sumatra PDF")
 ```
 
 `pdf-tools` 的配置
 
 ```elisp
-(setq TeX-view-program-selection '((output-pdf "PDF Tools"))) ;; 用pdf-tools 打开 pdf
-(add-hook 'TeX-after-compilation-finished-functions
-          #'TeX-revert-document-buffer) ;; 在完成编译后刷新 pdf 文件
+  (setq TeX-view-program-selection '((output-pdf "PDF Tools"))) ;; 用pdf-tools 打开 pdf
+  (add-hook 'TeX-after-compilation-finished-functions
+            #'TeX-revert-document-buffer) ;; 在完成编译后刷新 pdf 文件
 ```
 
 
@@ -164,14 +164,14 @@ weight = 210
 我的设置: 尽量把移动绑定在左手 (<kbd>awsd</kbd>), 空出右手进行鼠标操作.
 
 ```elisp
-(define-key pdf-view-mode-map
-  "d" 'pdf-view-next-page-command) ;; 向后翻页
-(define-key pdf-view-mode-map
-  "a" 'pdf-view-previous-page-command) ;; 向前翻页
-(define-key pdf-view-mode-map
-  "s" 'pdf-view-scroll-up-or-next-page) ;; 向下滑动
-(define-key pdf-view-mode-map
-  "w" 'pdf-view-scroll-down-or-previous-page) ;; 向上滑动
+          (define-key pdf-view-mode-map
+            "d" 'pdf-view-next-page-command) ;; 向后翻页
+          (define-key pdf-view-mode-map
+            "a" 'pdf-view-previous-page-command) ;; 向前翻页
+          (define-key pdf-view-mode-map
+            "s" 'pdf-view-scroll-up-or-next-page) ;; 向下滑动
+          (define-key pdf-view-mode-map
+            "w" 'pdf-view-scroll-down-or-previous-page) ;; 向上滑动
 ```
 
 
@@ -186,11 +186,11 @@ weight = 210
 我的设置:
 
 ```elisp
-(require 'pdf-annot)
-(define-key pdf-annot-minor-mode-map (kbd "C-a a") 'pdf-annot-add-highlight-markup-annotation) ;; 高亮
-(define-key pdf-annot-minor-mode-map (kbd "C-a s") 'pdf-annot-add-squiggly-markup-annotation) ;; 波浪线
-(define-key pdf-annot-minor-mode-map (kbd "C-a u") 'pdf-annot-add-underline-markup-annotation) ;; 下划线
-(define-key pdf-annot-minor-mode-map (kbd "C-a d") 'pdf-annot-delete) ;; 删除
+  (require 'pdf-annot)
+  (define-key pdf-annot-minor-mode-map (kbd "C-a a") 'pdf-annot-add-highlight-markup-annotation) ;; 高亮
+  (define-key pdf-annot-minor-mode-map (kbd "C-a s") 'pdf-annot-add-squiggly-markup-annotation) ;; 波浪线
+  (define-key pdf-annot-minor-mode-map (kbd "C-a u") 'pdf-annot-add-underline-markup-annotation) ;; 下划线
+  (define-key pdf-annot-minor-mode-map (kbd "C-a d") 'pdf-annot-delete) ;; 删除
 ```
 
 
@@ -205,8 +205,8 @@ weight = 210
 这里重新绑定常用的返回功能 (小知识: 在 `Sumatra PDF` 里对应 <kbd>Alt-&lt;right&gt;</kbd>)
 
 ```elisp
-(require 'pdf-history)
-(define-key pdf-history-minor-mode-map "b" 'pdf-history-backward)
+  (require 'pdf-history)
+  (define-key pdf-history-minor-mode-map "b" 'pdf-history-backward)
 ```
 
 
@@ -219,7 +219,7 @@ weight = 210
 打开 pdf 文件时自动放缩
 
 ```elisp
-(add-hook 'pdf-view-mode-hook 'pdf-view-fit-width-to-window) ;; 自动放大到页宽
+    (add-hook 'pdf-view-mode-hook 'pdf-view-fit-width-to-window) ;; 自动放大到页宽
 ```
 
 
@@ -247,39 +247,39 @@ weight = 210
 
 -   完全禁用本地化编译
     ```elisp
-    (setq no-native-compile t)
+           (setq no-native-compile t)
     ```
 -   只禁止 `pdf-tools` 的本地化编译
     ```elisp
-    (setq native-comp-deferred-compilation-deny-list '(".*pdf.*"))
+           (setq native-comp-deferred-compilation-deny-list '(".*pdf.*"))
     ```
 
 
 ## 完整配置: {#完整配置}
 
 ```elisp
-(pdf-tools-install)
+  (pdf-tools-install)
 
-(setq native-comp-deferred-compilation-deny-list '(".*pdf.*"))
-(setq TeX-view-program-selection '((output-pdf "PDF Tools"))) ;; 用pdf-tools 打开 pdf
-(add-hook 'TeX-after-compilation-finished-functions
-          #'TeX-revert-document-buffer) ;; 在完成编译后刷新 pdf 文件
+  (setq native-comp-deferred-compilation-deny-list '(".*pdf.*"))
+  (setq TeX-view-program-selection '((output-pdf "PDF Tools"))) ;; 用pdf-tools 打开 pdf
+  (add-hook 'TeX-after-compilation-finished-functions
+            #'TeX-revert-document-buffer) ;; 在完成编译后刷新 pdf 文件
 
-(define-key pdf-view-mode-map "d" 'pdf-view-next-page-command) ;; 向后翻页
-(define-key pdf-view-mode-map "a" 'pdf-view-previous-page-command) ;; 向前翻页
-(define-key pdf-view-mode-map "s" 'pdf-view-scroll-up-or-next-page) ;; 向下滑动
-(define-key pdf-view-mode-map "w" 'pdf-view-scroll-down-or-previous-page) ;; 向上滑动
+  (define-key pdf-view-mode-map "d" 'pdf-view-next-page-command) ;; 向后翻页
+  (define-key pdf-view-mode-map "a" 'pdf-view-previous-page-command) ;; 向前翻页
+  (define-key pdf-view-mode-map "s" 'pdf-view-scroll-up-or-next-page) ;; 向下滑动
+  (define-key pdf-view-mode-map "w" 'pdf-view-scroll-down-or-previous-page) ;; 向上滑动
 
-(require 'pdf-annot)
-(define-key pdf-annot-minor-mode-map (kbd "C-a a") 'pdf-annot-add-highlight-markup-annotation) ;; 高亮
-(define-key pdf-annot-minor-mode-map (kbd "C-a s") 'pdf-annot-add-squiggly-markup-annotation) ;; 波浪线
-(define-key pdf-annot-minor-mode-map (kbd "C-a u") 'pdf-annot-add-underline-markup-annotation) ;; 下划线
-(define-key pdf-annot-minor-mode-map (kbd "C-a d") 'pdf-annot-delete) ;; 删除
+  (require 'pdf-annot)
+  (define-key pdf-annot-minor-mode-map (kbd "C-a a") 'pdf-annot-add-highlight-markup-annotation) ;; 高亮
+  (define-key pdf-annot-minor-mode-map (kbd "C-a s") 'pdf-annot-add-squiggly-markup-annotation) ;; 波浪线
+  (define-key pdf-annot-minor-mode-map (kbd "C-a u") 'pdf-annot-add-underline-markup-annotation) ;; 下划线
+  (define-key pdf-annot-minor-mode-map (kbd "C-a d") 'pdf-annot-delete) ;; 删除
 
-(require 'pdf-history)
-(define-key pdf-history-minor-mode-map "b" 'pdf-history-backward)
+  (require 'pdf-history)
+  (define-key pdf-history-minor-mode-map "b" 'pdf-history-backward)
 
-(add-hook 'pdf-view-mode-hook 'pdf-view-fit-width-to-window) ;; 自动放大到页宽
+  (add-hook 'pdf-view-mode-hook 'pdf-view-fit-width-to-window) ;; 自动放大到页宽
 ```
 
 
@@ -343,12 +343,12 @@ weight = 210
 -   保证 `melpa-stable` 在 Emacs 包的列表中
     可以通过查看 `package-archives` 变量进行确认
     ```elisp
-    (require 'package) ;; Emacs 包管理器
-    (setq package-check-signature nil) ;; 如果有签名验证问题, 可以设置不检查签名
-    (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
-                             ("melpa-stable" . "https://stable.melpa.org/packages/") ;; 下载 pdf-tools 只需要这个
-                             ("melpa" . "https://melpa.org/packages/")
-                             ("gnu" . "http://elpa.gnu.org/packages/")))
+          (require 'package) ;; Emacs 包管理器
+          (setq package-check-signature nil) ;; 如果有签名验证问题, 可以设置不检查签名
+          (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
+                                   ("melpa-stable" . "https://stable.melpa.org/packages/") ;; 下载 pdf-tools 只需要这个
+                                   ("melpa" . "https://melpa.org/packages/")
+                                   ("gnu" . "http://elpa.gnu.org/packages/")))
     ```
 -   用 <kbd>M-x package-list-package</kbd> 打开 Emacs 包的列表
 -   用 <kbd>C-s pdf-tools</kbd> 找到 `pdf-tools`
@@ -386,7 +386,7 @@ weight = 210
 -   打开 `C:/msys64/` 下 `mingw64.exe`. 会弹出一个命令行终端
 -   在命令行终端中输入
     ```sh
-    pacman -S mingw-w64-x86_64-emacs-pdf-tools-server
+          pacman -S mingw-w64-x86_64-emacs-pdf-tools-server
     ```
     以上命令可以在[这里](https://packages.msys2.org/package/mingw-w64-x86_64-emacs-pdf-tools-server?repo=mingw64)找到.
 -   确认并安装所有依赖包.
@@ -402,13 +402,13 @@ weight = 210
 在 `init.el` 文件中加入
 
 ```elisp
-(pdf-tools-install)
+  (pdf-tools-install)
 ```
 
 如果想延迟启动 (如打开 pdf 文件后再启动, 节省 Emacs 启动时间), 可以用下面的代码替换
 
 ```elisp
-(pdf-loader-install)
+  (pdf-loader-install)
 ```
 
 
@@ -417,27 +417,27 @@ weight = 210
 保持不变的设置
 
 ```elisp
-(setq TeX-PDF-mode t)
-(setq TeX-source-correlate-mode t) ;; 编译后开启正反向搜索
-(setq TeX-source-correlate-method 'synctex) ;; 正反向搜索的执行方式
-(setq TeX-source-correlate-start-server t) ;; 不再询问是否开启服务器以执行反向搜索
+  (setq TeX-PDF-mode t)
+  (setq TeX-source-correlate-mode t) ;; 编译后开启正反向搜索
+  (setq TeX-source-correlate-method 'synctex) ;; 正反向搜索的执行方式
+  (setq TeX-source-correlate-start-server t) ;; 不再询问是否开启服务器以执行反向搜索
 ```
 
 使用 `Sumatra PDF` 的配置
 
 ```elisp
-(setq TeX-view-program-list
- '(("Sumatra PDF" ("\"C:/Program Files/SumatraPDF/SumatraPDF.exe\" -reuse-instance" (mode-io-correlate " -forward-search %b %n ") " %o"))))
-(assq-delete-all (quote output-pdf) TeX-view-program-selection)
-(add-to-list 'TeX-view-program-selection '(output-pdf "Sumatra PDF")
+  (setq TeX-view-program-list
+   '(("Sumatra PDF" ("\"C:/Program Files/SumatraPDF/SumatraPDF.exe\" -reuse-instance" (mode-io-correlate " -forward-search %b %n ") " %o"))))
+  (assq-delete-all (quote output-pdf) TeX-view-program-selection)
+  (add-to-list 'TeX-view-program-selection '(output-pdf "Sumatra PDF")
 ```
 
 `pdf-tools` 的配置
 
 ```elisp
-(setq TeX-view-program-selection '((output-pdf "PDF Tools"))) ;; 用pdf-tools 打开 pdf
-(add-hook 'TeX-after-compilation-finished-functions
-          #'TeX-revert-document-buffer) ;; 在完成编译后刷新 pdf 文件
+  (setq TeX-view-program-selection '((output-pdf "PDF Tools"))) ;; 用pdf-tools 打开 pdf
+  (add-hook 'TeX-after-compilation-finished-functions
+            #'TeX-revert-document-buffer) ;; 在完成编译后刷新 pdf 文件
 ```
 
 
@@ -450,14 +450,14 @@ weight = 210
 我的设置: 尽量把移动绑定在左手 (<kbd>awsd</kbd>), 空出右手进行鼠标操作.
 
 ```elisp
-(define-key pdf-view-mode-map
-  "d" 'pdf-view-next-page-command) ;; 向后翻页
-(define-key pdf-view-mode-map
-  "a" 'pdf-view-previous-page-command) ;; 向前翻页
-(define-key pdf-view-mode-map
-  "s" 'pdf-view-scroll-up-or-next-page) ;; 向下滑动
-(define-key pdf-view-mode-map
-  "w" 'pdf-view-scroll-down-or-previous-page) ;; 向上滑动
+          (define-key pdf-view-mode-map
+            "d" 'pdf-view-next-page-command) ;; 向后翻页
+          (define-key pdf-view-mode-map
+            "a" 'pdf-view-previous-page-command) ;; 向前翻页
+          (define-key pdf-view-mode-map
+            "s" 'pdf-view-scroll-up-or-next-page) ;; 向下滑动
+          (define-key pdf-view-mode-map
+            "w" 'pdf-view-scroll-down-or-previous-page) ;; 向上滑动
 ```
 
 
@@ -472,11 +472,11 @@ weight = 210
 我的设置:
 
 ```elisp
-(require 'pdf-annot)
-(define-key pdf-annot-minor-mode-map (kbd "C-a a") 'pdf-annot-add-highlight-markup-annotation) ;; 高亮
-(define-key pdf-annot-minor-mode-map (kbd "C-a s") 'pdf-annot-add-squiggly-markup-annotation) ;; 波浪线
-(define-key pdf-annot-minor-mode-map (kbd "C-a u") 'pdf-annot-add-underline-markup-annotation) ;; 下划线
-(define-key pdf-annot-minor-mode-map (kbd "C-a d") 'pdf-annot-delete) ;; 删除
+  (require 'pdf-annot)
+  (define-key pdf-annot-minor-mode-map (kbd "C-a a") 'pdf-annot-add-highlight-markup-annotation) ;; 高亮
+  (define-key pdf-annot-minor-mode-map (kbd "C-a s") 'pdf-annot-add-squiggly-markup-annotation) ;; 波浪线
+  (define-key pdf-annot-minor-mode-map (kbd "C-a u") 'pdf-annot-add-underline-markup-annotation) ;; 下划线
+  (define-key pdf-annot-minor-mode-map (kbd "C-a d") 'pdf-annot-delete) ;; 删除
 ```
 
 
@@ -491,8 +491,8 @@ weight = 210
 这里重新绑定常用的返回功能 (小知识: 在 `Sumatra PDF` 里对应 <kbd>Alt-&lt;right&gt;</kbd>)
 
 ```elisp
-(require 'pdf-history)
-(define-key pdf-history-minor-mode-map "b" 'pdf-history-backward)
+  (require 'pdf-history)
+  (define-key pdf-history-minor-mode-map "b" 'pdf-history-backward)
 ```
 
 
@@ -505,7 +505,7 @@ weight = 210
 打开 pdf 文件时自动放缩
 
 ```elisp
-(add-hook 'pdf-view-mode-hook 'pdf-view-fit-width-to-window) ;; 自动放大到页宽
+    (add-hook 'pdf-view-mode-hook 'pdf-view-fit-width-to-window) ;; 自动放大到页宽
 ```
 
 
@@ -533,39 +533,39 @@ weight = 210
 
 -   完全禁用本地化编译
     ```elisp
-    (setq no-native-compile t)
+           (setq no-native-compile t)
     ```
 -   只禁止 `pdf-tools` 的本地化编译
     ```elisp
-    (setq native-comp-deferred-compilation-deny-list '(".*pdf.*"))
+           (setq native-comp-deferred-compilation-deny-list '(".*pdf.*"))
     ```
 
 
 ## 完整配置: {#完整配置}
 
 ```elisp
-(pdf-tools-install)
+  (pdf-tools-install)
 
-(setq native-comp-deferred-compilation-deny-list '(".*pdf.*"))
-(setq TeX-view-program-selection '((output-pdf "PDF Tools"))) ;; 用pdf-tools 打开 pdf
-(add-hook 'TeX-after-compilation-finished-functions
-          #'TeX-revert-document-buffer) ;; 在完成编译后刷新 pdf 文件
+  (setq native-comp-deferred-compilation-deny-list '(".*pdf.*"))
+  (setq TeX-view-program-selection '((output-pdf "PDF Tools"))) ;; 用pdf-tools 打开 pdf
+  (add-hook 'TeX-after-compilation-finished-functions
+            #'TeX-revert-document-buffer) ;; 在完成编译后刷新 pdf 文件
 
-(define-key pdf-view-mode-map "d" 'pdf-view-next-page-command) ;; 向后翻页
-(define-key pdf-view-mode-map "a" 'pdf-view-previous-page-command) ;; 向前翻页
-(define-key pdf-view-mode-map "s" 'pdf-view-scroll-up-or-next-page) ;; 向下滑动
-(define-key pdf-view-mode-map "w" 'pdf-view-scroll-down-or-previous-page) ;; 向上滑动
+  (define-key pdf-view-mode-map "d" 'pdf-view-next-page-command) ;; 向后翻页
+  (define-key pdf-view-mode-map "a" 'pdf-view-previous-page-command) ;; 向前翻页
+  (define-key pdf-view-mode-map "s" 'pdf-view-scroll-up-or-next-page) ;; 向下滑动
+  (define-key pdf-view-mode-map "w" 'pdf-view-scroll-down-or-previous-page) ;; 向上滑动
 
-(require 'pdf-annot)
-(define-key pdf-annot-minor-mode-map (kbd "C-a a") 'pdf-annot-add-highlight-markup-annotation) ;; 高亮
-(define-key pdf-annot-minor-mode-map (kbd "C-a s") 'pdf-annot-add-squiggly-markup-annotation) ;; 波浪线
-(define-key pdf-annot-minor-mode-map (kbd "C-a u") 'pdf-annot-add-underline-markup-annotation) ;; 下划线
-(define-key pdf-annot-minor-mode-map (kbd "C-a d") 'pdf-annot-delete) ;; 删除
+  (require 'pdf-annot)
+  (define-key pdf-annot-minor-mode-map (kbd "C-a a") 'pdf-annot-add-highlight-markup-annotation) ;; 高亮
+  (define-key pdf-annot-minor-mode-map (kbd "C-a s") 'pdf-annot-add-squiggly-markup-annotation) ;; 波浪线
+  (define-key pdf-annot-minor-mode-map (kbd "C-a u") 'pdf-annot-add-underline-markup-annotation) ;; 下划线
+  (define-key pdf-annot-minor-mode-map (kbd "C-a d") 'pdf-annot-delete) ;; 删除
 
-(require 'pdf-history)
-(define-key pdf-history-minor-mode-map "b" 'pdf-history-backward)
+  (require 'pdf-history)
+  (define-key pdf-history-minor-mode-map "b" 'pdf-history-backward)
 
-(add-hook 'pdf-view-mode-hook 'pdf-view-fit-width-to-window) ;; 自动放大到页宽
+  (add-hook 'pdf-view-mode-hook 'pdf-view-fit-width-to-window) ;; 自动放大到页宽
 ```
 
 

@@ -21,7 +21,7 @@ Emacs 可以运行在 Windows, Linux, MacOS 上, 也可以通过 `termux` 运行
 Linux 系统中可以用自带的软件管理器安装 Emacs. 例如, 在 Ubuntu 中使用 `apt` 安装 Emacs, 只需要在命令行中输入
 
 ```shell
-sudo apt install emacs
+  sudo apt install emacs
 ```
 
 
@@ -30,13 +30,13 @@ sudo apt install emacs
 MacOS 中需要先安装 [Homebrew](https://brew.sh/). 方法是在命令行中输入
 
 ```shell
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 当 Homebrew 安装成功后会有提示, 然后就可以使用 Homebrew 安装 Emacs 了: 在命令行中输入
 
 ```shell
-brew install emacs
+ brew install emacs
 ```
 
 
@@ -45,7 +45,7 @@ brew install emacs
 Windows 下安装 Emacs 有两种常见方法. 第一种是安装 MSYS2 ([下载链接](https://www.msys2.org/)). 安装后打开 `C:/msys64/mingw64.exe` (`C:/msys64/` 是 MSYS2 的默认安装目录, 根据实际情况调整). 在命令行中输入
 
 ```shell
-pacman -S mingw-w64-x86_64-emacs
+  pacman -S mingw-w64-x86_64-emacs
 ```
 
 通过 MSYS2 安装的一个好处是我们可以通过 Pacman 管理 Emacs 的更新. 另一个好处是在上面还可以很方便安装其它开源软件, 例如 Git, Epdfinfo 等. Epdfinfo 是在 Windows 下使用 Emacs 的 [PDF-tools](https://github.com/vedang/pdf-tools) 插件的必需软件 ([BV1pg4y1s7Z9](https://www.bilibili.com/video/BV1pg4y1s7Z9/)).
@@ -77,9 +77,9 @@ Windows 中更改键位可以通过注册表或者最新的 `PowerToys` 软件.
     -   找到目录 `[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]`
     -   新建 `Scancode` 文件, 把内容修改为
         ```nil
-        00 00 00 00 00 00 00 00
-        03 00 00 00 1d 00 3a 00
-        3a 00 1d 00 00 00 00 00
+             00 00 00 00 00 00 00 00
+             03 00 00 00 1d 00 3a 00
+             3a 00 1d 00 00 00 00 00
         ```
     -   保存 `Scancode` 文件并重启电脑
 
@@ -97,7 +97,7 @@ Windows 中更改键位可以通过注册表或者最新的 `PowerToys` 软件.
 在 Ubuntu 下, 可以安装 Gnome-tweaks:
 
 ```shell
-sudo apt install gnome-tweaks
+ sudo apt install gnome-tweaks
 ```
 
 然后打开 Gnome-tweaks 的键盘设置, 在高级选项里有关于 <kbd>Ctrl</kbd> 键的设置. 你不仅仅可以交换它与 <kbd>Caps Lock</kbd>, 也可以进行许多别的设置.
@@ -105,7 +105,7 @@ sudo apt install gnome-tweaks
 又或者, 在很多 Linux 系统的命令行下输入
 
 ```shell
-setxkbmap -option ctrl:swapcaps
+  setxkbmap -option ctrl:swapcaps
 ```
 
 也可以交换 <kbd>Ctrl</kbd> 与 <kbd>Caps Lock</kbd> .
@@ -204,42 +204,42 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 以下我们提供了 `package.el` 的一个设置示例. 大家需要把如下代码放入设置文件 `./.emacs.d/init.el` 中.
 
 ```elisp
-;; -*- lexical-binding: t; -*-
-;; 静态作用域声明必须放在首行
-;; 把 Emacs 自动添加的代码放到 custom.el 中
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-;;========================================
-;; 使用 package.el 设置 Emacs 插件管理
-;;========================================
-(require 'package) ; 加载 package.el
-(setq package-check-signature nil) ; 如果检查签名有问题可以加入这一行
-;; 添加仓库位置
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-;; 国内用户也可以使用清华的镜像网站. 用下面的代码代替上面两行
-;; (setq package-archives
-;;       '(("gnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-;;         ("nongnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
-;;         ("melpa-stable" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/stable-melpa/")
-;;         ("melpa"  . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
-;; 刷新插件列表
-(unless package-archive-contents
-  (package-refresh-contents))
-;; 自动安装 use-package. 在Emacs 29中已内置故可省略
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-;; 自动安装所有使用 use-package 声明的插件
-(require 'use-package-ensure)
-(setq use-package-always-ensure t)
-;;========================================
-;; Emacs 插件管理设置完毕
-;;========================================
+    ;; -*- lexical-binding: t; -*-
+    ;; 静态作用域声明必须放在首行
+    ;; 把 Emacs 自动添加的代码放到 custom.el 中
+    (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+    ;;========================================
+    ;; 使用 package.el 设置 Emacs 插件管理
+    ;;========================================
+    (require 'package) ; 加载 package.el
+    (setq package-check-signature nil) ; 如果检查签名有问题可以加入这一行
+    ;; 添加仓库位置
+    (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+    (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+    ;; 国内用户也可以使用清华的镜像网站. 用下面的代码代替上面两行
+    ;; (setq package-archives
+    ;;       '(("gnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+    ;;         ("nongnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
+    ;;         ("melpa-stable" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/stable-melpa/")
+    ;;         ("melpa"  . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
+    ;; 刷新插件列表
+    (unless package-archive-contents
+      (package-refresh-contents))
+    ;; 自动安装 use-package. 在Emacs 29中已内置故可省略
+    (unless (package-installed-p 'use-package)
+      (package-install 'use-package))
+    ;; 自动安装所有使用 use-package 声明的插件
+    (require 'use-package-ensure)
+    (setq use-package-always-ensure t)
+    ;;========================================
+    ;; Emacs 插件管理设置完毕
+    ;;========================================
 
 
-;;========================================
-;; 这段代码放在最后, 加载 Emacs 自动设置的变量
-(if (file-exists-p custom-file) (load-file custom-file))
-;;========================================
+    ;;========================================
+    ;; 这段代码放在最后, 加载 Emacs 自动设置的变量
+    (if (file-exists-p custom-file) (load-file custom-file))
+    ;;========================================
 ```
 
 这段代码的第一部分启用了 `package.el`, 然后通过 `package-archives` 变量设置了下载插件的网址. 在国内也可以使用清华的软件源. 接下来 `package-refresh-contents` 刷新了插件列表. 然后我们自动检测 `use-package` 是否安装, 如果没有安装则自动下载安装. 最后, 我们设置了 `use-package-always-ensure` 变量为 `t`, 这样以后我们所有用 `use-package` 声明的插件都会自动安装.
@@ -252,46 +252,46 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 因为 `straight.el` 与 `package.el` 难以共存, 所以我们必须早早手动禁用内置的 `package.el`. 这必须修改一个我们平时很少用的文件 `.emacs.d/early-init.el`. 我们需要在 `early-init.el` 中加入
 
 ```elisp
-;; 在执行 init.el 前禁用 package.el
-(setq package-enable-at-startup nil)
+  ;; 在执行 init.el 前禁用 package.el
+  (setq package-enable-at-startup nil)
 ```
 
 接下来, 我们需要在 `init.el` 中加入以下代码:
 
 ```elisp
-;; -*- lexical-binding: t; -*-
-;;========================================
-;; 把 Emacs 自动添加的代码放到 custom.el 中
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-;; 使用 straight.el 设置 Emacs 插件管理
-;;========================================
-(defvar bootstrap-version)
-;; 修复 Emacs 29 修改了 native-compile 相关变量导致的 bug
-(unless (version<= emacs-version "28.2")
-  (setq straight-repository-branch "develop"))
-;; 以下代码从 straight.el 主页 https://github.com/radian-software/straight.el 上复制
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 6))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
+  ;; -*- lexical-binding: t; -*-
+  ;;========================================
+  ;; 把 Emacs 自动添加的代码放到 custom.el 中
+  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+  ;; 使用 straight.el 设置 Emacs 插件管理
+  ;;========================================
+  (defvar bootstrap-version)
+  ;; 修复 Emacs 29 修改了 native-compile 相关变量导致的 bug
+  (unless (version<= emacs-version "28.2")
+    (setq straight-repository-branch "develop"))
+  ;; 以下代码从 straight.el 主页 https://github.com/radian-software/straight.el 上复制
+  (let ((bootstrap-file
+         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+        (bootstrap-version 6))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
 
-(straight-use-package 'use-package) ; 用 straight.el 安装 use-package 声明的插件
-(setq straight-use-package-by-default t) ; 自动安装所有插件, 相当于加入 :straight t
-;;========================================
-;; Emacs 插件管理设置完毕
-;;========================================
+  (straight-use-package 'use-package) ; 用 straight.el 安装 use-package 声明的插件
+  (setq straight-use-package-by-default t) ; 自动安装所有插件, 相当于加入 :straight t
+  ;;========================================
+  ;; Emacs 插件管理设置完毕
+  ;;========================================
 
-;;========================================
-;; 这段代码放在最后, 加载 Emacs 自动设置的变量
-(if (file-exists-p custom-file) (load-file custom-file))
-;;========================================
+  ;;========================================
+  ;; 这段代码放在最后, 加载 Emacs 自动设置的变量
+  (if (file-exists-p custom-file) (load-file custom-file))
+  ;;========================================
 ```
 
 这里大部分的代码是 `straight.el` 的 [Github主页](https://github.com/radian-software/straight.el)上提供的下载与安装 `straight` 的代码, 然后再用 `straight` 安装 `use-package`. 最后我用把 `straight-use-package-by-default` 变量设为 `t`, 这是在使用 `straight` 时进行插件自动安装的设置.
@@ -313,23 +313,23 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 我们首先介绍 [Which-key](https://github.com/justbur/emacs-which-key) + [Keycast](https://github.com/tarsius/keycast) + [Helpful](https://github.com/Wilfred/helpful). 安装代码如下
 
 ```elisp
-(use-package which-key
-  :custom (which-key-idle-delay 0.5) ; 延迟时间, 以秒为单位
-  :config (which-key-mode)) ; 启用 which-key 模式
+  (use-package which-key
+    :custom (which-key-idle-delay 0.5) ; 延迟时间, 以秒为单位
+    :config (which-key-mode)) ; 启用 which-key 模式
 
-(use-package keycast
-  :config (keycast-header-line-mode 1)) ; 在标题显示
+  (use-package keycast
+    :config (keycast-header-line-mode 1)) ; 在标题显示
 
-(use-package helpful
-  :bind
-  ;; 重新定向 C-h 开始的命令
-  (([remap describe-function] . #'helpful-callable)
-   ([remap describe-variable] . #'helpful-variable)
-   ([remap describe-key] . #'helpful-key)
-   ([remap describe-command] . #'helpful-command)
-   ([remap describe-symbol] . #'helpful-symbol)
-   ("C-h C-d" . #'helpful-at-point)
-   ("C-h F" . #'helpful-function)))
+  (use-package helpful
+    :bind
+    ;; 重新定向 C-h 开始的命令
+    (([remap describe-function] . #'helpful-callable)
+     ([remap describe-variable] . #'helpful-variable)
+     ([remap describe-key] . #'helpful-key)
+     ([remap describe-command] . #'helpful-command)
+     ([remap describe-symbol] . #'helpful-symbol)
+     ("C-h C-d" . #'helpful-at-point)
+     ("C-h F" . #'helpful-function)))
 ```
 
 `which-key` 可以在按下快捷键的时候自动提示你接下来可能的快捷键. 比如按下 <kbd>C-h</kbd>, 就会提示接下来你按 <kbd>v</kbd>, <kbd>f</kbd>, <kbd>k</kbd> 等可以查看哪种类型的帮助. 如果把鼠标悬停在选项上也会在浮窗中显示对应命令的帮助.
@@ -346,18 +346,18 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 在 Emacs 中输入命令或打开文件, 切换缓冲区等等都会用到小缓冲区补全. 第二组插件 [Vertico](https://github.com/minad/vertico) + [Marginalia](https://github.com/minad/marginalia) + [Orderless](https://github.com/oantolin/orderless) 是针对小缓冲区补全的. 代码如下
 
 ```elisp
-(use-package vertico ; 竖式展开小缓冲区
-  :custom (verticle-cycle t)
-  :config (vertico-mode))
+  (use-package vertico ; 竖式展开小缓冲区
+    :custom (verticle-cycle t)
+    :config (vertico-mode))
 
-(use-package marginalia ; 更多信息
-  :config (marginalia-mode))
+  (use-package marginalia ; 更多信息
+    :config (marginalia-mode))
 
-(use-package orderless ; 乱序补全
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-defaults nil)
-  (completion-category-overrides '((file (styles partial-completion)))))
+  (use-package orderless ; 乱序补全
+    :custom
+    (completion-styles '(orderless basic))
+    (completion-category-defaults nil)
+    (completion-category-overrides '((file (styles partial-completion)))))
 ```
 
 `vertico` 把每个补全选项放在单独的一行, 配合 `marginalia` 会在每个选项的右边加入更多相关信息.
@@ -372,25 +372,25 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 最后我们提供一个简单可用的 `CDLaTeX` 和 `AucTeX` 设置. 大家只要把这段代码复制进 `init.el` 就可以实现视频[五分钟说服你用Emacs写LaTeX](https://www.bilibili.com/video/BV1Xk4y1a7Gp/)中的大部分功能.
 
 ```elisp
-(defun my/latex-hook ()
-  (turn-on-cdlatex)
-  (turn-on-reftex))
-(use-package cdlatex
-  :load-path "lisp/" ; 需要手动从网盘或 https://github.com/cdominik/cdlatex/blob/master/cdlatex.el 下载 cdlatex.el 文件, 并置于 ~/.emacs.d/lisp/ 文件夹下
-  ;; 若使用 straight, 注释前一行, 并取消下一行注释:
-  ;; :straight (:host github :repo "cdominik/cdlatex" )
-  )
-(use-package tex
-  :ensure auctex
-  ;; 若使用 straight, 注释前一行, 并取消下一行注释:
-  ;; :straight auctex
-  :custom
-  (TeX-parse-self t) ; 自动解析 tex 文件
-  (TeX-PDF-mode t)
-  (TeX-DVI-via-PDFTeX t)
-:config
-  (setq-default TeX-master t) ; 默认询问主文件
-  (add-hook 'LaTeX-mode-hook 'my-latex-hook)) ; 加载LaTeX模式设置
+  (defun my/latex-hook ()
+    (turn-on-cdlatex)
+    (turn-on-reftex))
+  (use-package cdlatex
+    :load-path "lisp/" ; 需要手动从网盘或 https://github.com/cdominik/cdlatex/blob/master/cdlatex.el 下载 cdlatex.el 文件, 并置于 ~/.emacs.d/lisp/ 文件夹下
+    ;; 若使用 straight, 注释前一行, 并取消下一行注释:
+    ;; :straight (:host github :repo "cdominik/cdlatex" )
+    )
+  (use-package tex
+    :ensure auctex
+    ;; 若使用 straight, 注释前一行, 并取消下一行注释:
+    ;; :straight auctex
+    :custom
+    (TeX-parse-self t) ; 自动解析 tex 文件
+    (TeX-PDF-mode t)
+    (TeX-DVI-via-PDFTeX t)
+  :config
+    (setq-default TeX-master t) ; 默认询问主文件
+    (add-hook 'LaTeX-mode-hook 'my-latex-hook)) ; 加载LaTeX模式设置
 ```
 
 这个基本设置不一定能实现 PDF 正向或反向搜索, 因为这取决于操作系统与 PDF 阅读器. 如果你想在不同平台上使用 Emacs 并获得统一的 PDF 体验, 可以考虑使用 PDF-tools (见视频 [BV1pg4y1s7Z9](https://www.bilibili.com/video/BV1pg4y1s7Z9/)).

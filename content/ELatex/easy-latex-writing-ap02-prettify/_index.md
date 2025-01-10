@@ -55,9 +55,9 @@ weight = 220
 ### `init.el` 文件设置 {#init-dot-el-文件设置}
 
 ```elisp
-(defun my-latex-hook ()
-  (prettify-symbols-mode t))
-(add-hook 'LaTeX-mode-hook 'my-latex-hook)
+  (defun my-latex-hook ()
+    (prettify-symbols-mode t))
+  (add-hook 'LaTeX-mode-hook 'my-latex-hook)
 ```
 
 
@@ -66,7 +66,7 @@ weight = 220
 保证 Unicode 数学符号可以正确显示
 
 ```elisp
-(set-fontset-font "fontset-default" 'mathematical "Cambria Math")
+  (set-fontset-font "fontset-default" 'mathematical "Cambria Math")
 ```
 
 
@@ -75,7 +75,7 @@ weight = 220
 设置自动展开光标附近的宏命令.
 
 ```elisp
-(setq prettify-symbols-unprettify-at-point t)
+  (setq prettify-symbols-unprettify-at-point t)
 ```
 
 tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 <kbd>C-/</kbd> 撤消, 而不是一个个字符删除.
@@ -84,25 +84,25 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 <kbd>
 ## 加入自己的符号 {#加入自己的符号}
 
 ```elisp
-(require 'tex-mode)
-(defun my/more-prettified-symbols ()
-  (mapc (lambda (pair) (cl-pushnew pair tex--prettify-symbols-alist))
-        '(("\\Z" . 8484) ;; 大多数人在latex中会用 \Z, \Q, \N, \R 表示数域
-          ("\\Q" . 8474)
-          ("\\N" . 8469)
-          ("\\R" . 8477)
-          ("\\eps" . 949)
-          ("\\ONE" . #x1D7D9)
-          ("\\mathbb{S}" . #x1D54A)
-          ("\\PP" . #x2119) ;; 个人需要, 经常要使用P和E的数学字体
-          ("\\P" . #x1D5AF )
-          ("\\Pp" . #x1D40F)
-          ("\\E" . #x1D5A4)
-          ("\\Ee" . #x1D404)
-          ("\\EE" . #x1D53C )
-          ("\\Fc" . #x2131)
-          ("\\Nc" . #x1D4A9))))
-(my/more-prettified-symbols)
+  (require 'tex-mode)
+  (defun my/more-prettified-symbols ()
+    (mapc (lambda (pair) (cl-pushnew pair tex--prettify-symbols-alist))
+          '(("\\Z" . 8484) ;; 大多数人在latex中会用 \Z, \Q, \N, \R 表示数域
+            ("\\Q" . 8474)
+            ("\\N" . 8469)
+            ("\\R" . 8477)
+            ("\\eps" . 949)
+            ("\\ONE" . #x1D7D9)
+            ("\\mathbb{S}" . #x1D54A)
+            ("\\PP" . #x2119) ;; 个人需要, 经常要使用P和E的数学字体
+            ("\\P" . #x1D5AF )
+            ("\\Pp" . #x1D40F)
+            ("\\E" . #x1D5A4)
+            ("\\Ee" . #x1D404)
+            ("\\EE" . #x1D53C )
+            ("\\Fc" . #x2131)
+            ("\\Nc" . #x1D4A9))))
+  (my/more-prettified-symbols)
 ```
 
 将 <kbd>("&lt;latex 宏命令&gt;" . &lt;unicode 编码&gt;)</kbd> 加入列表中
@@ -121,48 +121,48 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 <kbd>
 ## LaTeX 相关设置汇总 {#latex-相关设置汇总}
 
 ```elisp
-;; 以下为LaTeX mode相关设置
-(setq-default TeX-master nil) ;; 编译时问询主文件名称
-(setq TeX-parse-selt t) ;; 对新文件自动解析(usepackage, bibliograph, newtheorem等信息)
-;; PDF正向搜索相关设置
-(setq TeX-PDF-mode t)
-(setq TeX-source-correlate-mode t)
-(setq TeX-source-correlate-method 'synctex)
+  ;; 以下为LaTeX mode相关设置
+  (setq-default TeX-master nil) ;; 编译时问询主文件名称
+  (setq TeX-parse-selt t) ;; 对新文件自动解析(usepackage, bibliograph, newtheorem等信息)
+  ;; PDF正向搜索相关设置
+  (setq TeX-PDF-mode t)
+  (setq TeX-source-correlate-mode t)
+  (setq TeX-source-correlate-method 'synctex)
 
-(setq TeX-view-program-selection '((output-pdf "PDF Tools"))) ;; 用pdf-tools 打开 pdf
-(add-hook 'TeX-after-compilation-finished-functions
-          #'TeX-revert-document-buffer) ;; 在完成编译后刷新 pdf 文件
+  (setq TeX-view-program-selection '((output-pdf "PDF Tools"))) ;; 用pdf-tools 打开 pdf
+  (add-hook 'TeX-after-compilation-finished-functions
+            #'TeX-revert-document-buffer) ;; 在完成编译后刷新 pdf 文件
 
-;; 打开TeX文件时应该加载的mode/执行的命令
-(defun my-latex-hook ()
-  (turn-on-cdlatex) ;; 加载cdlatex
-  (outline-minor-mode) ;; 加载outline mode
-  (prettify-symbols-mode t)
-  (turn-on-reftex)  ;; 加载reftex
-  (outline-hide-body)) ;; 打开文件时只显示章节标题
+  ;; 打开TeX文件时应该加载的mode/执行的命令
+  (defun my-latex-hook ()
+    (turn-on-cdlatex) ;; 加载cdlatex
+    (outline-minor-mode) ;; 加载outline mode
+    (prettify-symbols-mode t)
+    (turn-on-reftex)  ;; 加载reftex
+    (outline-hide-body)) ;; 打开文件时只显示章节标题
 
-(add-hook 'LaTeX-mode-hook 'my-latex-hook)
+  (add-hook 'LaTeX-mode-hook 'my-latex-hook)
 
-(setq prettify-symbols-unprettify-at-point t)
-(set-fontset-font "fontset-default" 'mathematical "Cambria Math")
+  (setq prettify-symbols-unprettify-at-point t)
+  (set-fontset-font "fontset-default" 'mathematical "Cambria Math")
 
-(require 'tex-mode)
-(defun my/more-prettified-symbols ()
-  (mapc (lambda (pair) (cl-pushnew pair tex--prettify-symbols-alist))
-        '(("\\Z" . 8484) ;; 大多数人在latex中会用 \Z, \Q, \N, \R 表示数域
-          ("\\Q" . 8474)
-          ("\\N" . 8469)
-          ("\\R" . 8477)
-          ("\\eps" . 949)
-          ("\\ONE" . #x1D7D9)
-          ("\\mathbb{S}" . #x1D54A)
-          ("\\PP" . #x2119) ;; 个人需要, 经常要使用P和E的数学字体
-          ("\\P" . #x1D5AF )
-          ("\\Pp" . #x1D40F)
-          ("\\E" . #x1D5A4)
-          ("\\Ee" . #x1D404)
-          ("\\EE" . #x1D53C )
-          ("\\Fc" . #x2131)
-          ("\\Nc" . #x1D4A9))))
-(my/more-prettified-symbols)
+  (require 'tex-mode)
+  (defun my/more-prettified-symbols ()
+    (mapc (lambda (pair) (cl-pushnew pair tex--prettify-symbols-alist))
+          '(("\\Z" . 8484) ;; 大多数人在latex中会用 \Z, \Q, \N, \R 表示数域
+            ("\\Q" . 8474)
+            ("\\N" . 8469)
+            ("\\R" . 8477)
+            ("\\eps" . 949)
+            ("\\ONE" . #x1D7D9)
+            ("\\mathbb{S}" . #x1D54A)
+            ("\\PP" . #x2119) ;; 个人需要, 经常要使用P和E的数学字体
+            ("\\P" . #x1D5AF )
+            ("\\Pp" . #x1D40F)
+            ("\\E" . #x1D5A4)
+            ("\\Ee" . #x1D404)
+            ("\\EE" . #x1D53C )
+            ("\\Fc" . #x2131)
+            ("\\Nc" . #x1D4A9))))
+  (my/more-prettified-symbols)
 ```

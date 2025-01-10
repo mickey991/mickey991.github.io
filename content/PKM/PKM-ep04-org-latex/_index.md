@@ -23,13 +23,13 @@ weight = 40
     -   行间公式 `\[...\]`, `$$...$$`, `\begin{XXX}...\end{XXX}`
 -   在行间数学公式中用 <kbd>C-c '</kbd> 可进入 LaTeX 编辑模式. (有些版本的 `org-mode` 的 LaTeX 编辑模式是采用 `latex-mode`)
     ```elisp
-    ;; 你自己的 LaTeX 模式设置
-    (defun my/latex-hook ()
-      (turn-on-cdlatex)
-      (turn-on-reftex))
+          ;; 你自己的 LaTeX 模式设置
+          (defun my/latex-hook ()
+            (turn-on-cdlatex)
+            (turn-on-reftex))
 
-    (add-hook 'LaTeX-mode-hook 'my/latex-hook)
-    (add-hook 'latex-mode-hook 'my/latex-hook)
+          (add-hook 'LaTeX-mode-hook 'my/latex-hook)
+          (add-hook 'latex-mode-hook 'my/latex-hook)
     ```
 -   数学公式预览
     -   预览当前位置/当前选中区域 <kbd>C-c C-x C-l</kbd>
@@ -46,7 +46,7 @@ Org-mode 有一个专属的 `org-cdlatex-mode`, 打开后可以使用 CDLaTeX �
 <!--listend-->
 
 ```elisp
-(add-hook 'org-mode-hook #'org-cdlatex-mode) ;; 在 org-mode 中使用 cdlatex
+ (add-hook 'org-mode-hook #'org-cdlatex-mode) ;; 在 org-mode 中使用 cdlatex
 ```
 
 主要区别:
@@ -62,9 +62,9 @@ Org-mode 有一个专属的 `org-cdlatex-mode`, 打开后可以使用 CDLaTeX �
 ## 语法高亮与美化 {#语法高亮与美化}
 
 ```elisp
-(setq org-highlight-latex-and-related '(native latex entities)) ;; LaTeX 语法高亮设置
-(setq org-pretty-entities t) ;; LaTeX 代码的 prettify
-(setq org-pretty-entities-include-sub-superscripts nil) ;; 不隐藏 LaTeX 的上下标更容易编辑
+  (setq org-highlight-latex-and-related '(native latex entities)) ;; LaTeX 语法高亮设置
+  (setq org-pretty-entities t) ;; LaTeX 代码的 prettify
+  (setq org-pretty-entities-include-sub-superscripts nil) ;; 不隐藏 LaTeX 的上下标更容易编辑
 ```
 
 -   `org-pretty-entities` 和 LaTeX 模式中 `prettify-symbol-mode` 共享变量 `tex--prettify-symbols-alist` 的设置
@@ -78,28 +78,28 @@ Org-mode 有一个专属的 `org-cdlatex-mode`, 打开后可以使用 CDLaTeX �
 折衷的解决方法: 复写 `cdlatex-mode` 中的括号和 `$` 匹配函数.
 
 ```elisp
- ;; org-cdlatex-mode 中使用 cdlatex 的自动匹配括号, 并把 $...$ 换成 \( ... \)
- (defun my/insert-inline-OCDL ()
-   (interactive)
-   (insert "\\(") ;; 把 "\\(" 和 "\\)" 替换成 "$" 就能实现输入成对 "$" 的功能.
-   (save-excursion (insert "\\)" )))
-(defun my/insert-bra-OCDL ()
-   (interactive)
-   (insert "(")
-   (save-excursion (insert ")" )))
- (defun my/insert-sq-bra-OCDL ()
-   (interactive)
-   (insert "[")
-   (save-excursion (insert "]" )))
- (defun my/insert-curly-bra-OCDL ()
-   (interactive)
-   (insert "{")
-   (save-excursion (insert "}" )))
+  ;; org-cdlatex-mode 中使用 cdlatex 的自动匹配括号, 并把 $...$ 换成 \( ... \)
+  (defun my/insert-inline-OCDL ()
+    (interactive)
+    (insert "\\(") ;; 把 "\\(" 和 "\\)" 替换成 "$" 就能实现输入成对 "$" 的功能.
+    (save-excursion (insert "\\)" )))
+ (defun my/insert-bra-OCDL ()
+    (interactive)
+    (insert "(")
+    (save-excursion (insert ")" )))
+  (defun my/insert-sq-bra-OCDL ()
+    (interactive)
+    (insert "[")
+    (save-excursion (insert "]" )))
+  (defun my/insert-curly-bra-OCDL ()
+    (interactive)
+    (insert "{")
+    (save-excursion (insert "}" )))
 
- (define-key org-cdlatex-mode-map (kbd "$") 'my/insert-inline-OCDL)
- (define-key org-cdlatex-mode-map (kbd "(") 'my/insert-bra-OCDL)
- (define-key org-cdlatex-mode-map (kbd "[") 'my/insert-square-bra-OCDL)
- (define-key org-cdlatex-mode-map (kbd "{") 'my/insert-curly-bra-OCDL)
+  (define-key org-cdlatex-mode-map (kbd "$") 'my/insert-inline-OCDL)
+  (define-key org-cdlatex-mode-map (kbd "(") 'my/insert-bra-OCDL)
+  (define-key org-cdlatex-mode-map (kbd "[") 'my/insert-square-bra-OCDL)
+  (define-key org-cdlatex-mode-map (kbd "{") 'my/insert-curly-bra-OCDL)
 ```
 
 这里还做了一个优化: 把 <kbd>$</kbd> 绑定成输入 `\(?\)`, 原因有二:
@@ -122,9 +122,9 @@ Org-mode 有一个专属的 `org-cdlatex-mode`, 打开后可以使用 CDLaTeX �
 预览图片大小调整
 
 ```elisp
-(setq my/latex-preview-scale 2) ;; 一般来说这里的 scale 约等于 set-face-attribute 中的 :height /100
-(setq org-format-latex-options
-      `(:foreground default :background default :scale ,my/latex-preview-scale :html-foreground "Black" :html-background "Transparent" :html-scale ,my/latex-preview-scale :matchers ("begin" "$1" "$" "$$" "\\(" "\\["))) ;; 增大公式预览的图片大小
+  (setq my/latex-preview-scale 2) ;; 一般来说这里的 scale 约等于 set-face-attribute 中的 :height /100
+  (setq org-format-latex-options
+        `(:foreground default :background default :scale ,my/latex-preview-scale :html-foreground "Black" :html-background "Transparent" :html-scale ,my/latex-preview-scale :matchers ("begin" "$1" "$" "$$" "\\(" "\\["))) ;; 增大公式预览的图片大小
 ```
 
 
@@ -133,12 +133,12 @@ Org-mode 有一个专属的 `org-cdlatex-mode`, 打开后可以使用 CDLaTeX �
 `org-preview` 是一个非正式的包, 极大 **提高** 了数学公式预览速度 (异步编译, 有望加入未来版本的 Org).
 
 ```elisp
-;; 快速编译数学公式
-(use-package org-preview
-  :load-path "lisp/" ; 需要手动从网盘或 https://github.com/karthink/org-preview/ 下载 org-preview.el 文件, 并置于 ~/.emacs.d/lisp/ 文件夹下
-  ;; straight 用户用下一行取代上一行
-  ;; :straight (:host github :repo "karthink/org-preview")
-  :hook (org-mode . org-preview-mode))
+  ;; 快速编译数学公式
+  (use-package org-preview
+    :load-path "lisp/" ; 需要手动从网盘或 https://github.com/karthink/org-preview/ 下载 org-preview.el 文件, 并置于 ~/.emacs.d/lisp/ 文件夹下
+    ;; straight 用户用下一行取代上一行
+    ;; :straight (:host github :repo "karthink/org-preview")
+    :hook (org-mode . org-preview-mode))
 ```
 
 
@@ -150,8 +150,8 @@ Org-mode 有一个专属的 `org-cdlatex-mode`, 打开后可以使用 CDLaTeX �
 <!--listend-->
 
 ```elisp
-(use-package org-fragtog
-  :hook (org-mode . org-fragtog-mode))
+  (use-package org-fragtog
+    :hook (org-mode . org-fragtog-mode))
 ```
 
 
@@ -179,8 +179,8 @@ Org-mode 如何用上自定义的 LaTeX 宏命令?
 -   把常用的导言区命令放在 `~/texmf/tex/latex/` 目录下的 `mysymbol.sty` 文件中
 -   添加设置
     ```elisp
-    ;; 在 ~/texmf/tex/latex/ 下的 .sty 文件
-    (setq org-latex-packages-alist '(("" "mysymbol" t)))
+          ;; 在 ~/texmf/tex/latex/ 下的 .sty 文件
+          (setq org-latex-packages-alist '(("" "mysymbol" t)))
     ```
 
 原理:
@@ -207,56 +207,56 @@ Org-mode 和 CDLaTeX 的强强联合
 代码汇总
 
 ```elisp
-;; 你自己的 LaTeX 模式设置
-(defun my/latex-hook ()
-  (turn-on-cdlatex)
-  (turn-on-reftex))
+  ;; 你自己的 LaTeX 模式设置
+  (defun my/latex-hook ()
+    (turn-on-cdlatex)
+    (turn-on-reftex))
 
-(add-hook 'LaTeX-mode-hook 'my/latex-hook)
-(add-hook 'latex-mode-hook 'my/latex-hook)
-(add-hook 'org-mode-hook #'org-cdlatex-mode) ;; 在 org-mode 中使用 cdlatex
+  (add-hook 'LaTeX-mode-hook 'my/latex-hook)
+  (add-hook 'latex-mode-hook 'my/latex-hook)
+  (add-hook 'org-mode-hook #'org-cdlatex-mode) ;; 在 org-mode 中使用 cdlatex
 
-(setq org-highlight-latex-and-related '(native latex entities)) ;; LaTeX 语法高亮设置
-(setq org-pretty-entities t) ;; LaTeX 代码的 prettify
-(setq org-pretty-entities-include-sub-superscripts nil) ;; 不隐藏 LaTeX 的上下标更容易编辑
+  (setq org-highlight-latex-and-related '(native latex entities)) ;; LaTeX 语法高亮设置
+  (setq org-pretty-entities t) ;; LaTeX 代码的 prettify
+  (setq org-pretty-entities-include-sub-superscripts nil) ;; 不隐藏 LaTeX 的上下标更容易编辑
 
 
-;; org-cdlatex-mode 中使用 cdlatex 的自动匹配括号, 并把 $...$ 换成 \( ... \)
-(defun my/insert-inline-OCDL ()
-  (interactive)
-  (insert "\\(") ;; 把 "\\(" 和 "\\)" 替换成 "$" 就能实现输入成对 "$" 的功能.
-  (save-excursion (insert "\\)" )))
-(defun my/insert-bra-OCDL ()
-  (interactive)
-  (insert "(")
-  (save-excursion (insert ")" )))
-(defun my/insert-sq-bra-OCDL ()
-  (interactive)
-  (insert "[")
-  (save-excursion (insert "]" )))
-(defun my/insert-curly-bra-OCDL ()
-  (interactive)
-  (insert "{")
-  (save-excursion (insert "}" )))
+  ;; org-cdlatex-mode 中使用 cdlatex 的自动匹配括号, 并把 $...$ 换成 \( ... \)
+  (defun my/insert-inline-OCDL ()
+    (interactive)
+    (insert "\\(") ;; 把 "\\(" 和 "\\)" 替换成 "$" 就能实现输入成对 "$" 的功能.
+    (save-excursion (insert "\\)" )))
+  (defun my/insert-bra-OCDL ()
+    (interactive)
+    (insert "(")
+    (save-excursion (insert ")" )))
+  (defun my/insert-sq-bra-OCDL ()
+    (interactive)
+    (insert "[")
+    (save-excursion (insert "]" )))
+  (defun my/insert-curly-bra-OCDL ()
+    (interactive)
+    (insert "{")
+    (save-excursion (insert "}" )))
 
-(define-key org-cdlatex-mode-map (kbd "$") 'my/insert-inline-OCDL)
-(define-key org-cdlatex-mode-map (kbd "(") 'my/insert-bra-OCDL)
-(define-key org-cdlatex-mode-map (kbd "[") 'my/insert-square-bra-OCDL)
-(define-key org-cdlatex-mode-map (kbd "{") 'my/insert-curly-bra-OCDL)
+  (define-key org-cdlatex-mode-map (kbd "$") 'my/insert-inline-OCDL)
+  (define-key org-cdlatex-mode-map (kbd "(") 'my/insert-bra-OCDL)
+  (define-key org-cdlatex-mode-map (kbd "[") 'my/insert-square-bra-OCDL)
+  (define-key org-cdlatex-mode-map (kbd "{") 'my/insert-curly-bra-OCDL)
 
-(setq my/latex-preview-scale 2) ;; 一般来说这里的 scale 约等于 set-face-attribute 中的 :height /100
-(setq org-format-latex-options
-      `(:foreground default :background default :scale ,my/latex-preview-scale :html-foreground "Black" :html-background "Transparent" :html-scale ,my/latex-preview-scale :matchers ("begin" "$1" "$" "$$" "\\(" "\\["))) ;; 增大公式预览的图片大小
-;; 快速编译数学公式
-(use-package org-preview
-  :load-path "lisp/" ; 需要手动从网盘或 https://github.com/karthink/org-preview/ 下载 org-preview.el 文件, 并置于 ~/.emacs.d/lisp/ 文件夹下
-  ;; straight 用户用下一行取代上一行
-  ;; :straight (:host github :repo "karthink/org-preview")
-  :hook (org-mode . org-preview-mode))
+  (setq my/latex-preview-scale 2) ;; 一般来说这里的 scale 约等于 set-face-attribute 中的 :height /100
+  (setq org-format-latex-options
+        `(:foreground default :background default :scale ,my/latex-preview-scale :html-foreground "Black" :html-background "Transparent" :html-scale ,my/latex-preview-scale :matchers ("begin" "$1" "$" "$$" "\\(" "\\["))) ;; 增大公式预览的图片大小
+  ;; 快速编译数学公式
+  (use-package org-preview
+    :load-path "lisp/" ; 需要手动从网盘或 https://github.com/karthink/org-preview/ 下载 org-preview.el 文件, 并置于 ~/.emacs.d/lisp/ 文件夹下
+    ;; straight 用户用下一行取代上一行
+    ;; :straight (:host github :repo "karthink/org-preview")
+    :hook (org-mode . org-preview-mode))
 
-(use-package org-fragtog
-  :hook (org-mode . org-fragtog-mode))
+  (use-package org-fragtog
+    :hook (org-mode . org-fragtog-mode))
 
-;; 在 ~/texmf/tex/latex/ 下的 .sty 文件
-(setq org-latex-packages-alist '(("" "mysymbol" t)))
+  ;; 在 ~/texmf/tex/latex/ 下的 .sty 文件
+  (setq org-latex-packages-alist '(("" "mysymbol" t)))
 ```

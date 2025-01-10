@@ -38,8 +38,8 @@ weight = 20
         -   批注小标题优化
     -   如果安装了 `use-package`, 可将以下代码加入 `init.el` 自动安装
         ```elisp
-        (use-package org-noter
-          :ensure t )
+                  (use-package org-noter
+                    :ensure t )
         ```
 
 
@@ -107,7 +107,7 @@ weight = 20
 ### 默认笔记目录 {#默认笔记目录}
 
 ```elisp
-(setq org-noter-notes-search-path '("your/path/to/note-directory/" "2nd-path"  "3rd-path"))
+  (setq org-noter-notes-search-path '("your/path/to/note-directory/" "2nd-path"  "3rd-path"))
 ```
 
 设置后, 从 pdf 文件中使用 <kbd>org-noter</kbd> 命令会自动在上述目录中寻找与文件名同名的 `.org` 笔记文件.
@@ -117,21 +117,21 @@ weight = 20
 -   (推荐) 笔记在不同的 `.org` 文件中
 -   所有笔记在同一个 `.org` 文件中: 将上述变量设置为一个文件名
     ```elisp
-    (setq org-noter-notes-search-path '("your/path/to/notes.org"))
+          (setq org-noter-notes-search-path '("your/path/to/notes.org"))
     ```
 
 
 ### 自动保存上次位置 {#自动保存上次位置}
 
 ```elisp
-(setq org-noter-auto-save-last-location t)
+  (setq org-noter-auto-save-last-location t)
 ```
 
 
 ### 选中文字后插入笔记自动高亮 {#选中文字后插入笔记自动高亮}
 
 ```elisp
-(setq org-noter-highlight-selected-text t)
+  (setq org-noter-highlight-selected-text t)
 ```
 
 这是全局设置. 如果想对某一条笔记临时启用或禁用, 可以使用 <kbd>C-u</kbd> 前缀.
@@ -147,22 +147,22 @@ weight = 20
 修改长/短文本标准:
 
 ```elisp
-(setq org-noter-max-short-selected-text-length 20) ;; 默认为 80
+  (setq org-noter-max-short-selected-text-length 20) ;; 默认为 80
 ```
 
 修改短文本默认标题:
 
 ```elisp
-(setq org-noter-default-heading-title "第 $p$ 页的笔记")
+  (setq org-noter-default-heading-title "第 $p$ 页的笔记")
 ```
 
 
 ### 修改快捷键 {#修改快捷键}
 
 ```elisp
-(global-set-key (kbd "C-c n n") 'org-noter) ;; 与 org-roam 配合
-(define-key org-noter-doc-mode-map (kbd "e") 'org-noter-insert-note) ;; 加入左手键位
-(define-key org-noter-doc-mode-map (kbd "M-e") 'org-noter-insert-precise-note) ;; 加入左手键位
+  (global-set-key (kbd "C-c n n") 'org-noter) ;; 与 org-roam 配合
+  (define-key org-noter-doc-mode-map (kbd "e") 'org-noter-insert-note) ;; 加入左手键位
+  (define-key org-noter-doc-mode-map (kbd "M-e") 'org-noter-insert-precise-note) ;; 加入左手键位
 ```
 
 
@@ -171,30 +171,30 @@ weight = 20
 自定义设置的全部代码
 
 ```elisp
-(setq org-noter-notes-search-path '("your/path/to/note-directory/")) ;; 默认笔记路径
-(setq org-noter-auto-save-last-location t) ;; 自动保存上次阅读位置
-(setq org-noter-max-short-selected-text-length 20) ;; 默认为 80
-(setq org-noter-default-heading-title "第 $p$ 页的笔记") ;; 默认短标题格式
-(global-set-key (kbd "C-c n n") 'org-noter) ;; 与 org-roam 配合
-(define-key org-noter-doc-mode-map (kbd "e") 'org-noter-insert-note) ;; 加入左手键位
-(define-key org-noter-doc-mode-map (kbd "M-e") 'org-noter-insert-precise-note) ;; 加入左手键位
+  (setq org-noter-notes-search-path '("your/path/to/note-directory/")) ;; 默认笔记路径
+  (setq org-noter-auto-save-last-location t) ;; 自动保存上次阅读位置
+  (setq org-noter-max-short-selected-text-length 20) ;; 默认为 80
+  (setq org-noter-default-heading-title "第 $p$ 页的笔记") ;; 默认短标题格式
+  (global-set-key (kbd "C-c n n") 'org-noter) ;; 与 org-roam 配合
+  (define-key org-noter-doc-mode-map (kbd "e") 'org-noter-insert-note) ;; 加入左手键位
+  (define-key org-noter-doc-mode-map (kbd "M-e") 'org-noter-insert-precise-note) ;; 加入左手键位
 ```
 
 将上述代码写在 `use-package` 代码块中:
 
 ```elisp
-(use-package org-noter
-  :ensure t
-  :custom
-  (org-noter-notes-search-path '("your/path/to/note-directory/")) ;; 默认笔记路径
-  (org-noter-auto-save-last-location t) ;; 自动保存上次阅读位置
-  (org-noter-max-short-selected-text-length 20) ;; 默认为 80
-  (org-noter-default-heading-title "第 $p$ 页的笔记") ;; 默认短标题格式
-  :bind
-  (("C-c n n" . org-noter) ;; 与 org-roam 配合
-   :map org-noter-doc-mode-map ;; 加入左手键位
-   ("e" . org-noter-insert-note)
-   ("M-e" . org-noter-insert-precise-note)))
+  (use-package org-noter
+    :ensure t
+    :custom
+    (org-noter-notes-search-path '("your/path/to/note-directory/")) ;; 默认笔记路径
+    (org-noter-auto-save-last-location t) ;; 自动保存上次阅读位置
+    (org-noter-max-short-selected-text-length 20) ;; 默认为 80
+    (org-noter-default-heading-title "第 $p$ 页的笔记") ;; 默认短标题格式
+    :bind
+    (("C-c n n" . org-noter) ;; 与 org-roam 配合
+     :map org-noter-doc-mode-map ;; 加入左手键位
+     ("e" . org-noter-insert-note)
+     ("M-e" . org-noter-insert-precise-note)))
 ```
 
 
@@ -203,17 +203,17 @@ weight = 20
 `org-mode` 中与 LaTex 有关的设置
 
 ```elisp
-  (use-package org
-    :defer t ;; 延迟加载
-    :custom
-    (org-highlight-latex-and-related '(native latex entities)) ;; LaTeX 高亮设置
-    (org-pretty-entities t) ;; LaTeX 代码的 prettify
-    (org-pretty-entities-include-sub-superscripts nil) ;; 不隐藏 LaTeX 的上下标更容易编辑
-    (org-format-latex-options
-     '(:foreground default :background default :scale 1.8 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers ("begin" "$1" "$" "$$" "\\(" "\\["))) ;; 增大公式预览的图片大小
-    :config
-    (add-hook 'org-mode-hook #'org-cdlatex-mode) ;; 打开 cdlatex
-)
+    (use-package org
+      :defer t ;; 延迟加载
+      :custom
+      (org-highlight-latex-and-related '(native latex entities)) ;; LaTeX 高亮设置
+      (org-pretty-entities t) ;; LaTeX 代码的 prettify
+      (org-pretty-entities-include-sub-superscripts nil) ;; 不隐藏 LaTeX 的上下标更容易编辑
+      (org-format-latex-options
+       '(:foreground default :background default :scale 1.8 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers ("begin" "$1" "$" "$$" "\\(" "\\["))) ;; 增大公式预览的图片大小
+      :config
+      (add-hook 'org-mode-hook #'org-cdlatex-mode) ;; 打开 cdlatex
+  )
 ```
 
 `CDLaTeX` 的设置可以参考我的视频
@@ -238,35 +238,35 @@ weight = 20
 -   `Linux` / `MacOS` (未测试)
     用以下 `use-package` 代码安装及设置
     ```elisp
-    (use-package org-download
-      :ensure t ;; 自动从 melpa 上安装
-      :defer t ;; 延迟加载
-      :bind
-      (:map org-mode-map
-            ("C-M-y" . org-download-clipboard)) ;; 绑定从剪贴版粘贴截图的快捷键
-      :custom
-      (org-download-heading-lvl 1) ;; 用一级标题给截图文件命名
-      :config
-      (setq-default org-download-image-dir "./img")) ;; 用同级 ./img 目录放置截图文件
+          (use-package org-download
+            :ensure t ;; 自动从 melpa 上安装
+            :defer t ;; 延迟加载
+            :bind
+            (:map org-mode-map
+                  ("C-M-y" . org-download-clipboard)) ;; 绑定从剪贴版粘贴截图的快捷键
+            :custom
+            (org-download-heading-lvl 1) ;; 用一级标题给截图文件命名
+            :config
+            (setq-default org-download-image-dir "./img")) ;; 用同级 ./img 目录放置截图文件
     ```
 -   `Windows`
     -   需要安装 `ImageMagick`, 并保证 `magick.exe` 在 `PATH` 变量的路径中
         用 `msys2` 安装
         ```sh
-        pacman -S mingw-w64-x86_64-imagemagick
+                  pacman -S mingw-w64-x86_64-imagemagick
         ```
     -   从[这里](https://github.com/abo-abo/org-download/blob/acc9622968cb4d0027cd3478c374191597c18ea4/org-download.el%20%E6%88%96)或网盘下载 `org-download.el` 文件, 置于你的 `.emacs.d` 文件夹合适的路径中 (如 `~/.emacs.d/lisp/`)
     -   使用以下 `use-package` 代码及设置
         ```elisp
-        (use-package org-download
-          :ensure async ;; 因为不是从melpa安装, 需要手动保证async安装
-          :defer t ;; 延迟加载
-          :load-path "~/.emacs.d/lisp/"
-          :bind
-          (:map org-mode-map
-                ("C-M-y" . org-download-clipboard)) ;; 绑定从剪贴版粘贴截图的快捷键
-          :custom
-          (org-download-heading-lvl 1) ;; 用一级标题给截图文件命名
-          :config
-          (setq-default org-download-image-dir "./img")) ;; 用同级 ./img 目录放置截图文件
+                  (use-package org-download
+                    :ensure async ;; 因为不是从melpa安装, 需要手动保证async安装
+                    :defer t ;; 延迟加载
+                    :load-path "~/.emacs.d/lisp/"
+                    :bind
+                    (:map org-mode-map
+                          ("C-M-y" . org-download-clipboard)) ;; 绑定从剪贴版粘贴截图的快捷键
+                    :custom
+                    (org-download-heading-lvl 1) ;; 用一级标题给截图文件命名
+                    :config
+                    (setq-default org-download-image-dir "./img")) ;; 用同级 ./img 目录放置截图文件
         ```

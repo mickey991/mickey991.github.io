@@ -46,13 +46,6 @@ CDLaTeX 内置了一些可补全的命令, 可以在 `cdlatex-command-alist-defa
 
 `equ` + <kbd>Tab</kbd> 插入如下模板:
 
-```latex
-\begin{equation}
-  \label{eq:NNN}
-  ?
-\end{equation}
-```
-
 其中, `\label{eq:XXX}` 是 `CDLaTeX` 调用 `reftex` 自动生成的数字标签.
 
 类似的数学公式环境还有如
@@ -64,12 +57,6 @@ CDLaTeX 内置了一些可补全的命令, 可以在 `cdlatex-command-alist-defa
 #### 列表环境 {#列表环境}
 
 `enu` + <kbd>Tab</kbd> 插入
-
-```latex
-\begin{enumerate}
-\item
-\end{enumerate}
-```
 
 此时, 在 `enumerate` 环境中:
 
@@ -132,13 +119,6 @@ CDLaTeX 内置了一些可补全的命令, 可以在 `cdlatex-command-alist-defa
 
 例子: `case` + <kbd>Tab</kbd> 插入
 
-```latex
-\begin{cases}
-? & \\
- &
-\end{cases}
-```
-
 -   keyword: `case`
 -   Docstring: `insert \begin{cases} \end{cases}`
 -   Replacement: 输入框内用 <kbd>C-j</kbd> 换行, 然后正常输入需要替换的文本即可
@@ -158,12 +138,6 @@ CDLaTeX 内置了一些可补全的命令, 可以在 `cdlatex-command-alist-defa
 两种模板略有不同. 这第二种插入环境的方法就是用 <kbd>Tab</kbd> 补全触发第二个命令.
 
 例子: `des` + <kbd>Tab</kbd> 插入 `description` 环境
-
-```latex
-\begin{description}
-\item[?]
-\end{description}
-```
 
 -   keyword: `des`
 -   Docstring: `insert \begin{description} \end{description}`
@@ -187,62 +161,62 @@ CDLaTeX 内置了一些可补全的命令, 可以在 `cdlatex-command-alist-defa
 我的 `cdlatex-command-alist` 变量, 仅做抛砖引玉之用.
 
 ```elisp
-(setq cdlatex-command-alist
-      '(("eq" "insert pairs of \\[ \\]" "\\[ ? \\]" cdlatex-position-cursor nil t t)
-        ("Big(" "insert Big ()" "\\Big( ? \\Big" cdlatex-position-cursor nil nil t)
-        ("Big[" "insert Big[" "\\Big[ ? \\Big" cdlatex-position-cursor nil nil t)
-        ("Big\\|" "insert Big \\|" "\\Big\\| ? \\Big\\|" cdlatex-position-cursor nil nil t)
-        ("Big{" "insert Big{}" "\\Big\\{ ? \\Big\\" cdlatex-position-cursor nil nil t)
-        ("Big|" "insert Big|" "\\Big| ? \\Big|" cdlatex-position-cursor nil nil t)
-        ("aali" "insert equation" "\\left\\{\\begin{aligned}\n? \n\\end{aligned}\\right." cdlatex-position-cursor nil nil t)
-        ("alb" "Insert beamer alert block with overlay" "\\begin{alertblock}<+->{ ? } \n\n\\end{alertblock}" cdlatex-position-cursor nil t nil)
-        ("alb*" "Insert beamer alert block without overlay" "\\begin{alertblock}{ ? } \n\n\\end{alertblock}" cdlatex-position-cursor nil t nil)
-        ("big(" "insert big ()" "\\big( ? \\big" cdlatex-position-cursor nil nil t)
-        ("big[" "insert big []" "\\big[ ? \\big" cdlatex-position-cursor nil nil t)
-        ("big\\|" "insert big \\|" "\\big\\| ? \\big\\|" cdlatex-position-cursor nil nil t)
-        ("bigg(" "insert bigg()" "\\bigg( ? \\bigg" cdlatex-position-cursor nil nil t)
-        ("bigg[" "insert bigg[" "\\bigg[ ? \\bigg" cdlatex-position-cursor nil nil t)
-        ("bigg\\|" "insert bigg\\|" "\\bigg\\| ? \\bigg\\|" cdlatex-position-cursor nil nil t)
-        ("bigg{" "insert bigg{}" "\\bigg\\{ ? \\bigg\\" cdlatex-position-cursor nil nil t)
-        ("bigg|" "insert bigg|" "\\bigg| ? \\bigg|" cdlatex-position-cursor nil nil t)
-        ("big{" "insert big {}" "\\big\\{ ? \\big\\" cdlatex-position-cursor nil nil t)
-        ("big|" "insert big|" "\\big| ? \\big|" cdlatex-position-cursor nil nil t)
-        ("blo" "Insert beamer block with overlay" "\\begin{block}<+->{ ? } \n\n\\end{block}" cdlatex-position-cursor nil t nil)
-        ("blo*" "Insert beamer block WITHOUT overlay" "\\begin{block}{ ? } \n\n\\end{block}" cdlatex-position-cursor nil t nil)
-        ("bn" "binomial" "\\binom{?}{}" cdlatex-position-cursor nil nil t)
-        ("capl" "insert \\bigcap\\limits_{}^{}" "\\bigcap\\limits_{?}^{}" cdlatex-position-cursor nil nil t)
-        ("case" "insert cases" "\\begin{cases}\n? & \\\\\n &\n\\end{cases}" cdlatex-position-cursor nil nil t)
-        ("cd" "insert cdots" "\\cdots" nil nil t t)
-        ("cupl" "insert \\bigcup\\limits_{}^{}" "\\bigcup\\limits_{?}^{}" cdlatex-position-cursor nil nil t)
-        ("dd" "insert ddots" "\\ddots" nil nil t t)
-        ("def" "insert definition env" "" cdlatex-environment ("definition") t nil)
-        ("des" "insert description" "" cdlatex-environment ("description") t nil)
-        ("enu*" "insert enu" "\\begin{enumerate}\n\\item ?\n\\end{enumerate}" cdlatex-position-cursor nil t nil)
-        ("equ*" "insert unlabel equation" "" cdlatex-environment ("equation*") t nil)
-        ("exb" "Insert beamer example block with overlay" "\\begin{exampleblock}<+->{ ? } \n\n\\end{exampleblock}" cdlatex-position-cursor nil t nil)
-        ("exb*" "Insert beamer example block without overlay" "\\begin{exampleblock}{ ? } \n\n\\end{exampleblock}" cdlatex-position-cursor nil t nil)
-        ("exe" "Insert exercise" "\\begin{exercise}\n? \n\\end{exercise}" cdlatex-position-cursor nil t nil)
-        ("fra" "insert frame (for beamer)" "" cdlatex-environment ("frame") t nil)
-        ("hhl" "insert \\ \\hline" "\\\\ \\hline" ignore nil t nil)
-        ("hl" "insert \\hline" "\\hline" ignore nil t nil)
-        ("ipenu" "insert in paragraph enumerate" "" cdlatex-environment ("inparaenum") t nil)
-        ("ipite" "insert in paragraph itemize" "" cdlatex-environment ("inparaitem") t nil)
-        ("it" "insert \\item" "\\item?" cdlatex-position-cursor nil t nil)
-        ("ld" "insert ldots" "\\ldots" nil nil t t)
-        ("lem" "insert lemma env" "" cdlatex-environment ("lemma") t nil)
-        ("liml" "insert \\lim\\limits_{}" "\\lim\\limits_{?}" cdlatex-position-cursor nil nil t)
-        ("lr<" "insert bra-ket" "\\langle ? \\rangle" cdlatex-position-cursor nil nil t)
-        ("myenu" "insert in my enumerate for beamer" "" cdlatex-environment ("myenumerate") t nil)
-        ("myite" "insert in my itemize for beamer" "" cdlatex-environment ("myitemize") t nil)
-        ("ons" "" "\\onslide<?>{ }" cdlatex-position-cursor nil t t)
-        ("pa" "insert pause" "\\pause" ignore nil t nil)
-        ("pro" "insert proof env" "" cdlatex-environment ("proof") t nil)
-        ("prodl" "insert \\prod\\limits_{}^{}" " \\prod\\limits_{?}^{}" cdlatex-position-cursor nil nil t)
-        ("prop" "insert proposition" "" cdlatex-environment ("proposition") t nil)
-        ("se" "insert \\{\\}" "\\{ ? \\}" cdlatex-position-cursor nil nil t)
-        ("spl" "insert split" "" cdlatex-environment ("split") nil t)
-        ("st" "stackrel" "\\stackrel{?}{}" cdlatex-position-cursor nil nil t)
-        ("te" "insert text" "\\text{?}" cdlatex-position-cursor nil nil t)
-        ("thm" "insert theorem env" "" cdlatex-environment ("theorem") t nil)
-        ("vd" "insert vdots" "\\vdots" nil nil t t)))
+  (setq cdlatex-command-alist
+        '(("eq" "insert pairs of \\[ \\]" "\\[ ? \\]" cdlatex-position-cursor nil t t)
+          ("Big(" "insert Big ()" "\\Big( ? \\Big" cdlatex-position-cursor nil nil t)
+          ("Big[" "insert Big[" "\\Big[ ? \\Big" cdlatex-position-cursor nil nil t)
+          ("Big\\|" "insert Big \\|" "\\Big\\| ? \\Big\\|" cdlatex-position-cursor nil nil t)
+          ("Big{" "insert Big{}" "\\Big\\{ ? \\Big\\" cdlatex-position-cursor nil nil t)
+          ("Big|" "insert Big|" "\\Big| ? \\Big|" cdlatex-position-cursor nil nil t)
+          ("aali" "insert equation" "\\left\\{\\begin{aligned}\n? \n\\end{aligned}\\right." cdlatex-position-cursor nil nil t)
+          ("alb" "Insert beamer alert block with overlay" "\\begin{alertblock}<+->{ ? } \n\n\\end{alertblock}" cdlatex-position-cursor nil t nil)
+          ("alb*" "Insert beamer alert block without overlay" "\\begin{alertblock}{ ? } \n\n\\end{alertblock}" cdlatex-position-cursor nil t nil)
+          ("big(" "insert big ()" "\\big( ? \\big" cdlatex-position-cursor nil nil t)
+          ("big[" "insert big []" "\\big[ ? \\big" cdlatex-position-cursor nil nil t)
+          ("big\\|" "insert big \\|" "\\big\\| ? \\big\\|" cdlatex-position-cursor nil nil t)
+          ("bigg(" "insert bigg()" "\\bigg( ? \\bigg" cdlatex-position-cursor nil nil t)
+          ("bigg[" "insert bigg[" "\\bigg[ ? \\bigg" cdlatex-position-cursor nil nil t)
+          ("bigg\\|" "insert bigg\\|" "\\bigg\\| ? \\bigg\\|" cdlatex-position-cursor nil nil t)
+          ("bigg{" "insert bigg{}" "\\bigg\\{ ? \\bigg\\" cdlatex-position-cursor nil nil t)
+          ("bigg|" "insert bigg|" "\\bigg| ? \\bigg|" cdlatex-position-cursor nil nil t)
+          ("big{" "insert big {}" "\\big\\{ ? \\big\\" cdlatex-position-cursor nil nil t)
+          ("big|" "insert big|" "\\big| ? \\big|" cdlatex-position-cursor nil nil t)
+          ("blo" "Insert beamer block with overlay" "\\begin{block}<+->{ ? } \n\n\\end{block}" cdlatex-position-cursor nil t nil)
+          ("blo*" "Insert beamer block WITHOUT overlay" "\\begin{block}{ ? } \n\n\\end{block}" cdlatex-position-cursor nil t nil)
+          ("bn" "binomial" "\\binom{?}{}" cdlatex-position-cursor nil nil t)
+          ("capl" "insert \\bigcap\\limits_{}^{}" "\\bigcap\\limits_{?}^{}" cdlatex-position-cursor nil nil t)
+          ("case" "insert cases" "\\begin{cases}\n? & \\\\\n &\n\\end{cases}" cdlatex-position-cursor nil nil t)
+          ("cd" "insert cdots" "\\cdots" nil nil t t)
+          ("cupl" "insert \\bigcup\\limits_{}^{}" "\\bigcup\\limits_{?}^{}" cdlatex-position-cursor nil nil t)
+          ("dd" "insert ddots" "\\ddots" nil nil t t)
+          ("def" "insert definition env" "" cdlatex-environment ("definition") t nil)
+          ("des" "insert description" "" cdlatex-environment ("description") t nil)
+          ("enu*" "insert enu" "\\begin{enumerate}\n\\item ?\n\\end{enumerate}" cdlatex-position-cursor nil t nil)
+          ("equ*" "insert unlabel equation" "" cdlatex-environment ("equation*") t nil)
+          ("exb" "Insert beamer example block with overlay" "\\begin{exampleblock}<+->{ ? } \n\n\\end{exampleblock}" cdlatex-position-cursor nil t nil)
+          ("exb*" "Insert beamer example block without overlay" "\\begin{exampleblock}{ ? } \n\n\\end{exampleblock}" cdlatex-position-cursor nil t nil)
+          ("exe" "Insert exercise" "\\begin{exercise}\n? \n\\end{exercise}" cdlatex-position-cursor nil t nil)
+          ("fra" "insert frame (for beamer)" "" cdlatex-environment ("frame") t nil)
+          ("hhl" "insert \\ \\hline" "\\\\ \\hline" ignore nil t nil)
+          ("hl" "insert \\hline" "\\hline" ignore nil t nil)
+          ("ipenu" "insert in paragraph enumerate" "" cdlatex-environment ("inparaenum") t nil)
+          ("ipite" "insert in paragraph itemize" "" cdlatex-environment ("inparaitem") t nil)
+          ("it" "insert \\item" "\\item?" cdlatex-position-cursor nil t nil)
+          ("ld" "insert ldots" "\\ldots" nil nil t t)
+          ("lem" "insert lemma env" "" cdlatex-environment ("lemma") t nil)
+          ("liml" "insert \\lim\\limits_{}" "\\lim\\limits_{?}" cdlatex-position-cursor nil nil t)
+          ("lr<" "insert bra-ket" "\\langle ? \\rangle" cdlatex-position-cursor nil nil t)
+          ("myenu" "insert in my enumerate for beamer" "" cdlatex-environment ("myenumerate") t nil)
+          ("myite" "insert in my itemize for beamer" "" cdlatex-environment ("myitemize") t nil)
+          ("ons" "" "\\onslide<?>{ }" cdlatex-position-cursor nil t t)
+          ("pa" "insert pause" "\\pause" ignore nil t nil)
+          ("pro" "insert proof env" "" cdlatex-environment ("proof") t nil)
+          ("prodl" "insert \\prod\\limits_{}^{}" " \\prod\\limits_{?}^{}" cdlatex-position-cursor nil nil t)
+          ("prop" "insert proposition" "" cdlatex-environment ("proposition") t nil)
+          ("se" "insert \\{\\}" "\\{ ? \\}" cdlatex-position-cursor nil nil t)
+          ("spl" "insert split" "" cdlatex-environment ("split") nil t)
+          ("st" "stackrel" "\\stackrel{?}{}" cdlatex-position-cursor nil nil t)
+          ("te" "insert text" "\\text{?}" cdlatex-position-cursor nil nil t)
+          ("thm" "insert theorem env" "" cdlatex-environment ("theorem") t nil)
+          ("vd" "insert vdots" "\\vdots" nil nil t t)))
 ```
