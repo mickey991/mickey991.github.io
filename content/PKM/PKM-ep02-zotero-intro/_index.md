@@ -1,7 +1,7 @@
 +++
 title = "Zotero 文献管理系统简介"
 draft = false
-disableMathJax = false
+math = true
 +++
 
 ## 软件界面 {#软件界面}

@@ -1,6 +1,6 @@
 #+HUGO_BASE_DIR: .
 #+options: creator:nil author:nil
-#+hugo_custom_front_matter: :disableMathJax false
+#+hugo_custom_front_matter: :math true
 
 * 小米的主页
 :PROPERTIES:

@@ -1,7 +1,7 @@
 +++
 title = "Emacs 终生个人知识库"
 draft = false
-disableMathJax = false
+math = true
 +++
 
 -   第 0 节: [什么是双链笔记与 org-roam 初体验]({{< relref "PKM-ep00-intro-org-roam" >}}) ([视频](https://www.bilibili.com/video/BV1qV4y1Z7h9/))
