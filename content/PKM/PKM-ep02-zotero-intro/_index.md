@@ -1,5 +1,5 @@
 +++
-title = "Zotero文献管理系统简介"
+title = "Zotero 文献管理系统简介"
 draft = false
 disableMathJax = false
 +++
@@ -20,16 +20,16 @@ disableMathJax = false
 
 ## 向 Zotero 中加入文献 {#向-zotero-中加入文献}
 
-方法1
+方法 1
 : 利用浏览器的 `Zotero Connector` 插件 ([下载链接](https://www.zotero.org/download/))
     -   支持: `Edge`, `Chrome`, `FireFox`, `Safari`
     -   自动读取文献信息, 允许时自动下载 `pdf` 全文
-    -   10年前很有用的功能: 网页快照, 先存再看
+    -   10 年前很有用的功能: 网页快照, 先存再看
 
-方法2
+方法 2
 : 利用文件标识码, 如 `DOI`, `ISBN` 或者 `Arxiv ID` 等
 
-方法3
+方法 3
 : 从本地 `pdf` 文件创建. `Zotero` 会尝试获取文献信息
 
 
@@ -71,8 +71,8 @@ disableMathJax = false
 
 -   引用键名格式
     -   我的设置: <kbd>authorsAlpha+year+shorttitle(3,3)</kbd>
-        -   <kbd>authorsAlpha</kbd>: 采用 `bibtex` 中的 `alpha` 风格; 单作者取姓的前3字母, 2个以上取首字母
-        -   <kbd>year</kbd>: 4位数字年份
+        -   <kbd>authorsAlpha</kbd>: 采用 `bibtex` 中的 `alpha` 风格; 单作者取姓的前 3 字母, 2 个以上取首字母
+        -   <kbd>year</kbd>: 4 位数字年份
         -   <kbd>shorttitle(m,n)</kbd>: 标题前 m 个单词, 其中前 n 个单词首字母大写
     -   在 <https://retorque.re/zotero-better-bibtex/citing/> 有更多设置
 -   保证键名不重复: `keey citekey unique` -&gt; `across all libraries`
@@ -83,7 +83,7 @@ disableMathJax = false
 
 ## `ZotFile` 同步设置 {#zotfile-同步设置}
 
--   `Zotero` 登录后有 500M 的同步空间, 因此最好有第3方网盘同步 `pdf` 文件
+-   `Zotero` 登录后有 500M 的同步空间, 因此最好有第 3 方网盘同步 `pdf` 文件
     -   `Zotero` 帐号负责同步文献信息
     -   `ZotFlie` 负责用网盘同步 `pdf` 文件
     -   `Better BibTeX` 的键名无法同步, 但是相同规则的键名是一样的.

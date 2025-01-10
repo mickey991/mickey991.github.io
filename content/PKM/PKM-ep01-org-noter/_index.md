@@ -32,8 +32,8 @@ weight = 20
 -   `pdf-tools`: 阅读 `pdf` 必备, 参考往期视频:
     [【Emacs+LaTeX教程】Emacs最强内置pdf阅读功能pdf-tools简介](https://www.bilibili.com/video/BV1pg4y1s7Z9/)
 -   `org-noter`: <kbd>M-x package-list-package</kbd> 安装 `Melpa` 最新版
-    -   2023年3月更新内容
-        -   2维笔记定位
+    -   2023 年 3 月更新内容
+        -   2 维笔记定位
         -   `djvu`, `epub` 文件支持
         -   批注小标题优化
     -   如果安装了 `use-package`, 可将以下代码加入 `init.el` 自动安装
@@ -78,15 +78,15 @@ weight = 20
 
 ### 插入笔记 {#插入笔记}
 
-`org-noter` 通过记录页码及位置保持笔记文件与 `pdf` 文件的同步. 根据定位的精度, 在 `pdf` 界面, 有3种插入笔记方式
+`org-noter` 通过记录页码及位置保持笔记文件与 `pdf` 文件的同步. 根据定位的精度, 在 `pdf` 界面, 有 3 种插入笔记方式
 
-方法1
+方法 1
 : 按 <kbd>i</kbd> 在当前页插入笔记 (page note)
 
-方法2
+方法 2
 : 按 <kbd>M-i</kbd> 在鼠标点击位置插入笔记 (precise note)
 
-方法3
+方法 3
 : 选中文字后, 按 <kbd>&lt;tab&gt;</kbd> / <kbd>M-i</kbd> 或 <kbd>i</kbd> 在选中文字位置插入笔记
 
 在笔记中还可以使用 `CDLaTeX` 编辑数学公式, 以及用 `org-download` 插入截图. 请到教程的最后查看这些功能的基本设置.

@@ -11,10 +11,10 @@
 大家好, 我是 B 站 UP 主[[https://space.bilibili.com/314984514][金色飞贼小米]]. 这是我的个人主页.
 
 我是一名科研工作者, 在业余时间制作了一些 [[https://www.gnu.org/s/emacs/][Emacs]] 和 LaTeX 的教程, 希望能对大家有所帮助.
-** [[id:easy-latex-writing][省时省力写 LaTeX 系列]]
+** [[#easy-latex-writing][省时省力写 LaTeX 系列]]
 本系列讲解 Emacs 中利用 [[https://www.gnu.org/s/auctex][AucTeX]] + [[https://github.com/cdominik/cdlatex][CDLaTeX]]  等插件省时省力完成 LaTeX 写作, 轻松使用 LaTeX 做即时笔记. 
 
-** [[id:PKM-main][Emacs 上搭建你的终生个人知识库]]
+** [[#PKM-main][Emacs 上搭建你的终生个人知识库]]
 本系列讲解如何围绕 [[https://www.orgroam.com/][Org-roam]] 在 Emacs 上实现双链笔记与搭建个人知识库.
 
 * Series introduction page
@@ -31,11 +31,11 @@
 :END:
 
 - 引子: 五分钟说服你用 Emacs 写 LaTeX ([[https://www.bilibili.com/video/BV1Xk4y1a7Gp/][视频]])
-- 第1节: [[id:emacs-setup][Emacs 快速配置与插件管理]] ([[https://www.bilibili.com/video/BV1nm4y117gn/][视频]])
-- 第2节: [[id:easy-latex-writing-ep02-math-symbol-and-modify][cdlatex 中快速输入数学符号和字体与自定义设置]] ([[https://www.bilibili.com/video/BV1qa4y1u7Cd/][视频]])
-- 第3节: [[id:easy-latex-writing-ep03-tab-completion][Tab 补全快速插入LaTeX代码]] ([[https://www.bilibili.com/video/BV1Rb421J7eS][视频]])
-- 附录1: [[id:easy-latex-writing-ap01-pdf-tools][Emacs最强内置pdf阅读器 pdf-tools 简介]] ([[https://www.bilibili.com/video/BV1pg4y1s7Z9/][视频]])
-- 附录2: [[id:easy-latex-writing-ap02-prettify][如何优雅地预览公式]] ([[https://www.bilibili.com/video/BV1tv4y1V7xY/][视频]])
+- 第 1 节: [[#emacs-setup][Emacs 快速配置与插件管理]] ([[https://www.bilibili.com/video/BV1nm4y117gn/][视频]])
+- 第 2 节: [[#easy-latex-writing-ep02-math-symbol-and-modify][cdlatex 中快速输入数学符号和字体与自定义设置]] ([[https://www.bilibili.com/video/BV1qa4y1u7Cd/][视频]])
+- 第 3 节: [[#easy-latex-writing-ep03-tab-completion][Tab 补全快速插入LaTeX代码]] ([[https://www.bilibili.com/video/BV1Rb421J7eS][视频]])
+- 附录 1: [[#easy-latex-writing-ap01-pdf-tools][Emacs最强内置pdf阅读器 pdf-tools 简介]] ([[https://www.bilibili.com/video/BV1pg4y1s7Z9/][视频]])
+- 附录 2: [[#easy-latex-writing-ap02-prettify][如何优雅地预览公式]] ([[https://www.bilibili.com/video/BV1tv4y1V7xY/][视频]])
 ** Emacs 终生个人知识库
 :PROPERTIES:
 :EXPORT_HUGO_BUNDLE: PKM
@@ -43,10 +43,10 @@
 :CUSTOM_ID: PKM-main
 :END:
 
-- 第0节: [[id:PKM-ep00-intro-org-roam][什么是双链笔记与 org-roam 初体验]] ([[https://www.bilibili.com/video/BV1qV4y1Z7h9/][视频]])
-- 第1节: [[id:PKM-ep01-org-noter][PDF 读书笔记插件 org-noter]] ([[https://www.bilibili.com/video/BV1Tc411s7Tu/][视频]])
-- 第1节: [[id:PKM-ep02-zotero-intro][Zotero文献管理系统简介]] ([[https://www.bilibili.com/video/BV1Lc411J7gQ/][视频]])
-- 第3节: [[id:PKM-ep03-zotero-org-noter-integration][用org-roam管理Zotero文献笔记]] ([[https://www.bilibili.com/video/BV1Mg4y1j75u/][视频]])
+- 第 0 节: [[#PKM-ep00-intro-org-roam][什么是双链笔记与 org-roam 初体验]] ([[https://www.bilibili.com/video/BV1qV4y1Z7h9/][视频]])
+- 第 1 节: [[#PKM-ep01-org-noter][PDF 读书笔记插件 org-noter]] ([[https://www.bilibili.com/video/BV1Tc411s7Tu/][视频]])
+- 第 1 节: [[#PKM-ep02-zotero-intro][Zotero文献管理系统简介]] ([[https://www.bilibili.com/video/BV1Lc411J7gQ/][视频]])
+- 第 3 节: [[#PKM-ep03-zotero-org-noter-integration][用org-roam管理Zotero文献笔记]] ([[https://www.bilibili.com/video/BV1Mg4y1j75u/][视频]])
      
 
 * 省时省力写 LaTeX
@@ -100,7 +100,7 @@ Windows 下安装 Emacs 有两种常见方法. 第一种是安装 MSYS2 ([[https
 交换 ~Ctrl~ 与 ~Caps Lock~ 的方法在不同系统上也不一样.
 ***** Windows
 Windows 中更改键位可以通过注册表或者最新的 =PowerToys= 软件.
-****** 注册表方法 (适用于Win 10 以前)
+****** 注册表方法 (适用于 Win 10 以前)
 方法如下:
 - ~Win~ + ~r~ 并输入 =regedit= 打开注册表
 - 找到目录 =[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]=
@@ -140,7 +140,7 @@ Windows 中更改键位可以通过注册表或者最新的 =PowerToys= 软件.
 
 *** Emacs 基本知识讲解与必知快捷键
 作为 Emacs 新手, 大家需要理解的一个核心概念就是命令. 在 Emacs 中所有的操作, 无论简单复杂都是命令.
-Emacs 这个单词就来自于 macro, 即宏命令. 比如说我们想执行打开一个文件的操作, 有3种方式等价的操作方式:
+Emacs 这个单词就来自于 macro, 即宏命令. 比如说我们想执行打开一个文件的操作, 有 3 种方式等价的操作方式:
 1. 在菜单栏里选择 =file= -> =visit new file=, 然后和普通的软件一样选择你要打开的文件.
 2. 执行 =open-file= 命令. 方法是按下 ~M-x~ (~M~ = ~Alt~), 然后在最下面的小缓冲区输入 =open-file=, 然后输入文件名.
 3. 按下 ~C-x C-f~ 快捷键, 并输入文件名.
@@ -149,25 +149,25 @@ Emacs 中有许多有用的命令. 你未来也可以自己通过 Elisp 语言�
 
 但是, 仍有一些快捷键是大家最好尽快熟悉的. 下面这张表我给大家总结了新手必知的几个快捷键.
 在表中, ~C~ 表示 ~Ctrl~, ~M~ 表示 ~Alt~. 这也是 Emacs 快捷键通用写法. 最右边一列是快捷键对应的命令名, 也就是第一列所有的快捷键都等价于 ~M-x~ 加上第三列. 
-|-----------+------------------+--------------------------------|
-| 快捷键      | 操作              | 命令名                           |
-|-----------+------------------+--------------------------------|
-| ~C-g~       | 中止当前一!切!命!令! | =keyboard-quit=                |
-| ~C-/~       | 撤销命令           | =undo=                         |
-|-----------+------------------+--------------------------------|
-| 文件操作    |                  |                                |
-| ~C-x C-f~   | 打开文件           | =find-file=                   |
-| ~C-x C-s~   | 保存文件           | =save-buffer=                    |
-| ~C-x b~     | 切换文件 (缓冲区)   | =switch-to-buffer=               |
-| ~C-x 1~     | 关闭其它窗口        | =delete-other-window=            |
-|-----------+------------------+--------------------------------|
-| ~C-h f/v/k~ | 查询命令/变量/快捷键 | =describe-function/variable/key= |
-|-----------+------------------+--------------------------------|
-| 文本处理    |                  |                                |
-| ~M-x~       | 复制              | =kill-ring-save=                 |
-| ~C-w~       | 剪切              | =kill-region=                    |
-| ~C-y~       | 粘贴              | =yank=                           |
-|-----------+------------------+--------------------------------|
+|-------------+--------------------+----------------------------------|
+| 快捷键       | 操作                | 命令名                            |
+|-------------+--------------------+----------------------------------|
+| ~C-g~       | 中止当前一!切!命!令! | =keyboard-quit=                  |
+| ~C-/~       | 撤销命令            | =undo=                           |
+|-------------+--------------------+----------------------------------|
+| 文件操作     |                    |                                  |
+| ~C-x C-f~   | 打开文件            | =find-file=                      |
+| ~C-x C-s~   | 保存文件            | =save-buffer=                    |
+| ~C-x b~     | 切换文件 (缓冲区)    | =switch-to-buffer=               |
+| ~C-x 1~     | 关闭其它窗口         | =delete-other-window=            |
+|-------------+--------------------+----------------------------------|
+| ~C-h f/v/k~ | 查询命令/变量/快捷键  | =describe-function/variable/key= |
+|-------------+--------------------+----------------------------------|
+| 文本处理     |                    |                                  |
+| ~M-x~       | 复制                | =kill-ring-save=                 |
+| ~C-w~       | 剪切                | =kill-region=                    |
+| ~C-y~       | 粘贴                | =yank=                           |
+|-------------+--------------------+----------------------------------|
 **** 中止命令与撤销命令
 在 Emacs 中发生误操作时, 你需要知道如何中止与撤销命令. 当你的快捷键输入一半想反悔时 (是的, Emacs 的快捷键可以很长!), 可以使用 ~C-g~ 重新来输入, 又或者 Emacs 在执行命令时卡住了, 你可以通过 ~C-g~ 来让它恢复正常.
 
@@ -293,7 +293,7 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 
 在复制代码块中最常见的问题是某个地方在复制的过程中漏了括号. 大家已经发现 elisp 语言中括号是必须配对的. 我们可以在修改 =init.el= 后手动的用 ~M-x~ =match-paren= 检查括号是否匹配. 如果有不匹配的括号, 那么光标就会跳过没有匹配成功的括号上, 否则这个命令不会用任何效果.
 
-**** 插件组合1: 更多的帮助信息
+**** 插件组合 1: 更多的帮助信息
 我们首先介绍 [[https://github.com/justbur/emacs-which-key][Which-key]] + [[https://github.com/tarsius/keycast][Keycast]] + [[https://github.com/Wilfred/helpful][Helpful]]. 安装代码如下
 #+begin_src elisp
   (use-package which-key
@@ -317,13 +317,13 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 
 =which-key= 可以在按下快捷键的时候自动提示你接下来可能的快捷键. 比如按下 ~C-h~, 就会提示接下来你按 ~v~, ~f~, ~k~ 等可以查看哪种类型的帮助. 如果把鼠标悬停在选项上也会在浮窗中显示对应命令的帮助. 
 
-=keycast= 则会显示当前你使用的快捷键及对应的命令名. 它有4种显示的位置. 代码中我们选择在 =headrer-line= , 也就是 Emacs 窗口的最上方显示. 如果大家想在别的地方显示, 比如模式栏, 可以把 =(keycast-header-line-mode 1)= 改成 =(keycast-mode-line-mode 1)=. 
+=keycast= 则会显示当前你使用的快捷键及对应的命令名. 它有 4 种显示的位置. 代码中我们选择在 =headrer-line= , 也就是 Emacs 窗口的最上方显示. 如果大家想在别的地方显示, 比如模式栏, 可以把 =(keycast-header-line-mode 1)= 改成 =(keycast-mode-line-mode 1)=. 
 
 这两个插件可以帮助新手快速熟悉 Emacs 的快捷键和命令. 对于老用户来说, 也可以帮你快速熟悉新安装的插件. 我自己平时也是常开的.
 
 =helpful= 则优化了帮助界面的信息显示, 包括更多有用的信息和高亮.
 
-**** 插件组合2: 更好的补全界面
+**** 插件组合 2: 更好的补全界面
 在 Emacs 中输入命令或打开文件, 切换缓冲区等等都会用到小缓冲区补全. 第二组插件 [[https://github.com/minad/vertico][Vertico]] + [[https://github.com/minad/marginalia][Marginalia]] + [[https://github.com/oantolin/orderless][Orderless]] 是针对小缓冲区补全的. 代码如下
 #+begin_src elisp
   (use-package vertico ; 竖式展开小缓冲区
@@ -436,7 +436,7 @@ Emacs 中的 LaTeX 编辑主要是依赖 [[https://www.gnu.org/s/auctex][AucTeX]
 如果你不熟悉希腊字母对应的拉丁字母, 没有关系, 只要在按下 ~\`~ 后稍稍停顿, 就会弹出一个提示界面.
 大家刚开始使用时可以多查看这个提示界面. 
 **** 数学符号
-大家在提示界面可以看到, 除了希腊字母以外, 我们还可以用同样的方法快速插入数学符号. CDLaTeX 预置了很多好记的默认设置. 例如, ~\`~ + ~8~ 插入 =\infty=, 因为数字8放平就是无穷, 又如, ~\`~ + ~*~ 插入 =\times= 乘号, ~\`~ + ~+~ 插入 =\cup= (并集), ~\`~ + ~>~ 插入 =\rightarrow= (右箭头) 等.
+大家在提示界面可以看到, 除了希腊字母以外, 我们还可以用同样的方法快速插入数学符号. CDLaTeX 预置了很多好记的默认设置. 例如, ~\`~ + ~8~ 插入 =\infty=, 因为数字 8 放平就是无穷, 又如, ~\`~ + ~*~ 插入 =\times= 乘号, ~\`~ + ~+~ 插入 =\cup= (并集), ~\`~ + ~>~ 插入 =\rightarrow= (右箭头) 等.
 **** 第二和第三层目录
 =CDLaTeX= 中连续按下两次反引号 ~\`~ 可以打开第二层目录. 第二层通常用于希腊字母的变体, 如
 - ~\`e~ 插入 =\epsilon=, ~\`\`e~ 插入 =\varepsilon=
@@ -446,7 +446,7 @@ Emacs 中的 LaTeX 编辑主要是依赖 [[https://www.gnu.org/s/auctex][AucTeX]
 或者是多个符号最直观的快捷键相同, 但是频率最高的放在第一层, 频率低的放在第二层, 如
 - ~\`d~ 插入 =\delta=, ~\`\`d~ 插入 =\partial= (求偏导符号)
 
-这个目录还有第3层, 这里绑定的快捷键就更少了. 默认的是一些数学函数的符号, 如 =\sin=, =\exp= 等
+这个目录还有第 3 层, 这里绑定的快捷键就更少了. 默认的是一些数学函数的符号, 如 =\sin=, =\exp= 等
 **** 如何插入 LaTeX 左双引号 =``=
 反引号在 LaTeX 中写作几乎不会用到, 除了用于左双引号 ~\`\`~ (laTeX 的右双引号是 =''= ). 这很好解决: 在 AucTeX 默认设置下, 第一个输入的双引号 ~"~ 会自动转换成为 ~\`\`~ 插入, 第二个输入的双引号 ~"~ 会转换为 ~\'\'~ . 例如, ~"word"~ 将插入 ~``word\'\'~.
 
@@ -483,14 +483,14 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 ~\`~ 触
 - =Apply=: 改变了当前 =cdlatex-math-symbol-alist= 的値, 重启 Emacs 后失效
 - =Save=: 保存设置, 重启后仍生效.
 
-但是已经打开的 =tex= 文件是看不到更新的设置的. 想要重新加载 =CDLaTeX= 的设置. 这有3种方法:
+但是已经打开的 =tex= 文件是看不到更新的设置的. 想要重新加载 =CDLaTeX= 的设置. 这有 3 种方法:
 1. 重启 Emacs
 2. 一个是打开新的 =tex= 文件
 3. 在原来的 =.tex= 文件缓冲区, 按下 ~C-c C-n~.
 
 第三种方法可以刷新 LaTeX 模式设置, 也适用于其它与 =cdlatex= 的设置. 此时, 大家按下反引号 ~\`~ 就可以看到更新后的列表了.
 **** 怎么选择快捷键
-原则上这个机制可以插入任意的数学表达式, 如 =\stackrel{\mathrm{a.s.}}{==}=, 但是建议只绑定原子化的数学符号. 复杂的表达式更适合用 CDLaTeX 的命令补全功能. (参考 [[id:easy-latex-writing-ep03-tab-completion][Tab 补全快速插入LaTeX代码]])
+原则上这个机制可以插入任意的数学表达式, 如 =\stackrel{\mathrm{a.s.}}{==}=, 但是建议只绑定原子化的数学符号. 复杂的表达式更适合用 CDLaTeX 的命令补全功能. (参考 [[#easy-latex-writing-ep03-tab-completion][Tab 补全快速插入LaTeX代码]])
 
 快捷键要易记, 直观, 凭你的第一感觉就能找到. 否则不能提高输入速度. 大家也可以查看默认的设置寻找灵感. 反例就是把左箭头 =\leftarrow= 绑到 ~\`>~ 上.
 
@@ -498,12 +498,12 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 ~\`~ 触
 
 你也可以绑定自己定义的宏命令. 例如, 我的 ~\`e~ 绑定的是 =\eps=, 而在我的 LaTeX 文档引言区中会定义 =\newcommand{\eps}{\varepsilon}=. 这样的好处可以提高代码的可读性, 方便交流. 毕竟你的导师, 你的合作者未必用 Emacs, 长长的 =\varepsilon= 会让人眼花. 但是我输入时想到的是希腊字母 epsilon 就应该用 ~\`e~ 输入.
 
-这里有很大的发挥空间, 因为第二层和第三层基本都是空的, 每个键还分大小写, 可以自由设置100多个快捷键. 所以尽情发挥吧.
+这里有很大的发挥空间, 因为第二层和第三层基本都是空的, 每个键还分大小写, 可以自由设置 100 多个快捷键. 所以尽情发挥吧.
 
 *** 数学字体修饰
 **** 数学字体
  CDLaTeX 还可以快速插入不同的数学字体, 像 =\mathrm{}=, =\mathbf{}= 等等.
- 例如, 我们常常用粗体 R 表示实数域, 也就是 =\mathbf{R}=. 我们可以按3个键完成输入: ~R~ + ~\'~ + ~b~
+ 例如, 我们常常用粗体 R 表示实数域, 也就是 =\mathbf{R}=. 我们可以按 3 个键完成输入: ~R~ + ~\'~ + ~b~
  - ~R~: 输入字母 R
  - ~\'~ (单引号): 打开数学字体列表. 作用相当于前面的 ~\`~
  - ~b~: 在字母 R 外面插入表示粗体的 LaTeX 宏命令 =\mathbf{}=
@@ -573,7 +573,7 @@ Emacs 的最大优势就是我们可以自由地设置. 前面反引号 ~\`~ 触
 
 如果没有特别的设置, =customize-variable= 设置的变量默认会由 Emacs 保存到 =init.el= 文件的最后. 我们的设置可以区分自己的设置和 Emacs 保存的设置.
 
-当然, 你也可以手动把 =custom-set-variables= 中的内容用 =(setq ...)= 语句写在你的 =init.el= 当中, 尤其可以放在相应插件的 =use-package= 代码块中. 这样的好处是方便单独管理每个插件的设置, 并且利用 =use-package= 的延迟加载功能加快打开 Emacs 的时间. 当我们的 CDLaTeX 设置很长的时候, 这样做可以把 Emacs 的启动时间从10多秒减少到1秒以下. 大家可以在熟悉了 Emacs 的设置后再做尝试, 新手不推荐这么做. 
+当然, 你也可以手动把 =custom-set-variables= 中的内容用 =(setq ...)= 语句写在你的 =init.el= 当中, 尤其可以放在相应插件的 =use-package= 代码块中. 这样的好处是方便单独管理每个插件的设置, 并且利用 =use-package= 的延迟加载功能加快打开 Emacs 的时间. 当我们的 CDLaTeX 设置很长的时候, 这样做可以把 Emacs 的启动时间从 10 多秒减少到 1 秒以下. 大家可以在熟悉了 Emacs 的设置后再做尝试, 新手不推荐这么做. 
 
 *** 总结
 Emacs 中的 CDLaTeX 插件利用反引号 ~\`~ 和单引号 ~\'~ 开始的快捷键可以快速插入数学字母, 符号和字体. 我们可以通过设置 =cdlatex-math-symbol-alist= 和 =cdlatex-math-modify-alist= 这两个变量修改和增加自己喜欢的快捷键.
@@ -673,7 +673,7 @@ CDLaTeX 内置了一些可补全的命令, 可以在 =cdlatex-command-alist-defa
 这里有两个细节. 第一是我们在 =?= 后面手动多加了一个空格, 这里因为在 LaTeX 编辑模式下, 按 ~Tab~ 会自动跳到一个空格位置, 因此我们尽量用空格把代码分隔开来, 便于以后的修改; 既然如此, 我们干脆在模板中加入这个空格.
 
 第二个细节时我们的替换字符串最后少了一个 =}=. 这是因为 =CDLaTeX= 中默认会自动匹配输入一对括号 ={}=. 因此我们只需要补全除了右花括号 =}= 以外的部分就可以.
-=CDLaTeX= 中自动匹配的括号可以通过 =cdlatex-paired-parens= 设置, 只针对 =$([{<|= 6个字符. 我一般会自动匹配
+=CDLaTeX= 中自动匹配的括号可以通过 =cdlatex-paired-parens= 设置, 只针对 =$([{<|= 6 个字符. 我一般会自动匹配
 =$([{= . 这里大家只需要注意你在 =cdlatex-command-alist= 中的设置与 =cdlatex-paired-parens= 保持一致就可以了.
 
 **** 插入环境
@@ -781,7 +781,7 @@ CDLaTeX 内置了一些可补全的命令, 可以在 =cdlatex-command-alist-defa
 #+end_src
 
 
-** Emacs 最强内置 pdf阅读器 pdf-tools 简介
+** Emacs 最强内置 pdf 阅读器 pdf-tools 简介
 :PROPERTIES:
 :EXPORT_HUGO_BUNDLE: easy-latex-writing-ap01-pdf-tools
 :EXPORT_FILE_NAME: _index
@@ -1282,7 +1282,7 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
 
 将 ~("<latex 宏命令>" . <unicode 编码>)~ 加入列表中
 - latex 宏命令一般以 "=\\=" 开头, 表示一个普通的 "=\=".
-- unicode 编码以 "=#x=" 表示是16进制数字, 否则就是10进制
+- unicode 编码以 "=#x=" 表示是 16 进制数字, 否则就是 10 进制
 - 常用编码表: https://en.wikipedia.org/wiki/Mathematical_operators_and_symbols_in_Unicode
   
 
@@ -1366,7 +1366,7 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
 - 读书笔记
 - 数学草稿
 - 科研日志, 灵感
-- 教程/食谱/日记等, 例如: "如何安装Emacs", "如何做红烧肉"
+- 教程/食谱/日记等, 例如: "如何安装 Emacs", "如何做红烧肉"
 ...
 
 *** 信息提取
@@ -1393,9 +1393,9 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
   - 网状结构: 用 =链接= 串连笔记, 自下而上生成结构
 - 原型: 卡片盒笔记 (Zettlekasten)
   - 卢曼 (Luhmann, 1927-1988): 德国社会学家
-  - 卢曼从1952年左右开始构建卡片盒笔记, 最后笔记包含9万余条目
-  - 卢曼一生发表了50本著作与550篇论文
-- 现代实现方式: 双链笔记/个人知识库软件 (2020年前后)
+  - 卢曼从 1952 年左右开始构建卡片盒笔记, 最后笔记包含 9 万余条目
+  - 卢曼一生发表了 50 本著作与 550 篇论文
+- 现代实现方式: 双链笔记/个人知识库软件 (2020 年前后)
   - =Roam Research=, =Obsidian=, =Logseq=, =Notion= ...
   - 在 Emacs 中: 基于 =org-roam= 的知识管理系统
 *** 为什么选择 =org-roam=
@@ -1406,7 +1406,7 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
   - 能与文献管理软件如 =Zotero= 整合
   - 可视化界面; 易于导出为其它形式
 ****  笔记软件比较 
-- =Roam Research=: 创建于2020.1., 双链+图形界面, 订阅制 (基础版 180＄/年)
+- =Roam Research=: 创建于 2020.1., 双链+图形界面, 订阅制 (基础版 180＄/年)
 - =Obsidian=: 创建于 2020.3. 基于 =Markdown= 文件, 有强大插件生态, 基础版免费, 全平台使用
 - =Logseq=: 创建于 2020. 开源, 基于 =Markdown= 或 =org= 文件. 与 =Obsedian= 非常像
 - =org-mode= + =Emacs=
@@ -1415,7 +1415,7 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
   - 与其它工作流程的整合
   - 底层结构是纯文本, 易于保存和导出
   - 开源软件, 永久免费, 强大的插件生态, 上限和自由度很高
-  - 终生个人知识库: 平台也需要有强大的生命力, Emacs 有近40年历史
+  - 终生个人知识库: 平台也需要有强大的生命力, Emacs 有近 40 年历史
 *** 个人知识库的构建
 - 核心: 笔记间的 =链接= 
 - 笔记类型
@@ -1449,8 +1449,8 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
 - 导出设置
 ......  
 *** org-roam 安装
-以Emacs 28为准
-- =gcc= 编译器: 用于编译 =emacsql-sqlite= (Emacs 29后应该不再需要)
+以 Emacs 28 为准
+- =gcc= 编译器: 用于编译 =emacsql-sqlite= (Emacs 29 后应该不再需要)
   - =Windows= 下可通过 =msys2= 安装 (推荐), 并保证在系统可执行文件目录下
     #+begin_src shell
       pacman -S mingw-w64-x86_64-gcc
@@ -1579,8 +1579,8 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
 - =pdf-tools=: 阅读 =pdf= 必备, 参考往期视频:
   [[https://www.bilibili.com/video/BV1pg4y1s7Z9/][【Emacs+LaTeX教程】Emacs最强内置pdf阅读功能pdf-tools简介]]
 - =org-noter=: ~M-x package-list-package~ 安装 =Melpa= 最新版
-  - 2023年3月更新内容
-    - 2维笔记定位
+  - 2023 年 3 月更新内容
+    - 2 维笔记定位
     - =djvu=, =epub= 文件支持
     - 批注小标题优化
   - 如果安装了 =use-package=, 可将以下代码加入 =init.el= 自动安装
@@ -1611,10 +1611,10 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
 - ~M-<left>~ / ~M-<right>~ : 当前标题升级/降级
 - ~M-S-<left>~ / ~M-S-<right>~: 当前标题及其子标题升级/降级
 **** 插入笔记
-=org-noter= 通过记录页码及位置保持笔记文件与 =pdf= 文件的同步. 根据定位的精度, 在 =pdf= 界面, 有3种插入笔记方式
-- 方法1 :: 按 ~i~ 在当前页插入笔记 (page note)
-- 方法2 :: 按 ~M-i~ 在鼠标点击位置插入笔记 (precise note)
-- 方法3 :: 选中文字后, 按 ~<tab>~ / ~M-i~ 或 ~i~ 在选中文字位置插入笔记
+=org-noter= 通过记录页码及位置保持笔记文件与 =pdf= 文件的同步. 根据定位的精度, 在 =pdf= 界面, 有 3 种插入笔记方式
+- 方法 1 :: 按 ~i~ 在当前页插入笔记 (page note)
+- 方法 2 :: 按 ~M-i~ 在鼠标点击位置插入笔记 (precise note)
+- 方法 3 :: 选中文字后, 按 ~<tab>~ / ~M-i~ 或 ~i~ 在选中文字位置插入笔记
 
 在笔记中还可以使用 =CDLaTeX= 编辑数学公式, 以及用 =org-download= 插入截图. 请到教程的最后查看这些功能的基本设置.  
 **** 位置同步
@@ -1758,7 +1758,7 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
         :config
         (setq-default org-download-image-dir "./img")) ;; 用同级 ./img 目录放置截图文件
   #+end_src
-** Zotero文献管理系统简介
+** Zotero 文献管理系统简介
 :PROPERTIES:
 :EXPORT_HUGO_BUNDLE: PKM-ep02-zotero-intro
 :EXPORT_FILE_NAME: _index
@@ -1777,12 +1777,12 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
   - 内置阅读器支持高亮, 批注等
   - 也可以设置别的默认阅读器
 *** 向 Zotero 中加入文献
-- 方法1 :: 利用浏览器的 =Zotero Connector= 插件 ([[https://www.zotero.org/download/][下载链接]])
+- 方法 1 :: 利用浏览器的 =Zotero Connector= 插件 ([[https://www.zotero.org/download/][下载链接]])
   - 支持: =Edge=, =Chrome=, =FireFox=, =Safari=
   - 自动读取文献信息, 允许时自动下载 =pdf= 全文
-  - 10年前很有用的功能: 网页快照, 先存再看
-- 方法2 :: 利用文件标识码, 如 =DOI=, =ISBN= 或者 =Arxiv ID= 等
-- 方法3 :: 从本地 =pdf= 文件创建. =Zotero= 会尝试获取文献信息
+  - 10 年前很有用的功能: 网页快照, 先存再看
+- 方法 2 :: 利用文件标识码, 如 =DOI=, =ISBN= 或者 =Arxiv ID= 等
+- 方法 3 :: 从本地 =pdf= 文件创建. =Zotero= 会尝试获取文献信息
 
 - 为保证参考文献信息准确, 建议多使用前两种方法
 - 手动添加 =pdf= 附件: 适用于非官方手段获取的 =pdf= 文件
@@ -1808,8 +1808,8 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
 设置界面在 =Edit= -> =Preference= -> =Better BibTeX= 下
 - 引用键名格式
   - 我的设置: ~authorsAlpha+year+shorttitle(3,3)~
-    - ~authorsAlpha~: 采用 =bibtex= 中的 =alpha= 风格; 单作者取姓的前3字母, 2个以上取首字母
-    - ~year~: 4位数字年份
+    - ~authorsAlpha~: 采用 =bibtex= 中的 =alpha= 风格; 单作者取姓的前 3 字母, 2 个以上取首字母
+    - ~year~: 4 位数字年份
     - ~shorttitle(m,n)~: 标题前 m 个单词, 其中前 n 个单词首字母大写
   - 在 https://retorque.re/zotero-better-bibtex/citing/ 有更多设置
 - 保证键名不重复: =keey citekey unique= -> =across all libraries=
@@ -1817,7 +1817,7 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
   - 选中收藏夹, 导出, 勾选自动更新
   - 更新频率设置: =Automatic Export= -> =Automatic Export= -> =On change=  
 *** =ZotFile= 同步设置
-- =Zotero= 登录后有 500M 的同步空间, 因此最好有第3方网盘同步 =pdf= 文件
+- =Zotero= 登录后有 500M 的同步空间, 因此最好有第 3 方网盘同步 =pdf= 文件
   - =Zotero= 帐号负责同步文献信息
   - =ZotFlie= 负责用网盘同步 =pdf= 文件
   - =Better BibTeX= 的键名无法同步, 但是相同规则的键名是一样的.
@@ -1842,7 +1842,7 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
 
 
 
-** 用org-roam管理Zotero文献笔记
+** 用 org-roam 管理 Zotero 文献笔记
 :PROPERTIES:
 :EXPORT_HUGO_BUNDLE: PKM-ep03-zotero-org-noter-integration
 :EXPORT_FILE_NAME: _index
@@ -2010,7 +2010,7 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
   - 预览当前位置/当前选中区域 ~C-c C-x C-l~
   - 取消预览: ~C-u~ + ~C-c C-x C-l~
 *** 打开 CDLaTeX 模式
-Org-mode 有一个专属的 =org-cdlatex-mode=, 打开后可以使用 CDLaTeX 模式中定义的所有快捷键命令. 关于 CDLaTeX可以参考
+Org-mode 有一个专属的 =org-cdlatex-mode=, 打开后可以使用 CDLaTeX 模式中定义的所有快捷键命令. 关于 CDLaTeX 可以参考
 - [[https://www.bilibili.com/video/BV1qa4y1u7Cd][【省时省力写LaTeX】cdlatex中快速输入数学符号和字体与自定义设置]]
 - [[https://www.bilibili.com/video/BV1Rb421J7eS][【省时省力写LaTeX】Tab补全快速插入LaTeX代码]]
 #+begin_src elisp

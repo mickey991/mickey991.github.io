@@ -69,7 +69,7 @@ Windows 中更改键位可以通过注册表或者最新的 `PowerToys` 软件.
 
 <!--list-separator-->
 
--  注册表方法 (适用于Win 10 以前)
+-  注册表方法 (适用于 Win 10 以前)
 
     方法如下:
 
@@ -130,7 +130,7 @@ Windows 中更改键位可以通过注册表或者最新的 `PowerToys` 软件.
 ## Emacs 基本知识讲解与必知快捷键 {#emacs-基本知识讲解与必知快捷键}
 
 作为 Emacs 新手, 大家需要理解的一个核心概念就是命令. 在 Emacs 中所有的操作, 无论简单复杂都是命令.
-Emacs 这个单词就来自于 macro, 即宏命令. 比如说我们想执行打开一个文件的操作, 有3种方式等价的操作方式:
+Emacs 这个单词就来自于 macro, 即宏命令. 比如说我们想执行打开一个文件的操作, 有 3 种方式等价的操作方式:
 
 1.  在菜单栏里选择 `file` -&gt; `visit new file`, 然后和普通的软件一样选择你要打开的文件.
 2.  执行 `open-file` 命令. 方法是按下 <kbd>M-x</kbd> (<kbd>M</kbd> = <kbd>Alt</kbd>), 然后在最下面的小缓冲区输入 `open-file`, 然后输入文件名.
@@ -308,7 +308,7 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 在复制代码块中最常见的问题是某个地方在复制的过程中漏了括号. 大家已经发现 elisp 语言中括号是必须配对的. 我们可以在修改 `init.el` 后手动的用 <kbd>M-x</kbd> `match-paren` 检查括号是否匹配. 如果有不匹配的括号, 那么光标就会跳过没有匹配成功的括号上, 否则这个命令不会用任何效果.
 
 
-### 插件组合1: 更多的帮助信息 {#插件组合1-更多的帮助信息}
+### 插件组合 1: 更多的帮助信息 {#插件组合-1-更多的帮助信息}
 
 我们首先介绍 [Which-key](https://github.com/justbur/emacs-which-key) + [Keycast](https://github.com/tarsius/keycast) + [Helpful](https://github.com/Wilfred/helpful). 安装代码如下
 
@@ -334,14 +334,14 @@ Emacs 中下载新的插件可以通过不同的方式 (这也是由某些插件
 
 `which-key` 可以在按下快捷键的时候自动提示你接下来可能的快捷键. 比如按下 <kbd>C-h</kbd>, 就会提示接下来你按 <kbd>v</kbd>, <kbd>f</kbd>, <kbd>k</kbd> 等可以查看哪种类型的帮助. 如果把鼠标悬停在选项上也会在浮窗中显示对应命令的帮助.
 
-`keycast` 则会显示当前你使用的快捷键及对应的命令名. 它有4种显示的位置. 代码中我们选择在 `headrer-line` , 也就是 Emacs 窗口的最上方显示. 如果大家想在别的地方显示, 比如模式栏, 可以把 `(keycast-header-line-mode 1)` 改成 `(keycast-mode-line-mode 1)`.
+`keycast` 则会显示当前你使用的快捷键及对应的命令名. 它有 4 种显示的位置. 代码中我们选择在 `headrer-line` , 也就是 Emacs 窗口的最上方显示. 如果大家想在别的地方显示, 比如模式栏, 可以把 `(keycast-header-line-mode 1)` 改成 `(keycast-mode-line-mode 1)`.
 
 这两个插件可以帮助新手快速熟悉 Emacs 的快捷键和命令. 对于老用户来说, 也可以帮你快速熟悉新安装的插件. 我自己平时也是常开的.
 
 `helpful` 则优化了帮助界面的信息显示, 包括更多有用的信息和高亮.
 
 
-### 插件组合2: 更好的补全界面 {#插件组合2-更好的补全界面}
+### 插件组合 2: 更好的补全界面 {#插件组合-2-更好的补全界面}
 
 在 Emacs 中输入命令或打开文件, 切换缓冲区等等都会用到小缓冲区补全. 第二组插件 [Vertico](https://github.com/minad/vertico) + [Marginalia](https://github.com/minad/marginalia) + [Orderless](https://github.com/oantolin/orderless) 是针对小缓冲区补全的. 代码如下
 

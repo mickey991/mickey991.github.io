@@ -108,7 +108,7 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 <kbd>
 将 <kbd>("&lt;latex 宏命令&gt;" . &lt;unicode 编码&gt;)</kbd> 加入列表中
 
 -   latex 宏命令一般以 "`\\`" 开头, 表示一个普通的 "`\`".
--   unicode 编码以 "`#x`" 表示是16进制数字, 否则就是10进制
+-   unicode 编码以 "`#x`" 表示是 16 进制数字, 否则就是 10 进制
 -   常用编码表: <https://en.wikipedia.org/wiki/Mathematical_operators_and_symbols_in_Unicode>
 
 个人加入编码的原则

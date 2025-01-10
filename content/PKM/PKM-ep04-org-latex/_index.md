@@ -38,7 +38,7 @@ weight = 40
 
 ## 打开 CDLaTeX 模式 {#打开-cdlatex-模式}
 
-Org-mode 有一个专属的 `org-cdlatex-mode`, 打开后可以使用 CDLaTeX 模式中定义的所有快捷键命令. 关于 CDLaTeX可以参考
+Org-mode 有一个专属的 `org-cdlatex-mode`, 打开后可以使用 CDLaTeX 模式中定义的所有快捷键命令. 关于 CDLaTeX 可以参考
 
 -   [【省时省力写LaTeX】cdlatex中快速输入数学符号和字体与自定义设置](https://www.bilibili.com/video/BV1qa4y1u7Cd)
 -   [【省时省力写LaTeX】Tab补全快速插入LaTeX代码](https://www.bilibili.com/video/BV1Rb421J7eS)

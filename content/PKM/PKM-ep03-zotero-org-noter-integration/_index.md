@@ -1,5 +1,5 @@
 +++
-title = "用org-roam管理Zotero文献笔记"
+title = "用 org-roam 管理 Zotero 文献笔记"
 draft = false
 weight = 30
 +++
