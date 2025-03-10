@@ -6,32 +6,31 @@ weight = 40
 
 ## RefTeX 解决的痛点 {#reftex-解决的痛点}
 
-你有没有遇到:
+你是否遇到过以下困扰：
 
--   标签太多, 不知道怎么取名字?
--   标签太短怕重复, 标签太长怕记不住?
--   一到引用就抓狂: 在 tex 文件里翻半天只为了找到公式把标签复制到引用的地方?
+-   标签数量过多，不知该如何命名？
+-   标签过短担心重复，过长又难以记忆？
+-   在引用时抓狂不已：在 tex 文件中翻来覆去，只为找到公式并复制标签到引用位置？
 
-RefTeX 可以让你自由、随心所欲地创建、引用、管理标签.
-
-
-## 功能演示 {#功能演示}
+RefTeX 让你轻松创建、引用和管理标签，随心所欲，毫无压力。
 
 
-### 插入标签 {#插入标签}
+## 插入标签 {#插入标签}
 
--   `equation`: `equ` + <kbd>Tab</kbd>
--   `enumerate` 中的 `\item`: `it` + <kbd>Tab</kbd>
+用 <kbd>M-x</kbd> + `reftex-label`, 或者 `lbl` + <kbd>Tab</kbd> (CDLaTeX 的命令补全) 均可以触发生成标签.
 
-`reftex-label`, <kbd>C-c (</kbd> , `lbl` + <kbd>Tab</kbd> (CDLaTeX 命令补全)
+标签的内容有以下方式决定.
 
--   自动生成数字标签: 公式环境 `\label{eq:NNN}`, 列表环境 `\label{it:NNN}`
-    -   常用命令: <kbd>C-u C-c C-e</kbd> 改变环境 (例如从无标签公式变有标签公式)
-    -   `equation` 等公式环境, `enumerate` 的 `item` 也会用 RefTeX 自动生成标签
+第一种是 **自动生成数字标签**. 这适用于公式环境 `\label{eq:NNN}` 或者列表环境 `\label{it:NNN}`, 其中 `NNN` 表示自动生成的数字. 它一般是 RefTeX 在当前文档中找到的可以使用的最小数字. (有时会有)
+
+常见
+
+-   常用命令: <kbd>C-u C-c C-e</kbd> 改变环境 (例如从无标签公式变有标签公式)
+-   `equation` 等公式环境, `enumerate` 的 `item` 也会用 RefTeX 自动生成标签
 -   自动根据上下文生成标签: 章节. 例如, `\section{First Second Third}` 自动生成 `\label{sec:first-second-third}`
 
 
-### 引用标签 {#引用标签}
+## 引用标签 {#引用标签}
 
 `reftex-reference`,  <kbd>C-c [</kbd> , `ref` + <kbd>Tab</kbd> (CDLaTeX 命令补全)
 
@@ -61,11 +60,11 @@ RefTeX 可以让你自由、随心所欲地创建、引用、管理标签.
 包含在我们一开始的 AucTeX 配置代码中:
 
 ```elisp
-  (defun my/latex-hook ()
-    (turn-on-cdlatex)
-    (turn-on-reftex))
+(defun my/latex-hook ()
+  (turn-on-cdlatex)
+  (turn-on-reftex))
 
-  (add-hook 'LaTeX-mode-hook 'my/latex-hook)
+(add-hook 'LaTeX-mode-hook 'my/latex-hook)
 ```
 
 
@@ -74,7 +73,7 @@ RefTeX 可以让你自由、随心所欲地创建、引用、管理标签.
 默认使用 `\ref{}` 格式,  `ref` + <kbd>Tab</kbd> 直接进入标签选择
 
 ```elisp
-  (setq reftex-ref-macro-prompt nil)
+(setq reftex-ref-macro-prompt nil)
 ```
 
 在标签选择界面, 可以用 <kbd>v</kbd> 和 <kbd>V</kbd> 去改变引用格式.
@@ -87,7 +86,7 @@ RefTeX 可以让你自由、随心所欲地创建、引用、管理标签.
 可以由变量 `reftex-guess-label-type` 控制
 
 ```elisp
-  (setq reftex-guess-label-type t) ; 默认值
+(setq reftex-guess-label-type t) ; 默认值
 ```
 
 
@@ -111,7 +110,7 @@ RefTeX 可以让你自由、随心所欲地创建、引用、管理标签.
 <!--listend-->
 
 ```elisp
-  (setq reftex-trust-label-prefix t)
+(setq reftex-trust-label-prefix t)
 ```
 
 
@@ -135,23 +134,23 @@ RefTeX 可以让你自由、随心所欲地创建、引用、管理标签.
 ### 自动打开跟随模式 {#自动打开跟随模式}
 
 ```elisp
-  (setq reftex-label-menu-flags '(t t nil nil t nil t nil)) ; 在标签选择界面
+(setq reftex-label-menu-flags '(t t nil nil t nil t nil)) ; 在标签选择界面
 ```
 
 
 ## 代码总结 {#代码总结}
 
 ```elisp
-  ;; 为 LaTeX 模式加载 RefTeX
-  (defun my/latex-hook ()
-    (turn-on-cdlatex)
-    (turn-on-reftex))
+;; 为 LaTeX 模式加载 RefTeX
+(defun my/latex-hook ()
+  (turn-on-cdlatex)
+  (turn-on-reftex))
 
-  (add-hook 'LaTeX-mode-hook 'my/latex-hook)
+(add-hook 'LaTeX-mode-hook 'my/latex-hook)
 
-  (setq reftex-ref-macro-prompt nil)
-  (setq reftex-guess-label-type t) ; 默认值
-  (setq reftex-trust-label-prefix t)
-  (setq reftex-label-menu-flags '(t t nil nil t nil t nil)) ; 标签选择界面跟随界面
-  ;; 以及通过 customize-variable 对 reftex-label-alist 和 reftex-insert-label-flag 的设置
+(setq reftex-ref-macro-prompt nil)
+(setq reftex-guess-label-type t) ; 默认值
+(setq reftex-trust-label-prefix t)
+(setq reftex-label-menu-flags '(t t nil nil t nil t nil)) ; 标签选择界面跟随界面
+;; 以及通过 customize-variable 对 reftex-label-alist 和 reftex-insert-label-flag 的设置
 ```
