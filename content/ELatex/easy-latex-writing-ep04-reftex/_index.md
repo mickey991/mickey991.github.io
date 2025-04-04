@@ -17,22 +17,20 @@ RefTeX 让你轻松创建、引用和管理标签，随心所欲，毫无压力�
 
 ## 插入标签 {#插入标签}
 
-用 <kbd>M-x</kbd> + `reftex-label`, 或者 `lbl` + <kbd>Tab</kbd> (CDLaTeX 的命令补全) 均可以触发生成标签.
+用 <kbd>M-x</kbd> + `reftex-label`, 或者 `lbl` + <kbd>Tab</kbd> (CDLaTeX 的命令补全) 均可以生成形如 `\label{type:XXXX}` 的标签.
 
-标签的内容有以下方式决定.
+标签的内容根据标签的类型, 有以下的方式决定.
 
-第一种是 **自动生成数字标签**. 这适用于公式环境 `\label{eq:NNN}` 或者列表环境 `\label{it:NNN}`, 其中 `NNN` 表示自动生成的数字. 它一般是 RefTeX 在当前文档中找到的可以使用的最小数字. (有时会有)
-
-常见
-
--   常用命令: <kbd>C-u C-c C-e</kbd> 改变环境 (例如从无标签公式变有标签公式)
--   `equation` 等公式环境, `enumerate` 的 `item` 也会用 RefTeX 自动生成标签
--   自动根据上下文生成标签: 章节. 例如, `\section{First Second Third}` 自动生成 `\label{sec:first-second-third}`
+-   自动生成的数字标签. 这适用于公式环境 `\label{eq:NNN}` 或者列表环境 `\label{it:NNN}`, 这里 `NNN` 表示自动生成的数字. 它是 RefTeX 在当前文档中找到的可以使用的最小数字.
+    -   在写数学证明的过程中, 很多需要引用的公式只是在证明过程中引用, 这时自动编号就剩去了想标签名字的烦恼.
+    -   我常配合 <kbd>C-u C-c C-e</kbd> 改变环境使用, 把从无标签公式变有标签公式.
+-   根据上下文生成标签: 章节. 例如, `\section{First Second Third}` 自动生成 `\label{sec:first-second-third}`
+-   如果以上方法均不适用, 则可以手动输入标签.
 
 
 ## 引用标签 {#引用标签}
 
-`reftex-reference`,  <kbd>C-c [</kbd> , `ref` + <kbd>Tab</kbd> (CDLaTeX 命令补全)
+用 <kbd>M-x</kbd> + `reftex-reference`,  <kbd>C-c [</kbd> 或者 `ref` + <kbd>Tab</kbd> (CDLaTeX 命令补全) 均可以触发引用交叉标签.
 
 -   第一步: 选择引用的宏命令, 如 `\ref`, `\pageref` 等
 -   第二步: 选择标签类型, 默认类型包括 (<kbd>?</kbd> 查看帮助):
