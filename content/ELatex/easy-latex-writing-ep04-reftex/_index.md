@@ -58,11 +58,11 @@ RefTeX 让你轻松创建、引用和管理标签，随心所欲，毫无压力�
 包含在我们一开始的 AucTeX 配置代码中:
 
 ```elisp
-(defun my/latex-hook ()
-  (turn-on-cdlatex)
-  (turn-on-reftex))
+  (defun my/latex-hook ()
+    (turn-on-cdlatex)
+    (turn-on-reftex))
 
-(add-hook 'LaTeX-mode-hook 'my/latex-hook)
+  (add-hook 'LaTeX-mode-hook 'my/latex-hook)
 ```
 
 
@@ -71,7 +71,7 @@ RefTeX 让你轻松创建、引用和管理标签，随心所欲，毫无压力�
 默认使用 `\ref{}` 格式,  `ref` + <kbd>Tab</kbd> 直接进入标签选择
 
 ```elisp
-(setq reftex-ref-macro-prompt nil)
+  (setq reftex-ref-macro-prompt nil)
 ```
 
 在标签选择界面, 可以用 <kbd>v</kbd> 和 <kbd>V</kbd> 去改变引用格式.
@@ -84,7 +84,7 @@ RefTeX 让你轻松创建、引用和管理标签，随心所欲，毫无压力�
 可以由变量 `reftex-guess-label-type` 控制
 
 ```elisp
-(setq reftex-guess-label-type t) ; 默认值
+  (setq reftex-guess-label-type t) ; 默认值
 ```
 
 
@@ -108,7 +108,7 @@ RefTeX 让你轻松创建、引用和管理标签，随心所欲，毫无压力�
 <!--listend-->
 
 ```elisp
-(setq reftex-trust-label-prefix t)
+  (setq reftex-trust-label-prefix t)
 ```
 
 
@@ -132,23 +132,23 @@ RefTeX 让你轻松创建、引用和管理标签，随心所欲，毫无压力�
 ### 自动打开跟随模式 {#自动打开跟随模式}
 
 ```elisp
-(setq reftex-label-menu-flags '(t t nil nil t nil t nil)) ; 在标签选择界面
+  (setq reftex-label-menu-flags '(t t nil nil t nil t nil)) ; 在标签选择界面
 ```
 
 
 ## 代码总结 {#代码总结}
 
 ```elisp
-;; 为 LaTeX 模式加载 RefTeX
-(defun my/latex-hook ()
-  (turn-on-cdlatex)
-  (turn-on-reftex))
+  ;; 为 LaTeX 模式加载 RefTeX
+  (defun my/latex-hook ()
+    (turn-on-cdlatex)
+    (turn-on-reftex))
 
-(add-hook 'LaTeX-mode-hook 'my/latex-hook)
+  (add-hook 'LaTeX-mode-hook 'my/latex-hook)
 
-(setq reftex-ref-macro-prompt nil)
-(setq reftex-guess-label-type t) ; 默认值
-(setq reftex-trust-label-prefix t)
-(setq reftex-label-menu-flags '(t t nil nil t nil t nil)) ; 标签选择界面跟随界面
-;; 以及通过 customize-variable 对 reftex-label-alist 和 reftex-insert-label-flag 的设置
+  (setq reftex-ref-macro-prompt nil)
+  (setq reftex-guess-label-type t) ; 默认值
+  (setq reftex-trust-label-prefix t)
+  (setq reftex-label-menu-flags '(t t nil nil t nil t nil)) ; 标签选择界面跟随界面
+  ;; 以及通过 customize-variable 对 reftex-label-alist 和 reftex-insert-label-flag 的设置
 ```

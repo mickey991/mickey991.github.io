@@ -67,29 +67,27 @@ Windows 下安装 Emacs 有两种常见方法. 第一种是安装 MSYS2 ([下载
 
 Windows 中更改键位可以通过注册表或者最新的 `PowerToys` 软件.
 
-<!--list-separator-->
 
--  注册表方法 (适用于 Win 10 以前)
+##### 注册表方法 (适用于 Win 10 以前) {#注册表方法--适用于-win-10-以前}
 
-    方法如下:
+方法如下:
 
-    -   <kbd>Win</kbd> + <kbd>r</kbd> 并输入 `regedit` 打开注册表
-    -   找到目录 `[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]`
-    -   新建 `Scancode` 文件, 把内容修改为
-        ```nil
-             00 00 00 00 00 00 00 00
-             03 00 00 00 1d 00 3a 00
-             3a 00 1d 00 00 00 00 00
-        ```
-    -   保存 `Scancode` 文件并重启电脑
+-   <kbd>Win</kbd> + <kbd>r</kbd> 并输入 `regedit` 打开注册表
+-   找到目录 `[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]`
+-   新建 `Scancode` 文件, 把内容修改为
+    ```nil
+         00 00 00 00 00 00 00 00
+         03 00 00 00 1d 00 3a 00
+         3a 00 1d 00 00 00 00 00
+    ```
+-   保存 `Scancode` 文件并重启电脑
 
-<!--list-separator-->
 
--  PowerToys (适用于 Win 10, Win 11)
+##### PowerToys (适用于 Win 10, Win 11) {#powertoys--适用于-win-10-win-11}
 
-    -   将系统中 "微软商店" 更新到最新版本 (Win 10 不更新可能会找不到 PowerToys)
-    -   在 "微软商店"= 中搜索 `PowerToys` 并安装
-    -   在 PowerToys 中找到键位设置, 并交换 <kbd>Caps Lock</kbd> 和 <kbd>Left Control</kbd>
+-   将系统中 "微软商店" 更新到最新版本 (Win 10 不更新可能会找不到 PowerToys)
+-   在 "微软商店"= 中搜索 `PowerToys` 并安装
+-   在 PowerToys 中找到键位设置, 并交换 <kbd>Caps Lock</kbd> 和 <kbd>Left Control</kbd>
 
 
 #### Ubuntu 及其它 Linux 系统 {#ubuntu-及其它-linux-系统}
