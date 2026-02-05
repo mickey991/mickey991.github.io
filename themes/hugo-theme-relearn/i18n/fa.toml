@@ -1,6 +1,9 @@
 [Reading-direction]
 other = "rtl"
 
+[Versioning-warning]
+other = 'این صفحه نسخه {{.pageVersion.title}} را نشان میدهد. نسخه فعلی را میتوان در <a href="{{.latestUrl}}">اینجا</a> یافت.'
+
 [Search]
 other = "جستجو"
 
@@ -37,8 +40,17 @@ other = "اوه! به نظر می‌رسد این صفحه وجود ندارد �
 [Go-to-homepage]
 other = "رفتن به صفحه اصلی"
 
+[home-button]
+other = "Home"
+
 [Edit-this-page]
 other = "ویرایش"
+
+[Show-Markdown]
+other = "نمایش Markdown"
+
+[Show-source]
+other = "نمایش کد منبع"
 
 [Print-this-chapter]
 other = "چاپ کل فصل"
@@ -48,9 +60,6 @@ other = "بیشتر"
 
 [shortcuts-menuTitle]
 other = "بیشتر"
-
-[Expand-title]
-other = "باز کردن..."
 
 [Navigation-toggle]
 other = "منو"
@@ -86,10 +95,10 @@ other = "نکته"
 other = "هشدار"
 
 [Copy-to-clipboard]
-other = "کپی به کلیپ‌بورد"
+other = "کپی متن به کلیپ‌بورد"
 
 [Copied-to-clipboard]
-other = "به کلیپ‌بورد کپی شد!"
+other = "متن به کلیپ‌بورد کپی شد!"
 
 [Copy-link-to-clipboard]
 other = "کپی لینک به کلیپ‌بورد"
@@ -126,3 +135,9 @@ other = "دسته‌بندی"
 
 [Details]
 other = "جزئیات"
+
+[Version]
+other = "نسخه"
+
+[Browser-unsupported-feature]
+other = "این مرورگر از این ویژگی پشتیبانی نمی‌کند"
