@@ -5,6 +5,7 @@ title: "金色飞贼小米的主页"
      
 theme: hugo-theme-relearn
 
+
 markup:
 #   ## use chroma for syntax highlighting
 #   highlight:
@@ -33,23 +34,35 @@ markup:
 
 
 params:
-  themeVariant: 
-  - auto:
-    - learn
-    - neon
-    identifier: retro-auto
-    name: Retro Learn/Neon
+  disableDefaultRelref: true
+  # themeVariant: 
+  # - auto:
+  #   - learn
+  #   - neon
+    # identifier: retro-auto
+    # name: Retro Learn/Neon
   showVisitedLinks : true
   disableRootBreadcrumb : true
-outputs:
-  # add `search` to the home to support Lunr search; This is a mandatory setting
-  # for the side wide search functionality
-  # add `searchpage` to the home to create a dedicated searchpage
-  # add `print` to home, section and page to activate the feature to print whole
-  # chapters
-  home: ["html", "rss", "print", "search", "searchpage"]
-  section: ["html", "rss", "print"]
-  page: ["html", "rss", "print"]
+# outputs:
+#   # add `search` to the home to support Lunr search; This is a mandatory setting
+#   # for the side wide search functionality
+#   # add `searchpage` to the home to create a dedicated searchpage
+#   # add `print` to home, section and page to activate the feature to print whole
+#   # chapters
+#   home:
+#     - html
+#     - rss
+#     - print
+#     - search
+#     - searchpage
+#   section:
+#     - html
+#     - rss
+#     - print
+#   page:
+#     - html
+#     - rss
+#     - print
 
 
 #   math: true
