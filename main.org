@@ -1,6 +1,7 @@
 #+HUGO_BASE_DIR: .
 #+options: creator:nil author:nil
 #+hugo_custom_front_matter: :math true
+#+macro: relref @@hugo:[@@$1@@hugo:]({{% relref "$2" %}})@@
 
 * 小米的主页
 :PROPERTIES:
