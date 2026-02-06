@@ -13,9 +13,9 @@
 
 我是一名科研工作者, 在业余时间制作了一些 [[https://www.gnu.org/s/emacs/][Emacs]] 和 LaTeX 的教程, 希望能对大家有所帮助.
 ** [[#easy-latex-writing][省时省力写 LaTeX 系列]]
-本系列讲解 Emacs 中利用 [[https://www.gnu.org/s/auctex][AucTeX]] + [[https://github.com/cdominik/cdlatex][CDLaTeX]]  等插件省时省力完成 LaTeX 写作, 轻松使用 LaTeX 做即时笔记. 
+本系列讲解 Emacs 中利用 [[https://www.gnu.org/s/auctex][AucTeX]] + [[https://github.com/cdominik/cdlatex][CDLaTeX]]  等插件省时省力完成 LaTeX 写作, 轻松使用 LaTeX 做即时笔记.
 
-** [[#PKM-main][Emacs 上搭建你的终生个人知识库]]
+** [[#pkm-main][Emacs 上搭建你的终生个人知识库]]
 本系列讲解如何围绕 [[https://www.orgroam.com/][Org-roam]] 在 Emacs 上实现双链笔记与搭建个人知识库.
 
 * Series introduction page
@@ -26,8 +26,8 @@
 
 ** 省时省力写 LaTeX
 :PROPERTIES:
-:EXPORT_HUGO_BUNDLE: ELatex
 :EXPORT_FILE_NAME: _index
+:EXPORT_HUGO_BUNDLE: elatex
 :CUSTOM_ID: easy-latex-writing
 :END:
 
@@ -39,23 +39,23 @@
 - 附录 2: [[#easy-latex-writing-ap02-prettify][如何优雅地预览公式]] ([[https://www.bilibili.com/video/BV1tv4y1V7xY/][视频]])
 ** Emacs 终生个人知识库
 :PROPERTIES:
-:EXPORT_HUGO_BUNDLE: PKM
+:EXPORT_HUGO_BUNDLE: pkm
 :EXPORT_FILE_NAME: _index
-:CUSTOM_ID: PKM-main
+:CUSTOM_ID: pkm-main
 :END:
 
-- 第 0 节: [[#PKM-ep00-intro-org-roam][什么是双链笔记与 org-roam 初体验]] ([[https://www.bilibili.com/video/BV1qV4y1Z7h9/][视频]])
-- 第 1 节: [[#PKM-ep01-org-noter][PDF 读书笔记插件 org-noter]] ([[https://www.bilibili.com/video/BV1Tc411s7Tu/][视频]])
-- 第 1 节: [[#PKM-ep02-zotero-intro][Zotero文献管理系统简介]] ([[https://www.bilibili.com/video/BV1Lc411J7gQ/][视频]])
-- 第 3 节: [[#PKM-ep03-zotero-org-noter-integration][用org-roam管理Zotero文献笔记]] ([[https://www.bilibili.com/video/BV1Mg4y1j75u/][视频]])
-     
+- 第 0 节: [[#pkm-ep00-intro-org-roam][什么是双链笔记与 org-roam 初体验]] ([[https://www.bilibili.com/video/BV1qV4y1Z7h9/][视频]])
+- 第 1 节: [[#pkm-ep01-org-noter][PDF 读书笔记插件 org-noter]] ([[https://www.bilibili.com/video/BV1Tc411s7Tu/][视频]])
+- 第 1 节: [[#pkm-ep02-zotero-intro][Zotero文献管理系统简介]] ([[https://www.bilibili.com/video/BV1Lc411J7gQ/][视频]])
+- 第 3 节: [[#pkm-ep03-zotero-org-noter-integration][用org-roam管理Zotero文献笔记]] ([[https://www.bilibili.com/video/BV1Mg4y1j75u/][视频]])
+
 
 * 省时省力写 LaTeX
 :PROPERTIES:
-:EXPORT_HUGO_SECTION: ELatex
+:EXPORT_HUGO_SECTION: elatex
 :END:
 
-** Emacs 快速配置与插件管理 
+** Emacs 快速配置与插件管理
 :PROPERTIES:
 :EXPORT_HUGO_BUNDLE: easy-latex-writing-ep01-basic-setup-and-package-management
 :EXPORT_FILE_NAME: _index
@@ -75,7 +75,7 @@ Emacs 可以运行在 Windows, Linux, MacOS 上, 也可以通过 =termux= 运行
 **** Linux
 Linux 系统中可以用自带的软件管理器安装 Emacs. 例如, 在 Ubuntu 中使用 =apt= 安装 Emacs, 只需要在命令行中输入
 #+begin_src shell
-  sudo apt install emacs 
+  sudo apt install emacs
 #+end_src
 **** MacOS
 MacOS 中需要先安装 [[https://brew.sh/][Homebrew]]. 方法是在命令行中输入
@@ -108,7 +108,7 @@ Windows 中更改键位可以通过注册表或者最新的 =PowerToys= 软件.
 - 新建 =Scancode= 文件, 把内容修改为
   #+begin_src
    00 00 00 00 00 00 00 00
-   03 00 00 00 1d 00 3a 00 
+   03 00 00 00 1d 00 3a 00
    3a 00 1d 00 00 00 00 00
   #+end_src
 - 保存 =Scancode= 文件并重启电脑
@@ -117,7 +117,7 @@ Windows 中更改键位可以通过注册表或者最新的 =PowerToys= 软件.
 - 在 "微软商店"= 中搜索 =PowerToys= 并安装
 - 在 PowerToys 中找到键位设置, 并交换 ~Caps Lock~ 和 ~Left Control~
 ***** Ubuntu 及其它 Linux 系统
-在 Ubuntu 下, 可以安装 Gnome-tweaks: 
+在 Ubuntu 下, 可以安装 Gnome-tweaks:
 #+begin_src shell
  sudo apt install gnome-tweaks
 #+end_src
@@ -149,7 +149,7 @@ Emacs 这个单词就来自于 macro, 即宏命令. 比如说我们想执行打�
 Emacs 中有许多有用的命令. 你未来也可以自己通过 Elisp 语言编写自己命令. Emacs 把其中最常用的命令都绑定了快捷键, 用户自己也可以设置自己的快捷键. 当我们用熟了之后, 很多快捷键就会像打字一样形成肌肉记忆. 作为新手, 我们有很多键盘的快捷操作可以用鼠标代替, 因此你不必急于一下子掌握全部 Emacs 的快捷键.
 
 但是, 仍有一些快捷键是大家最好尽快熟悉的. 下面这张表我给大家总结了新手必知的几个快捷键.
-在表中, ~C~ 表示 ~Ctrl~, ~M~ 表示 ~Alt~. 这也是 Emacs 快捷键通用写法. 最右边一列是快捷键对应的命令名, 也就是第一列所有的快捷键都等价于 ~M-x~ 加上第三列. 
+在表中, ~C~ 表示 ~Ctrl~, ~M~ 表示 ~Alt~. 这也是 Emacs 快捷键通用写法. 最右边一列是快捷键对应的命令名, 也就是第一列所有的快捷键都等价于 ~M-x~ 加上第三列.
 |-------------+--------------------+----------------------------------|
 | 快捷键       | 操作                | 命令名                            |
 |-------------+--------------------+----------------------------------|
@@ -172,7 +172,7 @@ Emacs 中有许多有用的命令. 你未来也可以自己通过 Elisp 语言�
 **** 中止命令与撤销命令
 在 Emacs 中发生误操作时, 你需要知道如何中止与撤销命令. 当你的快捷键输入一半想反悔时 (是的, Emacs 的快捷键可以很长!), 可以使用 ~C-g~ 重新来输入, 又或者 Emacs 在执行命令时卡住了, 你可以通过 ~C-g~ 来让它恢复正常.
 
-如果你需要撤回上一条命令, 则需要使用 ~C-/~. 但值得注意的是, 撤回撤回命令的命令也是同一个键; 这偶尔会让人抓狂. 
+如果你需要撤回上一条命令, 则需要使用 ~C-/~. 但值得注意的是, 撤回撤回命令的命令也是同一个键; 这偶尔会让人抓狂.
 **** 文件与窗口相关命令
 下面我们介绍 Emacs 中最基础的几个管理界面的快捷键.
 
@@ -1460,14 +1460,14 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
 
 * Emacs 终生个人知识库
 :PROPERTIES:
-:EXPORT_HUGO_SECTION: PKM
+:EXPORT_HUGO_SECTION: pkm
 :END:
 
 ** 什么是双链笔记与 org-roam 初体验
 :PROPERTIES:
-:EXPORT_HUGO_BUNDLE: PKM-ep00-intro-org-roam
+:EXPORT_HUGO_BUNDLE: pkm-ep00-intro-org-roam
 :EXPORT_FILE_NAME: _index
-:CUSTOM_ID: PKM-ep00-intro-org-roam
+:CUSTOM_ID: pkm-ep00-intro-org-roam
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :weight 10
 :END:
 
@@ -1667,9 +1667,9 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
 
 ** PDF 读书笔记插件 org-noter
 :PROPERTIES:
-:EXPORT_HUGO_BUNDLE: PKM-ep01-org-noter
+:EXPORT_HUGO_BUNDLE: pkm-ep01-org-noter
 :EXPORT_FILE_NAME: _index
-:CUSTOM_ID: PKM-ep01-org-noter
+:CUSTOM_ID: pkm-ep01-org-noter
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :weight 20
 :END:
 
@@ -1876,9 +1876,9 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
   #+end_src
 ** Zotero 文献管理系统简介
 :PROPERTIES:
-:EXPORT_HUGO_BUNDLE: PKM-ep02-zotero-intro
+:EXPORT_HUGO_BUNDLE: pkm-ep02-zotero-intro
 :EXPORT_FILE_NAME: _index
-:CUSTOM_ID: PKM-ep02-zotero-intro
+:CUSTOM_ID: pkm-ep02-zotero-intro
 :END:
 
 *** 软件界面
@@ -1960,9 +1960,9 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
 
 ** 用 org-roam 管理 Zotero 文献笔记
 :PROPERTIES:
-:EXPORT_HUGO_BUNDLE: PKM-ep03-zotero-org-noter-integration
+:EXPORT_HUGO_BUNDLE: pkm-ep03-zotero-org-noter-integration
 :EXPORT_FILE_NAME: _index
-:CUSTOM_ID: PKM-ep03-zotero-org-noter-integration
+:CUSTOM_ID: pkm-ep03-zotero-org-noter-integration
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :weight 30
 :END:
 *** 实现功能
@@ -2095,9 +2095,9 @@ tips: 如果只想删除刚输入的一个宏命令, 最快的方法是用 ~C-/~
 
 ** 从零搭建个人知识库: Org 笔记中高效写 LaTeX
 :PROPERTIES:
-:EXPORT_HUGO_BUNDLE: PKM-ep04-org-latex
+:EXPORT_HUGO_BUNDLE: pkm-ep04-org-latex
 :EXPORT_FILE_NAME: _index
-:CUSTOM_ID: PKM-ep04-org-latex
+:CUSTOM_ID: pkm-ep04-org-latex
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :weight 40
 :END:
 *** 前言
@@ -2305,4 +2305,3 @@ Org-mode 和 CDLaTeX 的强强联合
   (setq org-latex-packages-alist '(("" "mysymbol" t)))
 
 #+end_src
-
